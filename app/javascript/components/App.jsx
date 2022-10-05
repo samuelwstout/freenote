@@ -4,7 +4,7 @@ const App = () => {
 
   return (
     <div>
-      <h1>Hello. This is Vite/React in Rails!</h1>
+      <h1>Hello! This is Vite/React in Rails!</h1>
     </div>
   );
 };
