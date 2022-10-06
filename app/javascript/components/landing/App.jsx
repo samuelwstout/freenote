@@ -1,5 +1,7 @@
 import React from 'react'
 
+// App is the landing page ('/')
+
 const App = () => {
 
   return (
