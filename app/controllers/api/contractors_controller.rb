@@ -1,5 +1,6 @@
 class Api::ContractorsController < ApplicationController
-    skip_before_action :confirm_authentication
+
+    skip_before_action :verify_authenticity_token
     
     def index
         contractors = Contractor.all
@@ -9,7 +10,7 @@ class Api::ContractorsController < ApplicationController
     def create
         contractor = Contractor.create(user_params)
         if contractor.valid?
-            session[:user_id] = contractor.id
+            # session[:user_id] = contractor.id
             render json: contractor, status: :ok
         else
             render json: { error: contractor.errors }, status: :unprocessable_entity
