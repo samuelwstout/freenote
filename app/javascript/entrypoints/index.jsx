@@ -6,6 +6,7 @@ import {
 } from "react-router-dom";
 import App from '../components/App';
 
+
 const router = createBrowserRouter([
   {
     path: "/",
