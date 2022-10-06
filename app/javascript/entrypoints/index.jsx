@@ -5,12 +5,27 @@ import {
   RouterProvider
 } from "react-router-dom";
 import App from '../components/landing/App';
+import Signup from '../components/auth/Signup';
+import Signin from '../components/auth/Signin';
+import SignupAsContractor from '../components/auth/SignupAsContractor';
 
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: '/',
     element: <App />,
+  },
+  {
+    path: '/signup',
+    element: <Signup />
+  },
+  {
+    path: '/signin',
+    element: <Signin />
+  },
+  {
+    path: '/signup-as-contractor',
+    element: <SignupAsContractor />
   }
 ]);
 

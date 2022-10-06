@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 // App is the landing page ('/')
 
@@ -8,8 +9,8 @@ const App = () => {
     <div>
       <h1>Freenote</h1>
       <h3>a job board for freelance musicians</h3>
-      <button>Sign in</button>
-      <button>Sign up</button>
+      <button><Link to="/signin">Sign in</Link></button>
+      <button><Link to="/signup">Sign up</Link></button>
     </div>
   );
 };
