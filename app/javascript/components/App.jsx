@@ -4,6 +4,7 @@ import LandingPage from './landing/LandingPage';
 import Signin from './auth/Signin';
 import Signup from './auth/Signup';
 import SignupAsContractor from './auth/SignupAsContractor';
+import SignupAsMusician from './auth/SignupAsMusician';
 
 const App = () => {
 
@@ -28,6 +29,7 @@ console.log(currentUser)
         <Route path="/signin" element={<Signin setCurrentUser={setCurrentUser} />} />
         <Route path="/signup" element={<Signup currentUser={currentUser} />} />
         <Route path="/signup-as-contractor" element={<SignupAsContractor setCurrentUser={setCurrentUser} />} />
+        <Route path="/signup-as-musician" element={<SignupAsMusician setCurrentUser={setCurrentUser} />} />
       </Routes>
     </Router>
   );
