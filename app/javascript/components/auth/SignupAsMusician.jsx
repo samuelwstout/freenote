@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 
 const SignupAsMusician = ({setCurrentUser}) => {
 
-// const navigate = useNavigate()
+const navigate = useNavigate()
 
 const [firstName, setFirstName] = useState('')
 const [lastName, setLastName] = useState('')
@@ -31,7 +31,7 @@ const handleSubmit = (e) => {
         if (res.ok) {
           res.json().then(user => {
             setCurrentUser(user)
-            // navigate('/find_work')
+            navigate('/find-work')
           })
         } else {
           res.json().then(errors => {

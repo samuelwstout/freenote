@@ -5,6 +5,8 @@ import Signin from './auth/Signin';
 import Signup from './auth/Signup';
 import SignupAsContractor from './auth/SignupAsContractor';
 import SignupAsMusician from './auth/SignupAsMusician';
+import CreateJob from './contractor/CreateJob';
+import FindWork from './musician/FindWork';
 
 const App = () => {
 
@@ -30,6 +32,8 @@ console.log(currentUser)
         <Route path="/signup" element={<Signup currentUser={currentUser} />} />
         <Route path="/signup-as-contractor" element={<SignupAsContractor setCurrentUser={setCurrentUser} />} />
         <Route path="/signup-as-musician" element={<SignupAsMusician setCurrentUser={setCurrentUser} />} />
+        <Route path="/create-job" element={<CreateJob setCurrentUser={setCurrentUser} currentUser={currentUser} />} />
+        <Route path="/find-work" element={<FindWork setCurrentUser={setCurrentUser} currentUser={currentUser} />} />
       </Routes>
     </Router>
   );

@@ -30,6 +30,7 @@ const [passwordConfirmation, setPasswordConfirmation] = useState('')
           if (res.ok) {
             res.json().then(user => {
                 setCurrentUser(user)
+                navigate('/create-job')
             })
           } else {
             res.json().then(errors => {
