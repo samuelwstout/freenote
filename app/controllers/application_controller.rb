@@ -1,8 +1,9 @@
 class ApplicationController < ActionController::Base
     include ActionController::Cookies
     rescue_from ActiveRecord::RecordNotFound, with: :not_found
-  
-  
+    
+    before_action :confirm_authentication
+
     private
   
     def current_user
