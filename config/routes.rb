@@ -1,10 +1,7 @@
 Rails.application.routes.draw do
+  
   root 'homepage#index'
-  # get '*path', to: 'homepage#index'
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
-  # Defines the root path route ("/")
-  # root "articles#index"
   namespace :api do
     resources :contractors, only: [:index, :destroy]
     resources :musicians, only: [:index, :destroy]
@@ -15,4 +12,6 @@ Rails.application.routes.draw do
     post "/login", to: "sessions#create"
     delete "/logout", to: "sessions#destroy"
   end
+
+  get '*path', to: 'homepage#index'
 end

@@ -12,6 +12,8 @@ useEffect(() => {
   fetch('/api/me').then((r) => {
     if (r.ok) {
       r.json().then((data) => setCurrentUser(data))
+    } else {
+      console.log('No active session')
     }
   })
 }, [])
