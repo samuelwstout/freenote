@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 
-const SignupAsContractor = () => {
+const SignupAsContractor = ({ setCurrentUser }) => {
 
-//   const navigate = useNavigate()
+ const navigate = useNavigate()
 
 const [firstName, setFirstName] = useState('')
 const [lastName, setLastName] = useState('')
@@ -29,7 +29,7 @@ const [passwordConfirmation, setPasswordConfirmation] = useState('')
         .then(res => {
           if (res.ok) {
             res.json().then(user => {
-                console.log(user)
+                setCurrentUser(user)
             })
           } else {
             res.json().then(errors => {
