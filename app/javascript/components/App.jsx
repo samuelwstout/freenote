@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import LandingPage from './landing/LandingPage';
+import Signin from './auth/Signin';
 import Signup from './auth/Signup';
 import SignupAsContractor from './auth/SignupAsContractor';
 
@@ -23,7 +24,8 @@ console.log(currentUser)
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<LandingPage currentUser={currentUser} />} />
+        <Route path="/" element={<LandingPage currentUser={currentUser} setCurrentUser={setCurrentUser} />} />
+        <Route path="/signin" element={<Signin setCurrentUser={setCurrentUser} />} />
         <Route path="/signup" element={<Signup currentUser={currentUser} />} />
         <Route path="/signup-as-contractor" element={<SignupAsContractor setCurrentUser={setCurrentUser} />} />
       </Routes>

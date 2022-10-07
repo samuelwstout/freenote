@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  
+
   root 'homepage#index'
 
   namespace :api do
@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     get "/me", to: "users#show"
     post "/signup_as_contractor", to: "contractors#create"
     post "/signup_as_musician", to: "musicians#create"
-    post "/login", to: "sessions#create"
+    post "/signin", to: "sessions#create"
     delete "/logout", to: "sessions#destroy"
   end
 
