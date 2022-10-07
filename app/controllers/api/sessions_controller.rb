@@ -1,5 +1,6 @@
 class Api::SessionsController < ApplicationController
   skip_before_action :confirm_authentication
+  skip_before_action :verify_authenticity_token, only: [:destroy]
 
   # post '/login'
   def create

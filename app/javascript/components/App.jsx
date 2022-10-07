@@ -14,7 +14,7 @@ useEffect(() => {
       r.json().then((data) => setCurrentUser(data))
     }
   })
-}, [setCurrentUser, currentUser])
+}, [])
 
 console.log(currentUser)
 

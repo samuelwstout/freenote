@@ -30,6 +30,8 @@ gem "jbuilder"
 # Vite for Rails
 gem 'vite_rails'
 
+gem 'byebug'
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 
