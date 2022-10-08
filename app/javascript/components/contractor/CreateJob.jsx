@@ -6,11 +6,6 @@ const CreateJob = ({setCurrentUser, currentUser}) => {
 
 const navigate = useNavigate();
 
-useEffect(() => {
-    if (currentUser == null) {
-      navigate('/')
-    }
-  }, [currentUser])
 
   return (
     <div>

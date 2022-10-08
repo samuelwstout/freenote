@@ -1,15 +1,20 @@
 import React, { useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 
-const LandingPage = ({currentUser, setCurrentUser}) => {
+const LandingPage = ({currentUser}) => {
 
-    // const navigate = useNavigate();
+   const navigate = useNavigate()
 
-    // useEffect(() => {
-    //   if (currentUser) {
-        
-    //   }
-    // }, [currentUser])
+    useEffect(() => {
+    if (currentUser) {
+      if (currentUser.type === 'Musician') {
+        navigate('/find-work')
+      }
+      if (currentUser.type === 'Contractor') {
+        navigate('/create-job')
+      }
+    }
+    }, [currentUser])
 
     return (
         <div>

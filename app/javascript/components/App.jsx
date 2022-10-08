@@ -13,25 +13,25 @@ import MyApplications from './musician/MyApplications';
 import MusicianProfile from './musician/MusicianProfile';
 
 const App = () => {
-
-const [currentUser, setCurrentUser] = useState(null)
+// This grabs the user data from a successful /api/me request
+const [currentUser, setCurrentUser] = useState({})
+// This is true when /api/me has a failed response (meaning there's no authenticated user)
+const [noAuth, setNoAuth] = useState()
 
 useEffect(() => {
   fetch('/api/me').then((r) => {
     if (r.ok) {
       r.json().then((data) => setCurrentUser(data))
     } else {
-      console.log('No active session')
+      setNoAuth(true)
     }
   })
 }, [])
 
-console.log(currentUser)
-
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<LandingPage currentUser={currentUser} setCurrentUser={setCurrentUser} />} />
+        <Route path="/" element={<LandingPage currentUser={currentUser} setCurrentUser={setCurrentUser} noAuth={noAuth} />} />
         <Route path="/signin" element={<Signin setCurrentUser={setCurrentUser} />} />
         <Route path="/signup" element={<Signup currentUser={currentUser} />} />
         <Route path="/signup-as-contractor" element={<SignupAsContractor setCurrentUser={setCurrentUser} />} />
