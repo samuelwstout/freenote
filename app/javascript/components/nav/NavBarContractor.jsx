@@ -21,8 +21,9 @@ const NavBarContractor = ({setCurrentUser}) => {
     <div>
         <ul>
             <li><Link to="/">Freenote</Link></li>
-            <li><Link to="/create_job">Create Job</Link></li>
-            <li><Link to="/my_jobs">My Jobs</Link></li>
+            <li><Link to="/create-job">Create Job</Link></li>
+            <li><Link to="/my-jobs">My Jobs</Link></li>
+            <li><Link to="/contractor-profile">Profile</Link></li>
             <p><button onClick={handleLogout}>Logout</button></p>
         </ul>
     </div>

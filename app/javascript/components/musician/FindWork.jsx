@@ -6,6 +6,12 @@ const FindWork = ({currentUser, setCurrentUser}) => {
   
   const navigate = useNavigate();
 
+  useEffect(() => {
+    if (currentUser == null) {
+      navigate('/')
+    }
+  }, [currentUser])
+
   return (
     <div>
       {/* { loggedInAsMusician &&

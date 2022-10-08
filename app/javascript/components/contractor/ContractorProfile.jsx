@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import { useNavigate } from 'react-router-dom';
 import NavBarContractor from '../nav/NavBarContractor';
 
-const ContractorProfile = ({currentUser}) => {
+const ContractorProfile = ({currentUser, setCurrentUser}) => {
 
   const navigate = useNavigate();
 
@@ -14,7 +14,7 @@ const ContractorProfile = ({currentUser}) => {
 
   return (
     <div>
-      <NavBarContractor />
+      <NavBarContractor setCurrentUser={setCurrentUser} />
         <h3>First name: First name</h3>
         <h3>Last name: Last name</h3>
         <h3>Email: email</h3>

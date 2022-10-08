@@ -1,14 +1,20 @@
 import React, {useEffect} from 'react';
 import { useNavigate } from 'react-router-dom';
-import NavBarMusician from '../Navigation/NavBarMusician';
+import NavBarMusician from '../nav/NavBarMusician';
 
-const MusicianProfile = () => {
+const MusicianProfile = ({setCurrentUser, currentUser}) => {
 
   const navigate = useNavigate();
 
+  useEffect(() => {
+    if (currentUser == null) {
+      navigate('/')
+    }
+  }, [currentUser])
+
   return (
     <div>
-      <NavBarMusician />
+      <NavBarMusician setCurrentUser={setCurrentUser} />
       <h3>First name: Insert here</h3>
         <h3>Last name: Insert here</h3>
         <h3>Password: Insert here</h3>
