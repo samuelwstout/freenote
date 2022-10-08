@@ -7,16 +7,18 @@ const FindWork = ({currentUser, setCurrentUser}) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (currentUser == null) {
+   if (currentUser) {
+    if (currentUser.type === 'Contractor') {
+      navigate('/create-job')
+    }
+    if (Object.keys(currentUser).length === 0) {
       navigate('/')
     }
+   }
   }, [currentUser])
 
   return (
     <div>
-      {/* { loggedInAsMusician &&
-        <h1>{currentUser.username}</h1>
-      } */}
         <NavBarMusician setCurrentUser={setCurrentUser} />
         <input placeholder='search'></input>
         <input type='submit'></input>

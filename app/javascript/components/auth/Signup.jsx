@@ -1,7 +1,20 @@
 import React, {useEffect} from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 
-const Signup = () => {
+const Signup = ({currentUser}) => {
+
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    if (currentUser) {
+      if (currentUser.type === 'Musician') {
+        navigate('/find-work')
+      }
+      if (currentUser.type === 'Contractor') {
+        navigate('/create-job')
+      }
+    }
+    }, [currentUser])
 
   return (
     <div>

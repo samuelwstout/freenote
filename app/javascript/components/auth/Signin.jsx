@@ -1,13 +1,23 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 
-const Signin = ({setCurrentUser}) => {
+const Signin = ({setCurrentUser, currentUser}) => {
 
-  const navigate = useNavigate();
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    if (currentUser) {
+      if (currentUser.type === 'Musician') {
+        navigate('/find-work')
+      }
+      if (currentUser.type === 'Contractor') {
+        navigate('/create-job')
+      }
+    }
+    }, [currentUser])
 
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
-
 
   const handleSubmit = (event) => {
     event.preventDefault()
@@ -23,11 +33,9 @@ const Signin = ({setCurrentUser}) => {
           res.json().then(user => {
             if (user.type === 'Contractor') {
               navigate('/create-job')
-              console.log(user.type)
             }
             if (user.type === 'Musician') {
               navigate('/find-work')
-              console.log(user.type)
             }
             setCurrentUser(user)
           })

@@ -7,8 +7,13 @@ const ContractorProfile = ({currentUser, setCurrentUser}) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (currentUser == null) {
-      navigate('/')
+    if (currentUser) {
+      if (currentUser.type === 'Musician') {
+        navigate('/find-work')
+      }
+      if (Object.keys(currentUser).length === 0) {
+        navigate('/')
+      }
     }
   }, [currentUser])
 

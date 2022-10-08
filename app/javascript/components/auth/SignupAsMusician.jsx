@@ -1,9 +1,20 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 
-const SignupAsMusician = ({setCurrentUser}) => {
+const SignupAsMusician = ({setCurrentUser, currentUser}) => {
 
 const navigate = useNavigate()
+
+useEffect(() => {
+  if (currentUser) {
+    if (currentUser.type === 'Musician') {
+      navigate('/find-work')
+    }
+    if (currentUser.type === 'Contractor') {
+      navigate('/create-job')
+    }
+  }
+  }, [currentUser])
 
 const [firstName, setFirstName] = useState('')
 const [lastName, setLastName] = useState('')

@@ -6,6 +6,16 @@ const CreateJob = ({setCurrentUser, currentUser}) => {
 
 const navigate = useNavigate();
 
+useEffect(() => {
+  if (currentUser) {
+    if (currentUser.type === 'Musician') {
+      navigate('/find-work')
+    }
+    if (Object.keys(currentUser).length === 0) {
+      navigate('/')
+    }
+  }
+}, [currentUser])
 
   return (
     <div>

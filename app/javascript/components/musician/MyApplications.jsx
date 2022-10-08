@@ -6,6 +6,16 @@ const MyApplications = ({ setCurrentUser, currentUser }) => {
 
   const navigate = useNavigate();
 
+  useEffect(() => {
+    if (currentUser) {
+      if (currentUser.type === 'Contractor') {
+        navigate('/create-job')
+      }
+      if (Object.keys(currentUser).length === 0) {
+        navigate('/')
+      }
+    }
+  }, [currentUser])
 
   return (
     <div>
