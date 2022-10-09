@@ -2,11 +2,6 @@ class Api::ContractorsController < ApplicationController
 
     skip_before_action :confirm_authentication
     skip_before_action :verify_authenticity_token
-    
-    def index
-        contractors = Contractor.all
-        render json: contractors
-    end
 
     def create
         contractor = Contractor.create(user_params)
