@@ -15,11 +15,15 @@ import MusicianProfile from './musician/MusicianProfile'
 const App = () => {
 // This grabs the user data from a successful /api/me request
 const [currentUser, setCurrentUser] = useState({})
+const [jobs, setJobs] = useState([])
 
 useEffect(() => {
   fetch('/api/me').then((r) => {
     if (r.ok) {
-      r.json().then((data) => setCurrentUser(data))
+      r.json().then((data) => {
+        setCurrentUser(data)
+        setJobs(data.jobs)
+      })
     } else {
       console.log('No active session')
     }
@@ -34,8 +38,8 @@ useEffect(() => {
         <Route path="/signup" element={<Signup currentUser={currentUser} />} />
         <Route path="/signup-as-contractor" element={<SignupAsContractor setCurrentUser={setCurrentUser} currentUser={currentUser} />} />
         <Route path="/signup-as-musician" element={<SignupAsMusician setCurrentUser={setCurrentUser} currentUser={currentUser} />} />
-        <Route path="/create-job" element={<CreateJob setCurrentUser={setCurrentUser} currentUser={currentUser} />} />
-        <Route path="/my-jobs" element={<MyJobs setCurrentUser={setCurrentUser} currentUser={currentUser} />} />
+        <Route path="/create-job" element={<CreateJob setCurrentUser={setCurrentUser} currentUser={currentUser} setJobs={setJobs} jobs={jobs} />} />
+        <Route path="/my-jobs" element={<MyJobs setCurrentUser={setCurrentUser} currentUser={currentUser} jobs={jobs} />} />
         <Route path="/contractor-profile" element={<ContractorProfile setCurrentUser={setCurrentUser} currentUser={currentUser} />} />
         <Route path="/find-work" element={<FindWork setCurrentUser={setCurrentUser} currentUser={currentUser} />} />
         <Route path="/my-applications" element={<MyApplications setCurrentUser={setCurrentUser} currentUser={currentUser} />} />
