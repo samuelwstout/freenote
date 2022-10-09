@@ -2,6 +2,11 @@ class Api::JobsController < ApplicationController
 
     skip_before_action :verify_authenticity_token
 
+    def index
+        jobs = Job.all
+        render json: jobs
+    end
+
     def create
         job = Job.create(job_params)
         render json: job, status: :created
