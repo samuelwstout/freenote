@@ -21,7 +21,6 @@ const NavBarMusician = ({setCurrentUser}) => {
   return (
     <div>
       <ul>
-      <li onClick={ handleLogout }>Freenote</li>
         <li><Link to="/find-work">Find Work</Link></li>
         <li><Link to="/my-applications">My Applications</Link></li>
         <li><Link to="/musician-profile">Profile</Link></li>
