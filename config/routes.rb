@@ -3,8 +3,9 @@ Rails.application.routes.draw do
   root 'homepage#index'
 
   namespace :api do
-    resources :contractors, only: [:index, :destroy]
+    resources :contractors, only: [:destroy]
     resources :musicians, only: [:index, :destroy]
+    resources :jobs, only: [:index, :create]
   
     get "/me", to: "users#show"
     post "/signup_as_contractor", to: "contractors#create"
