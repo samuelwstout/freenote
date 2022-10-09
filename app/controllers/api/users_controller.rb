@@ -4,7 +4,12 @@ class Api::UsersController < ApplicationController
   # get '/api/me'
   def show
     if current_user
-      render json: current_user, include: :jobs, status: :ok
+      if current_user.type == "Contractor"
+        render json: current_user, include: :jobs, status: :ok
+      end
+      if current_user.type == "Musician"
+        render json: current_user, include: :job_applications, status: :ok
+      end
     else
       render json: { error: 'No active session' }, status: :unauthorized
     end
