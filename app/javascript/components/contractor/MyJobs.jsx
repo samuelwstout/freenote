@@ -25,11 +25,13 @@ const MyJobs = ({currentUser, setCurrentUser, jobs}) => {
           jobs.map(job => {
             return (
               <div key={job.id}>
-                <h3>{job.title}</h3>
-                <h3>{job.description}</h3>
-                <h3>{job.date}</h3>
-                <h3>{job.location}</h3>
-                <h3>${job.budget}</h3>
+                <ul>
+                  <li>{job.title}</li>
+                  <li>{job.description}</li>
+                  <li>{job.date}</li>
+                  <li>{job.location}</li>
+                  <li>${job.budget}</li>
+                </ul>
               </div>
             )
           })
