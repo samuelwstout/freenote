@@ -2,11 +2,9 @@ import React, {useState, useEffect} from 'react';
 import { useNavigate } from 'react-router-dom';
 import NavBarMusician from '../nav/NavBarMusician';
 
-const FindWork = ({currentUser, setCurrentUser}) => {
+const FindWork = ({currentUser, setCurrentUser, jobs}) => {
   
   const navigate = useNavigate();
-
-  const [jobs, setJobs] = useState([])
 
   useEffect(() => {
    if (currentUser) {
@@ -18,14 +16,6 @@ const FindWork = ({currentUser, setCurrentUser}) => {
     }
    }
   }, [currentUser])
-
-  useEffect(() => {
-    fetch('/api/jobs')
-    .then(r => r.json())
-    .then(data => {
-      setJobs(data)
-    })
-  }, [])
 
   return (
     <div>
@@ -40,7 +30,7 @@ const FindWork = ({currentUser, setCurrentUser}) => {
                 <li>{job.date}</li>
                 <li>{job.location}</li>
                 <li>${job.budget}</li>
-                <button>Apply</button>
+                <button onClick={() => navigate(`/job/${job.id}`)}>Apply</button>
               </ul>
             </div>
           )
