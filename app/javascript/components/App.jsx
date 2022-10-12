@@ -18,6 +18,7 @@ const App = () => {
 const [currentUser, setCurrentUser] = useState({})
 const [jobs, setJobs] = useState([])
 const [jobApplications, setJobApplications] = useState([])
+const [jobError, setJobError] = useState(false)
 
 useEffect(() => {
   fetch('/api/me').then((r) => {
@@ -32,22 +33,28 @@ useEffect(() => {
 }, [])
 
 useEffect(() => {
-  fetch('/api/jobs')
-  .then(r => r.json())
-  .then(data => {
-    setJobs(data)
+  fetch('/api/jobs').then((r) => {
+    if (r.ok) {
+      r.json().then((data) => {
+        setJobs(data)
+      })
+    } else {
+      console.log('jobs unprocessed')
+    }
   })
-}, [])
+}, [currentUser])
 
 useEffect(() => {
-  fetch('/api/job_applications')
-  .then(r => r.json())
-  .then(data => {
-    setJobApplications(data)
-  })
-}, [])
-
-
+    fetch('/api/job_applications').then((r) => {
+      if (r.ok) {
+        r.json().then((data) => {
+          setJobApplications(data)
+        })
+      } else {
+        console.log('job applications unprocessed')
+      }
+    })
+}, [currentUser])
 
   return (
     <Router>
