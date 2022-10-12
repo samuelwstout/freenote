@@ -4,8 +4,6 @@ import NavBarContractor from '../nav/NavBarContractor';
 
 const MyJobs = ({currentUser, setCurrentUser, jobs}) => {
 
-  const filterJobs = jobs.filter(job => job.contractor_id === currentUser.id)
-
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -19,11 +17,13 @@ const MyJobs = ({currentUser, setCurrentUser, jobs}) => {
     }
   }, [currentUser])
 
+ const filterJobs = jobs.filter(job => job.contractor_id === currentUser.id)
+ 
   return (
     <div>
         <NavBarContractor setCurrentUser={setCurrentUser} />
         <h1>My Jobs</h1>
-        {filterJobs && 
+        {filterJobs !== undefined && 
           filterJobs.map(job => {
             return (
               <div key={job.id}>
@@ -33,6 +33,7 @@ const MyJobs = ({currentUser, setCurrentUser, jobs}) => {
                   <li>{job.date}</li>
                   <li>{job.location}</li>
                   <li>${job.budget}</li>
+                  <button>See applications</button>
                 </ul>
               </div>
             )
