@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import { useNavigate } from 'react-router-dom';
 import NavBarMusician from '../nav/NavBarMusician';
 
-const MyApplications = ({ setCurrentUser, currentUser, jobs, jobApplications }) => {
+const AppliedJobs = ({ setCurrentUser, currentUser, jobs, jobApplications }) => {
     
   const navigate = useNavigate();
 
@@ -39,7 +39,7 @@ const MyApplications = ({ setCurrentUser, currentUser, jobs, jobApplications }) 
                       <li>{job.date}</li>
                       <li>{job.location}</li>
                       <li>${job.budget}</li>
-                      <button>View your application</button>
+                      <button onClick={() => navigate(`/view-application/job/${job.id}`)}>View your application</button>
                     </ul>
                   </div>
                 );
@@ -50,4 +50,4 @@ const MyApplications = ({ setCurrentUser, currentUser, jobs, jobApplications }) 
   )
 }
 
-export default MyApplications
+export default AppliedJobs
