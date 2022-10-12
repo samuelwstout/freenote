@@ -18,7 +18,6 @@ const App = () => {
 const [currentUser, setCurrentUser] = useState({})
 const [jobs, setJobs] = useState([])
 const [jobApplications, setJobApplications] = useState([])
-const [jobError, setJobError] = useState(false)
 
 useEffect(() => {
   fetch('/api/me').then((r) => {
