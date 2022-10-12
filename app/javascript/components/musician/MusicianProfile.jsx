@@ -20,15 +20,9 @@ const MusicianProfile = ({setCurrentUser, currentUser}) => {
   return (
     <div>
       <NavBarMusician setCurrentUser={setCurrentUser} />
-      <h3>First name: Insert here</h3>
-        <h3>Last name: Insert here</h3>
-        <h3>Password: Insert here</h3>
-        <h3>Instrument(s): Insert here</h3>
-        <h3>Location: Insert here</h3>
-        <h3>Bio: Insert here</h3>
-        <h3>Media: Insert</h3>
-        <button>Edit account</button>
-        <button>Delete account</button>
+        <h3>First name: {currentUser.first_name}</h3>
+        <h3>Last name: {currentUser.last_name}</h3>
+        <h3>Username: {currentUser.username}</h3>
     </div>
   )
 }

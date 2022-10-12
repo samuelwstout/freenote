@@ -20,10 +20,9 @@ const ContractorProfile = ({currentUser, setCurrentUser}) => {
   return (
     <div>
       <NavBarContractor setCurrentUser={setCurrentUser} />
-        <h3>First name: First name</h3>
-        <h3>Last name: Last name</h3>
-        <h3>Email: email</h3>
-        <h3>Password: password</h3>
+        <h3>First name: {currentUser.first_name}</h3>
+        <h3>Last name: {currentUser.last_name}</h3>
+        <h3>Username: {currentUser.username}</h3>
         <button>Edit account</button>
         <button>Delete account</button>
     </div>
