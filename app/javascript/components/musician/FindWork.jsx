@@ -17,25 +17,29 @@ const FindWork = ({currentUser, setCurrentUser, jobs}) => {
    }
   }, [currentUser])
 
+  const mapJobs = jobs.map(job => {
+    return (
+      <div key={job.id}>
+        <ul>
+          <li>{job.title}</li>
+          <li>{job.description}</li>
+          <li>{job.date}</li>
+          <li>{job.location}</li>
+          <li>${job.budget}</li>
+          <button onClick={() => navigate(`/job/${job.id}`)}>Apply</button>
+        </ul>
+      </div>
+    )
+  })
+
+
+
   return (
     <div>
         <NavBarMusician setCurrentUser={setCurrentUser} />
-        {jobs && 
-        jobs.map(job => {
-          return (
-            <div key={job.id}>
-              <ul>
-                <li>{job.title}</li>
-                <li>{job.description}</li>
-                <li>{job.date}</li>
-                <li>{job.location}</li>
-                <li>${job.budget}</li>
-                <button onClick={() => navigate(`/job/${job.id}`)}>Apply</button>
-              </ul>
-            </div>
-          )
-        })
-        }
+        {jobs.length !== 0 &&
+          mapJobs
+        } 
     </div>
     )
 }
