@@ -20,21 +20,27 @@ const MyApplications = ({ setCurrentUser, currentUser, jobs, jobApplications }) 
   const jobAppsFromCurrentUser = jobApplications.filter(jobApp => jobApp.musician_id === currentUser.id)
 
   const includesID = (id) => {
-    const onFilter = jobAppsFromCurrentUser.filter((jobApp) => jobApp.job_id == id);
-
+    const onFilter = jobAppsFromCurrentUser.filter((jobApp) => jobApp.job_id == id)
     return onFilter.length > 0 ? true : false;
   };
 
   return (
     <div>
        <NavBarMusician setCurrentUser={setCurrentUser}/>
-        <h1>My applications</h1>
+        <h1>Jobs You've Applied To</h1>
         <div>
              {jobs.map((job) => {
               if (includesID(job.id)) {
                 return (
                   <div key={job.id}>
-                    <h1>{job.title}</h1>
+                    <ul>
+                      <li>{job.title}</li>
+                      <li>{job.description}</li>
+                      <li>{job.date}</li>
+                      <li>{job.location}</li>
+                      <li>${job.budget}</li>
+                      <button>View your application</button>
+                    </ul>
                   </div>
                 );
               }
