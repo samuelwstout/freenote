@@ -45,7 +45,7 @@ const SeeApplications = ({ jobApplications, jobs }) => {
                     <h4>Cover letter:</h4>
                     <h4>{item.cover_letter}</h4>
                     <h4>Status:</h4>
-                    <h4>{item.accepted.toString()}</h4>
+                    <h4>{item.status}</h4>
                 </div>
                 <div>
                 <h3>Change Status:</h3>

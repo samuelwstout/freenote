@@ -21,7 +21,7 @@ const handleSubmit = (e) => {
       body: JSON.stringify({
         resume: resume,
         cover_letter: coverLetter,
-        accepted: false,
+        status: 'Pending',
         musician_id: currentUser.id,
         job_id: job.id
       })

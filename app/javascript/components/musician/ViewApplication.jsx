@@ -35,7 +35,7 @@ const ViewApplication = ({jobApplications, jobs}) => {
                     <h4>{item.resume}</h4>
                     <h4>Cover letter:</h4>
                     <h4>{item.cover_letter}</h4>
-                    <h4>Status: {String(item.accepted)}</h4>
+                    <h4>Status: {item.status}</h4>
                 </div>
             )
         })

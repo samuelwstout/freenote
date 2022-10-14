@@ -15,6 +15,6 @@ class Api::JobApplicationsController < ApplicationController
     private
 
     def job_application_params
-        params.permit(:resume, :cover_letter, :accepted, :musician_id, :job_id)
+        params.permit(:resume, :cover_letter, :status, :musician_id, :job_id)
     end
 end
