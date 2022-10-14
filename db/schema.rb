@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_14_072828) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_14_073126) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "timescaledb"
@@ -18,7 +18,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_14_072828) do
   create_table "job_applications", force: :cascade do |t|
     t.text "resume"
     t.text "cover_letter"
-    t.boolean "status"
+    t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "musician_id"
