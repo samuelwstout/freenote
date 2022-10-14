@@ -1,32 +1,31 @@
 import React from 'react'
-import {useParams} from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 
-const ViewApplication = ({jobApplications, jobs}) => {
+const SeeApplications = ({ jobApplications, jobs }) => {
 
-    const params = useParams()
-
-    const jobId = Number(params.id)
+    const paramsId = Number(useParams().id)
 
     let filterApplications;
 
     if (jobApplications.length !== 0) {
-     filterApplications = jobApplications.filter(item => {
-        return item.job_id === jobId
-     })
-    }
+      filterApplications = jobApplications.filter(item => {
+         return item.job_id === paramsId
+      })
+     }
 
     let job;
-    
-    if (jobs.length !== 0) {
-        job = jobs.find(item => item.id === jobId)
+
+    if (jobs.length !== 0 ) {
+      job = jobs.find(item => item.id === paramsId)
     }
+
 
   return (
     <div>
-        {job !== undefined &&
+      {job !== undefined &&
         <h1>Applications for {job.title}</h1>
-        }
-        {filterApplications !== undefined &&
+      }
+      {filterApplications !== undefined &&
         filterApplications.map(item => {
             return (
                 <div key={item.id}>
@@ -44,4 +43,4 @@ const ViewApplication = ({jobApplications, jobs}) => {
   )
 }
 
-export default ViewApplication
+export default SeeApplications

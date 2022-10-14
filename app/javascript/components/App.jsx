@@ -13,9 +13,10 @@ import AppliedJobs from './musician/AppliedJobs'
 import MusicianProfile from './musician/MusicianProfile'
 import Job from './musician/Job'
 import ViewApplication from './musician/ViewApplication'
+import SeeApplications from './contractor/SeeApplications'
 
 const App = () => {
-// This grabs the user data from a successful /api/me request
+  
 const [currentUser, setCurrentUser] = useState({})
 const [jobs, setJobs] = useState([])
 const [jobApplications, setJobApplications] = useState([])
@@ -72,6 +73,7 @@ useEffect(() => {
         <Route path="/applied-jobs" element={<AppliedJobs setCurrentUser={setCurrentUser} currentUser={currentUser} jobs={jobs} jobApplications={jobApplications} />} />
         <Route path="/musician-profile" element={<MusicianProfile setCurrentUser={setCurrentUser} currentUser={currentUser} />} />
         <Route path="/view-application/job/:id" element={<ViewApplication jobApplications={jobApplications} jobs={jobs} />} />
+        <Route path="/job/:id/applications" element={<SeeApplications jobApplications={jobApplications} jobs={jobs} />} />
       </Routes>
     </Router>
   );

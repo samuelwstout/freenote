@@ -18,7 +18,7 @@ const MyJobs = ({currentUser, setCurrentUser, jobs}) => {
   }, [currentUser])
 
  const filterJobs = jobs.filter(job => job.contractor_id === currentUser.id)
- 
+
   return (
     <div>
         <NavBarContractor setCurrentUser={setCurrentUser} />
@@ -33,7 +33,7 @@ const MyJobs = ({currentUser, setCurrentUser, jobs}) => {
                   <li>{job.date}</li>
                   <li>{job.location}</li>
                   <li>${job.budget}</li>
-                  <button>See applications</button>
+                  <button onClick={() => navigate(`/job/${job.id}/applications`)}>See applications</button>
                 </ul>
               </div>
             )
