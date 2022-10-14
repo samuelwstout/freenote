@@ -5,7 +5,6 @@ const SeeApplications = ({ jobApplications, jobs }) => {
 
     const [value, setValue] = useState('Pending')
     const [id, setId] = useState(0)
-    const [status, setStatus] = useState('Pending')
 
     const paramsId = Number(useParams().id)
 
