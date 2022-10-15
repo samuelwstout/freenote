@@ -5,6 +5,7 @@ const SeeApplications = ({ jobApplications, jobs }) => {
 
     const [value, setValue] = useState('Pending')
     const [id, setId] = useState(0)
+    const [comment, setComment] = useState('')
 
     const paramsId = Number(useParams().id)
 
@@ -26,6 +27,8 @@ const SeeApplications = ({ jobApplications, jobs }) => {
       e.preventDefault()
       console.log(value)
       console.log(id)
+      console.log(comment)
+      setComment('')
     }
 
   return (
@@ -48,11 +51,14 @@ const SeeApplications = ({ jobApplications, jobs }) => {
                     <h4>{item.status}</h4>
                 </div>
                 <div>
-                <h3>Change Status:</h3>
+                <h3>Respond to this application:</h3>
                   <button onClick={() => setValue('Accept')}>Accept</button>
                   <button onClick={() => setValue('Deny')}>Deny</button>
                   <button onClick={() => setValue('Pending')}>Pending</button>
+                  <p></p>
                   <form onSubmit={handleSubmit}>
+                    <label htmlFor='comment'>Comment: </label>
+                    <input name='comment' onChange={(e) => setComment(e.target.value)} />
                     <h4>Submit:</h4>
                     <button type='submit' onClick={() => setId(item.id)}>Submit</button>
                    </form>
