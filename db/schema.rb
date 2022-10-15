@@ -10,10 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_14_073126) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_15_171138) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "timescaledb"
+
+  create_table "application_responses", force: :cascade do |t|
+    t.text "status"
+    t.text "comment"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "job_applications", force: :cascade do |t|
     t.text "resume"
