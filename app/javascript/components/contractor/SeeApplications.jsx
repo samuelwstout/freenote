@@ -40,14 +40,17 @@ const SeeApplications = ({ jobApplications, jobs }) => {
       })
     }
 
+
   return (
     <div>
       {job !== undefined &&
         <h1>Applications for {job.title}</h1>
       }
+      {filterApplications !== undefined && 
+        filterApplications.length === 0 ? <h2>No applications yet!</h2> : null
+      }
       {filterApplications !== undefined &&
         filterApplications.map(item => {
-
             return (
               <div key={item.id}>
                 <div>
@@ -57,6 +60,13 @@ const SeeApplications = ({ jobApplications, jobs }) => {
                     <h4>Cover letter:</h4>
                     <h4>{item.cover_letter}</h4>
                 </div>
+              {item.application_response &&
+                <div>
+                  <h1>Status: {item.application_response.status}</h1>
+                  <h3>Comment: {item.application_response.comment}</h3>
+                </div>
+              }
+              {!item.application_response &&
                 <div>
                 <h3>Respond to this application:</h3>
                   <button onClick={() => setStatus('Accept')}>Accept</button>
@@ -70,6 +80,7 @@ const SeeApplications = ({ jobApplications, jobs }) => {
                     <button type='submit' onClick={() => setId(item.id)}>Submit</button>
                    </form>
                 </div>
+              }
               </div>
             )
         })
