@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     resources :musicians, only: [:index, :destroy]
     resources :jobs, only: [:index, :create]
     resources :job_applications, only: [:index, :create]
+    resources :application_responses, only: [:create]
   
     get "/me", to: "users#show"
     post "/signup_as_contractor", to: "contractors#create"

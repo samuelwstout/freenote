@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom'
 
 const SeeApplications = ({ jobApplications, jobs }) => {
 
-    const [value, setValue] = useState('Pending')
+    const [status, setStatus] = useState('Pending')
     const [id, setId] = useState(0)
     const [comment, setComment] = useState('')
 
@@ -24,11 +24,21 @@ const SeeApplications = ({ jobApplications, jobs }) => {
     }
 
     const handleSubmit = (e) => {
-      e.preventDefault()
-      console.log(value)
-      console.log(id)
-      console.log(comment)
-      setComment('')
+      // api/application_responses
+      e.preventDefault();
+      fetch('/api/application_responses', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          status: status,
+          comment: comment,
+          job_application_id: id
+        })
+        .then(r => r.json())
+        .then(data => console.log(data))
+      })
     }
 
   return (
@@ -52,9 +62,9 @@ const SeeApplications = ({ jobApplications, jobs }) => {
                 </div>
                 <div>
                 <h3>Respond to this application:</h3>
-                  <button onClick={() => setValue('Accept')}>Accept</button>
-                  <button onClick={() => setValue('Deny')}>Deny</button>
-                  <button onClick={() => setValue('Pending')}>Pending</button>
+                  <button onClick={() => setStatus('Accept')}>Accept</button>
+                  <button onClick={() => setStatus('Deny')}>Deny</button>
+                  <button onClick={() => setStatus('Pending')}>Pending</button>
                   <p></p>
                   <form onSubmit={handleSubmit}>
                     <label htmlFor='comment'>Comment: </label>
