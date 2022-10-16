@@ -24,7 +24,6 @@ const SeeApplications = ({ jobApplications, jobs }) => {
     }
 
     const handleSubmit = (e) => {
-      // api/application_responses
       e.preventDefault();
       fetch('/api/application_responses', {
         method: 'POST',
@@ -57,15 +56,13 @@ const SeeApplications = ({ jobApplications, jobs }) => {
                     <h4>{item.resume}</h4>
                     <h4>Cover letter:</h4>
                     <h4>{item.cover_letter}</h4>
-                    <h4>Status:</h4>
-                    <h4>{item.status}</h4>
                 </div>
                 <div>
                 <h3>Respond to this application:</h3>
                   <button onClick={() => setStatus('Accept')}>Accept</button>
                   <button onClick={() => setStatus('Deny')}>Deny</button>
                   <button onClick={() => setStatus('Pending')}>Pending</button>
-                  <p></p>
+                  <p>{status}</p>
                   <form onSubmit={handleSubmit}>
                     <label htmlFor='comment'>Comment: </label>
                     <input name='comment' onChange={(e) => setComment(e.target.value)} />

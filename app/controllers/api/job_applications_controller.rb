@@ -4,7 +4,7 @@ class Api::JobApplicationsController < ApplicationController
 
     def index
         job_applications = JobApplication.all
-        render json: job_applications
+        render json: job_applications, include: :application_response
     end
 
     def create
