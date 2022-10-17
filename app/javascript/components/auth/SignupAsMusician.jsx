@@ -42,7 +42,7 @@ const handleSubmit = (e) => {
         if (res.ok) {
           res.json().then(user => {
             setCurrentUser(user)
-            navigate('/find-work')
+            navigate('/create-musician-profile')
           })
         } else {
           res.json().then(errors => {

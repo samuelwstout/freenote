@@ -14,6 +14,7 @@ import MusicianProfile from './musician/MusicianProfile'
 import Job from './musician/Job'
 import ViewApplication from './musician/ViewApplication'
 import SeeApplications from './contractor/SeeApplications'
+import CreateMusicianProfile from './auth/CreateMusicianProfile'
 
 const App = () => {
   
@@ -74,6 +75,7 @@ useEffect(() => {
         <Route path="/musician-profile" element={<MusicianProfile setCurrentUser={setCurrentUser} currentUser={currentUser} />} />
         <Route path="/view-application/job/:id" element={<ViewApplication jobApplications={jobApplications} jobs={jobs} />} />
         <Route path="/job/:id/applications" element={<SeeApplications jobApplications={jobApplications} jobs={jobs} />} />
+        <Route path="/create-musician-profile" element={<CreateMusicianProfile currentUser={currentUser}/>} />
       </Routes>
     </Router>
   );
