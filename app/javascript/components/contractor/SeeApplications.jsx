@@ -58,6 +58,14 @@ const SeeApplications = ({ jobApplications, jobs, musicians }) => {
                    <h2>Application #{item.id}</h2>
                    <h4>{musician.first_name} {musician.last_name}</h4>
                    <h4>{musician.username}</h4>
+                   {musician.musician_profile !== undefined &&
+                   <div>
+                    <h4>{musician.musician_profile.location}</h4>
+                    <h4>{musician.musician_profile.instrument}</h4>
+                    <h4>{musician.musician_profile.bio}</h4>
+                    <h4>{musician.musician_profile.media_url}</h4>
+                   </div>
+                   }
                    <h4>Resume:</h4>
                    <h4>{item.resume}</h4>
                    <h4>Cover letter:</h4>
