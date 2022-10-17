@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import { useParams } from 'react-router-dom'
 
-const SeeApplications = ({ jobApplications, jobs }) => {
+const SeeApplications = ({ jobApplications, jobs, musicians }) => {
 
     const [status, setStatus] = useState('Pending')
     const [id, setId] = useState(0)
@@ -40,7 +40,6 @@ const SeeApplications = ({ jobApplications, jobs }) => {
       .then(data => console.log(data))
     }
 
-
   return (
     <div>
       {job !== undefined &&
@@ -51,15 +50,20 @@ const SeeApplications = ({ jobApplications, jobs }) => {
       }
       {filterApplications !== undefined &&
         filterApplications.map(item => {
+          const musician = musicians.find(data => data.id === item.musician_id)
             return (
               <div key={item.id}>
+                {musician !== undefined &&
                 <div>
-                    <h2>Application #{item.id}</h2>
-                    <h4>Resume:</h4>
-                    <h4>{item.resume}</h4>
-                    <h4>Cover letter:</h4>
-                    <h4>{item.cover_letter}</h4>
-                </div>
+                   <h2>Application #{item.id}</h2>
+                   <h4>{musician.first_name} {musician.last_name}</h4>
+                   <h4>{musician.username}</h4>
+                   <h4>Resume:</h4>
+                   <h4>{item.resume}</h4>
+                   <h4>Cover letter:</h4>
+                   <h4>{item.cover_letter}</h4>
+               </div>
+                }
               {item.application_response &&
                 <div>
                   <h1>Status: {item.application_response.status}</h1>

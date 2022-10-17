@@ -2,6 +2,11 @@ class Api::MusiciansController < ApplicationController
     
     skip_before_action :confirm_authentication
 
+    def index
+        musicians = Musician.all
+        render json: musicians, include: :musician_profile
+    end
+
     def create
         musician = Musician.create(user_params)
         if musician.valid?
