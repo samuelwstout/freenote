@@ -1,5 +1,4 @@
 class Api::ApplicationResponsesController < ApplicationController
-    skip_before_action :verify_authenticity_token
 
     def create
         application_response = ApplicationResponse.create(application_response_params)

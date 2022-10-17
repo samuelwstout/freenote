@@ -1,7 +1,6 @@
 class Api::ContractorsController < ApplicationController
 
     skip_before_action :confirm_authentication
-    skip_before_action :verify_authenticity_token
 
     def create
         contractor = Contractor.create(user_params)
@@ -10,16 +9,6 @@ class Api::ContractorsController < ApplicationController
             render json: contractor, status: :ok
         else
             render json: { error: contractor.errors }, status: :unprocessable_entity
-        end
-    end
-
-    def destroy
-        contractor = Contractor.find_by(id: params[:id])
-        if contractor
-            contractor.destroy
-            head :no_content
-        else
-            render json: { error: "Contractor not found" }, status: :not_found
         end
     end
 

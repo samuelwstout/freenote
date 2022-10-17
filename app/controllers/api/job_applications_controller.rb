@@ -1,7 +1,5 @@
 class Api::JobApplicationsController < ApplicationController
 
-    skip_before_action :verify_authenticity_token
-
     def index
         job_applications = JobApplication.all
         render json: job_applications, include: :application_response
