@@ -1,13 +1,17 @@
 class Api::SessionsController < ApplicationController
+  
   skip_before_action :confirm_authentication
-  skip_before_action :verify_authenticity_token
 
   # post '/login'
   def create
     user = User.find_by_username(params[:username])
     if user&.authenticate(params[:password])
       session[:user_id] = user.id
-      render json: user, status: :ok
+        if user.type == "Musician"
+        render json: user, include: :musician_profile, status: :ok
+        else
+        render json: user, status: :ok
+        end
     else
       render json: { error: 'invalid credentials' }, status: :unauthorized
     end
