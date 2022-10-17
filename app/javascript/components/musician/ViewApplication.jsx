@@ -30,16 +30,29 @@ const ViewApplication = ({jobApplications, jobs}) => {
         filterApplications.map(item => {
             return (
                 <div key={item.id}>
-                    <h2>Application #{item.id}</h2>
-                    <h4>Resume:</h4>
-                    <h4>{item.resume}</h4>
-                    <h4>Cover letter:</h4>
-                    <h4>{item.cover_letter}</h4>
-                    <h4>Status: {item.status}</h4>
+                    <div>
+                        <h2>Application #{item.id}</h2>
+                        <h4>Resume:</h4>
+                        <h4>{item.resume}</h4>
+                        <h4>Cover letter:</h4>
+                        <h4>{item.cover_letter}</h4>
+                    </div>
+                    {item.application_response &&
+                    <div>
+                        <h1>Status: {item.application_response.status}</h1>
+                        <h3>Comment: {item.application_response.comment}</h3>
+                    </div>
+                    }
+                    {!item.application_response &&
+                    <div>
+                        <h1>Status: Pending</h1>
+                    </div>
+                    }
                 </div>
             )
         })
         }
+        
     </div>
   )
 }
