@@ -35,9 +35,9 @@ const SeeApplications = ({ jobApplications, jobs }) => {
           comment: comment,
           job_application_id: id
         })
-        .then(r => r.json())
-        .then(data => console.log(data))
       })
+      .then(r => r.json())
+      .then(data => console.log(data))
     }
 
 
