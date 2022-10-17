@@ -1,6 +1,8 @@
 class ApplicationController < ActionController::Base
     include ActionController::Cookies
     rescue_from ActiveRecord::RecordNotFound, with: :not_found
+
+    skip_before_action :verify_authenticity_token
     
     before_action :confirm_authentication
 
