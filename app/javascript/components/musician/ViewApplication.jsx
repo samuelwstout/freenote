@@ -10,9 +10,11 @@ const ViewApplication = ({jobs, currentUser}) => {
     let filterApplications;
 
     if (Object.keys(currentUser).length !== 0) {
-     filterApplications = currentUser.job_applications.filter(item => {
-        return item.job_id === jobId
-     })
+        if (currentUser.job_applications) {
+            filterApplications = currentUser.job_applications.filter(item => {
+                return item.job_id === jobId
+             })
+        }
     }
 
     let job;

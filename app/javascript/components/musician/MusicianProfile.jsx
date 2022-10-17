@@ -4,7 +4,17 @@ import NavBarMusician from '../nav/NavBarMusician';
 
 const MusicianProfile = ({setCurrentUser, currentUser, musicians}) => {
 
-  const musician = musicians.find(item => item.id === currentUser.id)
+  let find;
+
+  if (Object.keys(currentUser).length !== 0) {
+    find = musicians.find(item => item.id === currentUser.id)
+  }
+
+  let musician;
+
+  if (find !== undefined) {
+    musician = find
+  }
 
   const navigate = useNavigate();
 
@@ -27,10 +37,14 @@ const MusicianProfile = ({setCurrentUser, currentUser, musicians}) => {
           <h3>First name: {musician.first_name}</h3>
           <h3>Last name: {musician.last_name}</h3>
           <h3>Username: {musician.username}</h3>
-          <h3>Location: {musician.musician_profile.location}</h3>
-          <h3>Instrument: {musician.musician_profile.instrument}</h3>
-          <h3>Bio: {musician.musician_profile.bio}</h3>
-          <h3>Media Url: {musician.musician_profile.media_url}</h3>
+          {musician.musician_profile &&
+          <div>
+            <h3>Location: {musician.musician_profile.location}</h3>
+            <h3>Instrument: {musician.musician_profile.instrument}</h3>
+            <h3>Bio: {musician.musician_profile.bio}</h3>
+            <h3>Media Url: {musician.musician_profile.media_url}</h3>
+          </div>
+          }
         </div>
         }
     </div>
