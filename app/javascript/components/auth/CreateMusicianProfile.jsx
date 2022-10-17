@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-const CreateMusicianProfile = ({currentUser}) => {
+const CreateMusicianProfile = ({currentUser, setMusicianProfile}) => {
 
     const navigate = useNavigate()
 
@@ -17,6 +17,7 @@ const CreateMusicianProfile = ({currentUser}) => {
       const [instrument, setInstrument] = useState('')
       const [bio, setBio] = useState('')
       const [mediaUrl, setMediaUrl] = useState('')
+      const [email, setEmail] = useState('')
 
       const handleSubmit = (e) => {
         e.preventDefault();
@@ -26,6 +27,7 @@ const CreateMusicianProfile = ({currentUser}) => {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
+                email,
                 location,
                 instrument,
                 bio,
@@ -36,7 +38,7 @@ const CreateMusicianProfile = ({currentUser}) => {
         .then(res => {
             if (res.ok) {
               res.json().then(data => {
-                console.log(data)
+                setMusicianProfile(data)
                 navigate('/find-work')
               })
             } else {
@@ -49,12 +51,17 @@ const CreateMusicianProfile = ({currentUser}) => {
         setInstrument('')
         setBio('')
         setMediaUrl('')
+        setEmail('')
       }
 
   return (
     <div>
         <form onSubmit={handleSubmit}>
             <h1>Create Musician Profile</h1>
+            <p>
+                <label htmlFor='email'>Email </label>
+                <input type="text" name="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+            </p>
             <p>
                 <label htmlFor='location'>Location </label>
                 <input type="text" name="location" value={location} onChange={(e) => setLocation(e.target.value)} />

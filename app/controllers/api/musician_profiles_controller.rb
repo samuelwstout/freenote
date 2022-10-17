@@ -8,7 +8,7 @@ class Api::MusicianProfilesController < ApplicationController
     private
 
     def musician_profile_params
-        params.permit(:location, :instrument, :bio, :media_url, :musician_id)
+        params.permit(:location, :instrument, :bio, :media_url, :musician_id, :email)
     end
 
 end

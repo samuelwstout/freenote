@@ -60,6 +60,7 @@ const SeeApplications = ({ jobApplications, jobs, musicians }) => {
                    <h4>{musician.username}</h4>
                    {musician.musician_profile !== undefined &&
                    <div>
+                    <h4>{musician.musician_profile.email}</h4>
                     <h4>{musician.musician_profile.location}</h4>
                     <h4>{musician.musician_profile.instrument}</h4>
                     <h4>{musician.musician_profile.bio}</h4>
