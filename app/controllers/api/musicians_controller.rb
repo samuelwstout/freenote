@@ -11,7 +11,7 @@ class Api::MusiciansController < ApplicationController
         musician = Musician.create(user_params)
         if musician.valid?
             session[:user_id] = musician.id
-            render json: musician, include: :musician_profile, status: :ok
+            render json: musician, include: :job_applications, status: :ok
         else
             render json: { error: musician.errors }, status: :unprocessable_entity
         end
