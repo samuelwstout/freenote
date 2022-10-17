@@ -6,7 +6,7 @@ class Api::UsersController < ApplicationController
   def show
     if current_user
     if current_user.type == "Musician"
-      render json: current_user, include: :musician_profile, status: :ok
+      render json: current_user, include: :musician_profile, include: :job_applications, status: :ok
     end
     if current_user.type == "Contractor"
       render json: current_user, status: :ok

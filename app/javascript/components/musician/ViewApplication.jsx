@@ -1,16 +1,16 @@
 import React from 'react'
 import {useParams} from 'react-router-dom'
 
-const ViewApplication = ({jobApplications, jobs}) => {
-
+const ViewApplication = ({jobs, currentUser}) => {
+   
     const params = useParams()
 
     const jobId = Number(params.id)
 
     let filterApplications;
 
-    if (jobApplications.length !== 0) {
-     filterApplications = jobApplications.filter(item => {
+    if (Object.keys(currentUser).length !== 0) {
+     filterApplications = currentUser.job_applications.filter(item => {
         return item.job_id === jobId
      })
     }
