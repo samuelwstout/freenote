@@ -87,7 +87,7 @@ useEffect(() => {
         <Route path="/find-work" element={<FindWork setCurrentUser={setCurrentUser} currentUser={currentUser} jobs={jobs} />} />
         <Route path="/applied-jobs" element={<AppliedJobs setCurrentUser={setCurrentUser} currentUser={currentUser} jobs={jobs} jobApplications={jobApplications} />} />
         <Route path="/musician-profile" element={<MusicianProfile setCurrentUser={setCurrentUser} currentUser={currentUser} musicians={musicians} musicianProfile={musicianProfile} />} />
-        <Route path="/view-application/job/:id" element={<ViewApplication jobs={jobs} currentUser={currentUser} />} />
+        <Route path="/view-application/job/:id" element={<ViewApplication jobs={jobs} currentUser={currentUser} jobApplications={jobApplications} />} />
         <Route path="/job/:id/applications" element={<SeeApplications jobApplications={jobApplications} jobs={jobs} musicians={musicians} />} />
         <Route path="/create-musician-profile" element={<CreateMusicianProfile currentUser={currentUser} setMusicianProfile={setMusicianProfile} />} />
       </Routes>
