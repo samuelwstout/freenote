@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 
+
 const Signin = ({setCurrentUser, currentUser}) => {
 
   const navigate = useNavigate()
@@ -18,6 +19,7 @@ const Signin = ({setCurrentUser, currentUser}) => {
 
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
+  const [error, setError] = useState('')
 
   const handleSubmit = (event) => {
     event.preventDefault()
@@ -41,7 +43,7 @@ const Signin = ({setCurrentUser, currentUser}) => {
           })
         } else {
           res.json().then(errors => {
-            console.error(errors)
+            setError(errors.error)
           })
         }
       })
@@ -71,8 +73,7 @@ const Signin = ({setCurrentUser, currentUser}) => {
         </p>
           <input type='submit' value='Login' />
         </form>
-
-        <h4>Don't have an account? <button><Link to="/signup">Sign up</Link></button></h4>
+      <h4>Don't have an account? <button><Link to="/signup">Sign up</Link></button></h4>
     </div>
   )
 }
