@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 const LandingPage = ({currentUser}) => {
 
@@ -17,13 +17,11 @@ const LandingPage = ({currentUser}) => {
     }, [currentUser])
 
     return (
-        <div>
-            <h1>Freenote</h1>
-            <h3>a job board for freelance musicians</h3>
-            <button><Link to="/signin">Sign in</Link></button>
-            <button><Link to="/signup">Sign up</Link></button>
-        </div>
+      <div>
+        <h1>Freenote</h1>
+        <button onClick={() => navigate('/signin')}>Sign in</button>
+        <button onClick={() => navigate('/signup')}>Sign up</button>
+      </div>
     )
 }
-
 export default LandingPage

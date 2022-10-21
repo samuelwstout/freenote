@@ -58,33 +58,34 @@ const [passwordConfirmation, setPasswordConfirmation] = useState('')
 
   return (
     <div>
-        <h1>Sign up to hire talent</h1>
-         <form onSubmit={handleSubmit}>
-          <p>
-            <label htmlFor='firstname'>First Name </label>
-            <input type="text" name="first_name" value={firstName} onChange={(e) => setFirstName(e.target.value)} />
-          </p>
-          <p>
-            <label htmlFor='lastname'>Last Name </label>
-            <input type="text" name="last_name" value={lastName} onChange={(e) => setLastName(e.target.value)} />
-          </p>
-          <p>
-            <label htmlFor='username'>Username </label>
-            <input type="text" name="username" value={username} onChange={(e) => setUsername(e.target.value)} />
-          </p>
-          <p>
-            <label htmlFor='password'>Password </label>
-            <input type="password" name="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-          </p>
-          <p>
-            <label htmlFor='password_confirmation'>Password Confirmation </label>
-            <input type="password" name="password_confirmation" value={passwordConfirmation} onChange={(e) => setPasswordConfirmation(e.target.value)} />
-          </p>
-            <input type='submit'></input>
+      <h1>Sign up to hire talent</h1>
+       <form onSubmit={handleSubmit}>
+        <p>
+          <label htmlFor='firstname'>First Name </label>
+          <input type="text" name="first_name" value={firstName} onChange={(e) => setFirstName(e.target.value)} />
+        </p>
+        <p>
+          <label htmlFor='lastname'>Last Name </label>
+          <input type="text" name="last_name" value={lastName} onChange={(e) => setLastName(e.target.value)} />
+        </p>
+        <p>
+          <label htmlFor='username'>Username </label>
+          <input type="text" name="username" value={username} onChange={(e) => setUsername(e.target.value)} />
+        </p>
+        <p>
+          <label htmlFor='password'>Password </label>
+          <input type="password" name="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+        </p>
+        <p>
+          <label htmlFor='password_confirmation'>Password Confirmation </label>
+          <input type="password" name="password_confirmation" value={passwordConfirmation} onChange={(e) => setPasswordConfirmation(e.target.value)} />
+        </p>
+        <input type='submit'></input>
         </form>
-        <h4>Already have an account? <button><Link to="/signin">Sign in</Link></button></h4>
+    <h4>Already have an account? <button><Link to="/signin">Sign in</Link></button></h4>
     </div>
   )
 }
+
 
 export default SignupAsContractor

@@ -34,6 +34,7 @@ const MyJobs = ({currentUser, setCurrentUser, jobs}) => {
                   <li>{job.location}</li>
                   <li>${job.budget}</li>
                   <button onClick={() => navigate(`/job/${job.id}/applications`)}>See applications</button>
+                  <button onClick={() => navigate(`/job/${job.id}/settings`)}>Settings</button>
                 </ul>
               </div>
             )

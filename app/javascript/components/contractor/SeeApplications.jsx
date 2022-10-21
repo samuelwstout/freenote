@@ -1,7 +1,8 @@
 import React, {useState} from 'react'
 import { useParams } from 'react-router-dom'
+import NavBarContractor from '../nav/NavBarContractor'
 
-const SeeApplications = ({ jobApplications, jobs, musicians }) => {
+const SeeApplications = ({ jobApplications, jobs, musicians, setCurrentUser }) => {
 
     const [status, setStatus] = useState('Pending')
     const [id, setId] = useState(0)
@@ -37,11 +38,15 @@ const SeeApplications = ({ jobApplications, jobs, musicians }) => {
         })
       })
       .then(r => r.json())
-      .then(data => console.log(data))
+      .then(data => {
+        data
+        location.reload()
+      })
     }
 
   return (
     <div>
+      <NavBarContractor setCurrentUser={setCurrentUser} />
       {job !== undefined &&
         <h1>Applications for {job.title}</h1>
       }
@@ -79,6 +84,7 @@ const SeeApplications = ({ jobApplications, jobs, musicians }) => {
                   <h3>Comment: {item.application_response.comment}</h3>
                 </div>
               }
+            
               {!item.application_response &&
                 <div>
                 <h3>Respond to this application:</h3>
