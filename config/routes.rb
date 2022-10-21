@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   namespace :api do
     resources :contractors, only: [:destroy]
     resources :musicians, only: [:index, :destroy]
-    resources :jobs, only: [:index, :create]
+    resources :jobs, only: [:index, :create, :update, :destroy]
     resources :job_applications, only: [:index, :create]
     resources :application_responses, only: [:create]
     resources :musician_profiles, only: [:create]
