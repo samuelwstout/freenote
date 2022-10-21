@@ -1,7 +1,8 @@
 import React from 'react'
 import {useParams} from 'react-router-dom'
+import NavBarMusician from '../nav/NavBarMusician'
 
-const ViewApplication = ({jobs, currentUser, jobApplications}) => {
+const ViewApplication = ({jobs, currentUser, jobApplications, setCurrentUser}) => {
    
     const params = useParams()
 
@@ -25,8 +26,9 @@ const ViewApplication = ({jobs, currentUser, jobApplications}) => {
 
   return (
     <div>
+        <NavBarMusician setCurrentUser={setCurrentUser} />
         {job !== undefined &&
-        <h1>Applications for {job.title}</h1>
+          <h1>Applications for {job.title}</h1>
         }
         {filterApplications !== undefined &&
         filterApplications.map(item => {
@@ -51,10 +53,9 @@ const ViewApplication = ({jobs, currentUser, jobApplications}) => {
                     </div>
                     }
                 </div>
-            )
-        })
+                  )
+              })
         }
-        
     </div>
   )
 }

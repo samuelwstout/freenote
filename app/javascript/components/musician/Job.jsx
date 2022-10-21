@@ -1,7 +1,8 @@
 import React, {useState} from 'react'
 import { useParams } from 'react-router-dom'
+import NavBarMusician from '../nav/NavBarMusician'
 
-const Job = ({jobs, currentUser, setJobApplications, jobApplications}) => {
+const Job = ({jobs, currentUser, setJobApplications, jobApplications, setCurrentUser}) => {
 
 const [resume, setResume] = useState('')
 const [coverLetter, setCoverLetter] = useState('')
@@ -43,22 +44,23 @@ const handleSubmit = (e) => {
 
   return (
     <div>
-        {job && 
-        <ul>
-            <li>{job.title}</li>
-            <li>{job.description}</li>
-            <li>{job.date}</li>
-            <li>{job.location}</li>
-            <li>${job.budget}</li>
-        </ul>     
-        }
-        <form onSubmit={handleSubmit}>
-            <label>get resume </label>
-            <input value={resume} onChange={(e) => setResume(e.target.value)} />
-            <label>get cover letter </label>
-            <input value={coverLetter} onChange={(e) => setCoverLetter(e.target.value)} />
-            <input type='submit' />
-        </form>
+      <NavBarMusician setCurrentUser={setCurrentUser} />
+      {job && 
+      <ul>
+          <li>{job.title}</li>
+          <li>{job.description}</li>
+          <li>{job.date}</li>
+          <li>{job.location}</li>
+          <li>${job.budget}</li>
+      </ul>     
+      }
+      <form onSubmit={handleSubmit}>
+          <label>get resume </label>
+          <input value={resume} onChange={(e) => setResume(e.target.value)} />
+          <label>get cover letter </label>
+          <input value={coverLetter} onChange={(e) => setCoverLetter(e.target.value)} />
+          <input type='submit' />
+      </form>
     </div>
   )
 }
