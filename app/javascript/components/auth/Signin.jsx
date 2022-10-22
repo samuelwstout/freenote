@@ -50,15 +50,14 @@ const Signin = ({setCurrentUser, currentUser}) => {
   }
 
   return (
-    <div>
-          <Container component="main" maxWidth="xs">
+        <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box
           sx={{
             marginTop: 8,
             display: 'flex',
             flexDirection: 'column',
-            alignItems: 'center',
+            alignItems: 'center'
           }}
         >
           <Avatar sx={{ m: 1, bgcolor: 'primary.main' }}>
@@ -112,7 +111,6 @@ const Signin = ({setCurrentUser, currentUser}) => {
           </Box>
         </Box>
       </Container>
-    </div>
   )
 }
 
