@@ -62,6 +62,7 @@ const CreateMusicianProfile = ({currentUser, setMusicianProfile}) => {
     <Box
       sx={{
         marginTop: 4.5,
+        marginBottom: 5,
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center'
