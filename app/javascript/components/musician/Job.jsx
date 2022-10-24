@@ -1,6 +1,13 @@
 import React, {useState} from 'react'
 import { useParams } from 'react-router-dom'
 import NavBarMusician from '../nav/NavBarMusician'
+import Box from '@mui/material/Box'
+import Container from '@mui/material/Container'
+import Grid from '@mui/material/Grid'
+import Card from '@mui/material/Card'
+import CardContent from '@mui/material/CardContent'
+import Typography from '@mui/material/Typography'
+import { TextField, Button } from '@mui/material'
 
 const Job = ({jobs, currentUser, setJobApplications, jobApplications, setCurrentUser}) => {
 
@@ -45,22 +52,68 @@ const handleSubmit = (e) => {
   return (
     <div>
       <NavBarMusician setCurrentUser={setCurrentUser} />
-      {job && 
-      <ul>
-          <li>{job.title}</li>
-          <li>{job.description}</li>
-          <li>{job.date}</li>
-          <li>{job.location}</li>
-          <li>${job.budget}</li>
-      </ul>     
+      <Box>
+      <Container sx={{ mt: 3 }} maxWidth="md">
+      <Grid item xs={12} sm={6} md={4}>
+      {job &&
+      <Card
+      sx={{ height: '100%', display: 'flex', flexDirection: 'column'}}
+      variant="outlined"
+      >
+      <CardContent sx={{ flexGrow: 1 }}>
+      <Typography gutterBottom variant="h5" component="h2">
+      {job.title}
+      </Typography>
+      <Typography>
+      {job.description}
+      </Typography>
+      <Typography>
+      {job.date}
+      </Typography>
+      <Typography>
+      {job.location}
+      </Typography>
+      <Typography>
+      ${job.budget}
+      </Typography>
+      </CardContent>
+      </Card>
       }
-      <form onSubmit={handleSubmit}>
-          <label>get resume </label>
-          <input value={resume} onChange={(e) => setResume(e.target.value)} />
-          <label>get cover letter </label>
-          <input value={coverLetter} onChange={(e) => setCoverLetter(e.target.value)} />
-          <input type='submit' />
-      </form>
+      </Grid>
+      </Container>
+      </Box>
+      <Box component="form" onSubmit={handleSubmit} noValidate sx={{ m: 1 }}>
+          <TextField
+            id="resume"
+            label="Resume"
+            variant="outlined"
+            fullWidth
+            multiline
+            rows={8}
+            value={resume}
+            onChange={(e) => setResume(e.target.value)}
+            sx={{ mt: 2 }}
+          />
+          <TextField
+            id="cover_letter"
+            label="Cover letter"
+            fullWidth
+            multiline
+            rows={8}
+            value={coverLetter}
+            onChange={(e) => setCoverLetter(e.target.value)}
+            sx={{ mt: 2 }}
+          />
+          <Typography align="center">
+          <Button
+              type="submit"
+              variant="contained"
+              sx={{ mt: 3, mb: 2 }}
+            >
+              Submit
+          </Button>
+          </Typography>
+      </Box>
     </div>
   )
 }
