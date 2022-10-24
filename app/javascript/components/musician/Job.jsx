@@ -82,37 +82,39 @@ const handleSubmit = (e) => {
       </Grid>
       </Container>
       </Box>
-      <Box component="form" onSubmit={handleSubmit} noValidate sx={{ m: 1 }}>
-          <TextField
-            id="resume"
-            label="Resume"
-            variant="outlined"
-            fullWidth
-            multiline
-            rows={8}
-            value={resume}
-            onChange={(e) => setResume(e.target.value)}
-            sx={{ mt: 2 }}
-          />
-          <TextField
-            id="cover_letter"
-            label="Cover letter"
-            fullWidth
-            multiline
-            rows={8}
-            value={coverLetter}
-            onChange={(e) => setCoverLetter(e.target.value)}
-            sx={{ mt: 2 }}
-          />
-          <Typography align="center">
-          <Button
-              type="submit"
-              variant="contained"
-              sx={{ mt: 3, mb: 2 }}
-            >
-              Submit
-          </Button>
-          </Typography>
+      <Box component="form" onSubmit={handleSubmit} noValidate sx={{ m: 1, display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+      <Container sx={{ mt: 3 }} maxWidth="md">
+            <TextField
+              id="resume"
+              label="Resume"
+              variant="outlined"
+              multiline
+              fullWidth
+              rows={8}
+              value={resume}
+              onChange={(e) => setResume(e.target.value)}
+              sx={{ mt: 2 }}
+            />
+            <TextField
+              id="cover_letter"
+              label="Cover letter"
+              multiline
+              fullWidth
+              rows={8}
+              value={coverLetter}
+              onChange={(e) => setCoverLetter(e.target.value)}
+              sx={{ mt: 2 }}
+            />
+            <Typography align="center">
+            <Button
+                type="submit"
+                variant="contained"
+                sx={{ mt: 3, mb: 2 }}
+              >
+                Submit
+            </Button>
+            </Typography>
+        </Container>
       </Box>
     </div>
   )
