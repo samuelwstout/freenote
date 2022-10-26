@@ -72,8 +72,6 @@ const SeeApplications = ({ jobApplications, jobs, musicians, setCurrentUser }) =
                     <h4>{musician.musician_profile.media_url}</h4>
                    </div>
                    }
-                   <h4>Resume:</h4>
-                   <h4>{item.resume}</h4>
                    <h4>Cover letter:</h4>
                    <h4>{item.cover_letter}</h4>
                </div>

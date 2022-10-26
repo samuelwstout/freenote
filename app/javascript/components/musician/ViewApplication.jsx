@@ -28,7 +28,7 @@ const ViewApplication = ({jobs, currentUser, jobApplications, setCurrentUser}) =
     <div>
         <NavBarMusician setCurrentUser={setCurrentUser} />
         {job !== undefined &&
-          <h1>Applications for {job.title}</h1>
+          <h1>Application for {job.title}</h1>
         }
         {filterApplications !== undefined &&
         filterApplications.map(item => {
@@ -36,8 +36,6 @@ const ViewApplication = ({jobs, currentUser, jobApplications, setCurrentUser}) =
                 <div key={item.id}>
                     <div>
                         <h2>Application #{item.id}</h2>
-                        <h4>Resume:</h4>
-                        <h4>{item.resume}</h4>
                         <h4>Cover letter:</h4>
                         <h4>{item.cover_letter}</h4>
                     </div>

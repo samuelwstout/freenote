@@ -11,7 +11,6 @@ import { TextField, Button } from '@mui/material'
 
 const Job = ({jobs, currentUser, setJobApplications, jobApplications, setCurrentUser}) => {
 
-const [resume, setResume] = useState('')
 const [coverLetter, setCoverLetter] = useState('')
 
 const params = useParams()
@@ -27,7 +26,6 @@ const handleSubmit = (e) => {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        resume: resume,
         cover_letter: coverLetter,
         musician_id: currentUser.id,
         job_id: job.id
@@ -45,7 +43,6 @@ const handleSubmit = (e) => {
         })
       }
     })
-  setResume('')
   setCoverLetter('')
 }
 
@@ -84,17 +81,6 @@ const handleSubmit = (e) => {
       </Box>
       <Box component="form" onSubmit={handleSubmit} noValidate sx={{ m: 1, display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
       <Container sx={{ mt: 3 }} maxWidth="md">
-            <TextField
-              id="resume"
-              label="Resume"
-              variant="outlined"
-              multiline
-              fullWidth
-              rows={8}
-              value={resume}
-              onChange={(e) => setResume(e.target.value)}
-              sx={{ mt: 2 }}
-            />
             <TextField
               id="cover_letter"
               label="Cover letter"
