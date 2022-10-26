@@ -118,7 +118,6 @@ const CreateMusicianProfile = ({currentUser, setMusicianProfile}) => {
           fullWidth
           name="bio"
           label="Bio"
-          type="bio"
           id="bio"
           autoComplete="bio"
           onChange={(e) => setBio(e.target.value)}
@@ -129,7 +128,6 @@ const CreateMusicianProfile = ({currentUser, setMusicianProfile}) => {
           fullWidth
           name="media"
           label="Youtube link of you performing"
-          type="media"
           id="media"
           autoComplete="media"
           onChange={(e) => setMediaUrl(e.target.value)}
