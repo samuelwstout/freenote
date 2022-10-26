@@ -12,6 +12,7 @@ import { TextField, Button } from '@mui/material'
 const Job = ({jobs, currentUser, setJobApplications, jobApplications, setCurrentUser}) => {
 
 const [coverLetter, setCoverLetter] = useState('')
+const [disabled, setDisabled] = useState(false)
 
 const params = useParams()
 const jobId = Number(params.id)
@@ -34,6 +35,7 @@ const handleSubmit = (e) => {
     .then((r) => {
       if (r.ok) {
         r.json().then(data => {
+          setDisabled(true)
           const newJobApps = [...jobApplications, data]
           setJobApplications(newJobApps)
         })
@@ -103,6 +105,7 @@ if (currentUser.job_applications) {
               sx={{ mt: 2 }}
             />
             <Typography align="center">
+            {!disabled &&
             <Button
                 type="submit"
                 variant="contained"
@@ -110,6 +113,16 @@ if (currentUser.job_applications) {
               >
                 Submit
             </Button>
+            }
+            {disabled && 
+            <Button
+            disabled
+            variant="contained"
+            sx={{ mt: 3, mb: 2 }}
+            >
+            Submit
+            </Button>
+            }
             </Typography>
         </Container>
       </Box>
