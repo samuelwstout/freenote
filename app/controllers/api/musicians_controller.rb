@@ -13,7 +13,7 @@ class Api::MusiciansController < ApplicationController
             session[:user_id] = musician.id
             render json: musician, include: :job_applications, status: :ok
         else
-            render json: { error: musician.errors }, status: :unprocessable_entity
+            render json: { error: 'All fields must be filled and passwords must match.' }, status: :unprocessable_entity
         end
     end
 

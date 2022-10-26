@@ -8,7 +8,7 @@ class Api::ContractorsController < ApplicationController
             session[:user_id] = contractor.id
             render json: contractor, status: :ok
         else
-            render json: { error: contractor.errors }, status: :unprocessable_entity
+            render json: { error: 'All fields must be filled and passwords must match.' }, status: :unprocessable_entity
         end
     end
 
