@@ -46,6 +46,13 @@ const handleSubmit = (e) => {
   setCoverLetter('')
 }
 
+let checkApps; 
+
+if (currentUser.job_applications) {
+  const filter = currentUser.job_applications.filter(item => item.job_id === jobId)
+  checkApps = filter[0]
+}
+
   return (
     <div>
       <NavBarMusician setCurrentUser={setCurrentUser} />
@@ -79,6 +86,10 @@ const handleSubmit = (e) => {
       </Grid>
       </Container>
       </Box>
+      {checkApps !== undefined && 
+        <Typography variant="h5" component="h1" align="center" sx={{ mt: 2 }}>You've already applied</Typography>
+      }
+      {!checkApps &&
       <Box component="form" onSubmit={handleSubmit} noValidate sx={{ m: 1, display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
       <Container sx={{ mt: 3 }} maxWidth="md">
             <TextField
@@ -102,6 +113,7 @@ const handleSubmit = (e) => {
             </Typography>
         </Container>
       </Box>
+      }
     </div>
   )
 }

@@ -74,7 +74,7 @@ const AppliedJobs = ({ setCurrentUser, currentUser, jobs, jobApplications }) => 
                 )
               } else {
                 if (job.id === 23) {
-                  return <Typography variant="h4" component="h2" align="center" key={job.id}>No applied jobs</Typography>
+                  return <Typography variant="h5" component="h2" align="center" key={job.id}>No applied jobs yet</Typography>
                 }
               }
             })}
