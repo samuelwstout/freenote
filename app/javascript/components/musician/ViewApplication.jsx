@@ -27,6 +27,7 @@ const ViewApplication = ({jobs, currentUser, jobApplications, setCurrentUser}) =
     }
 
 
+
   return (
     <div>
         <NavBarMusician setCurrentUser={setCurrentUser} />
@@ -67,10 +68,7 @@ const ViewApplication = ({jobs, currentUser, jobApplications, setCurrentUser}) =
             <Typography gutterBottom variant="h5" component="h2">
             Application #{application.id}
             </Typography>
-            <Typography>
-            Cover letter:
-            </Typography>
-            <Typography>
+            <Typography sx={{ whiteSpace: 'pre-wrap' }}>
             {application.cover_letter}
             </Typography>
             </CardContent>
