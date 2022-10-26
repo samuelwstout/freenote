@@ -72,6 +72,10 @@ const AppliedJobs = ({ setCurrentUser, currentUser, jobs, jobApplications }) => 
                     </Card>
                   </Grid>
                 )
+              } else {
+                if (job.id === 23) {
+                  return <Typography variant="h4" component="h2" align="center" key={job.id}>No applied jobs</Typography>
+                }
               }
             })}
         </Container>
