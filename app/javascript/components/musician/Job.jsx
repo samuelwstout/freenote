@@ -92,7 +92,7 @@ if (jobAppsFromCurrentUser.length !== 0) {
       </Container>
       </Box>
       {checkApps !== undefined && 
-        <Typography variant="h5" component="h1" align="center" sx={{ mt: 2 }}>You've already applied</Typography>
+        <Typography variant="h5" component="h1" align="center" sx={{ mt: 2 }}>You've applied</Typography>
       }
       {!checkApps &&
       <Box component="form" onSubmit={handleSubmit} noValidate sx={{ m: 1, display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
