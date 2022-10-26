@@ -131,7 +131,7 @@ const [error, setError] = useState('')
           fullWidth
           name="password_confirmation"
           label="Password Confirmation"
-          type="password_confirmation"
+          type="password"
           id="password_confirmation"
           autoComplete="password-confirmation"
           onChange={(e) => setPasswordConfirmation(e.target.value)}
