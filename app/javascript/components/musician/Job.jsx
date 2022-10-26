@@ -48,12 +48,15 @@ const handleSubmit = (e) => {
   setCoverLetter('')
 }
 
+const jobAppsFromCurrentUser = jobApplications.filter(jobApp => jobApp.musician_id === currentUser.id)
+
 let checkApps; 
 
-if (currentUser.job_applications) {
-  const filter = currentUser.job_applications.filter(item => item.job_id === jobId)
+if (jobAppsFromCurrentUser.length !== 0) {
+  const filter = jobAppsFromCurrentUser.filter(item => item.job_id === jobId)
   checkApps = filter[0]
 }
+
 
   return (
     <div>
