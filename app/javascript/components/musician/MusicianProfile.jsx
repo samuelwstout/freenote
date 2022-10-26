@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react';
 import { useNavigate } from 'react-router-dom';
 import NavBarMusician from '../nav/NavBarMusician';
+import { Box, Container, Card, Typography, Button } from '@mui/material'
 
 const MusicianProfile = ({setCurrentUser, currentUser, musicians, musicianProfile}) => {
 
@@ -26,11 +27,19 @@ const MusicianProfile = ({setCurrentUser, currentUser, musicians, musicianProfil
   return (
     <div>
       <NavBarMusician setCurrentUser={setCurrentUser} />
+        <Box>
+        <Container sx={{ py: 3 }} maxWidth="md">
         {musician && 
         <div>
-          <h3>First name: {musician.first_name}</h3>
-          <h3>Last name: {musician.last_name}</h3>
-          <h3>Username: {musician.username}</h3>
+          <Card>
+          <Typography gutterBottom variant="h6" component="h2">First name: {musician.first_name}</Typography>
+          </Card>
+          <Card sx={{ mt: 2 }}>
+          <Typography gutterBottom variant="h6" component="h2">Last name: {musician.last_name}</Typography>
+          </Card>
+          <Card sx={{ mt: 2 }}>
+          <Typography gutterBottom variant="h6" component="h2">Username: {musician.username}</Typography>
+          </Card>
           {Object.keys(musicianProfile).length !== 0 && 
           <div>
             <h3>Email: {musicianProfile.email}</h3>
@@ -42,15 +51,27 @@ const MusicianProfile = ({setCurrentUser, currentUser, musicians, musicianProfil
           }
           {musician.musician_profile &&
           <div>
-            <h3>Email: {musician.musician_profile.email}</h3>
-            <h3>Location: {musician.musician_profile.location}</h3>
-            <h3>Instrument: {musician.musician_profile.instrument}</h3>
-            <h3>Bio: {musician.musician_profile.bio}</h3>
-            <h3>Media Url: {musician.musician_profile.media_url}</h3>
+            <Card sx={{ mt: 2 }}>
+            <Typography gutterBottom variant="h6" component="h2">Email: {musician.musician_profile.email}</Typography>
+            </Card>
+            <Card sx={{ mt: 2 }}>
+            <Typography gutterBottom variant="h6" component="h2">Location: {musician.musician_profile.location}</Typography>
+            </Card>
+            <Card sx={{ mt: 2 }}>
+            <Typography gutterBottom variant="h6" component="h2">Instrument: {musician.musician_profile.instrument}</Typography>
+            </Card>
+            <Card sx={{ mt: 2}}>
+            <Typography gutterBottom variant="h6" component="h2">Bio: {musician.musician_profile.bio}</Typography>
+            </Card>
+            <Card sx={{ mt: 2}}>
+            <Typography gutterBottom variant="h6" component="h2">Media Url: {musician.musician_profile.media_url}</Typography>
+            </Card>
           </div>
           }
         </div>
         }
+        </Container>
+        </Box>
     </div>
   )
 }
