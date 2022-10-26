@@ -64,6 +64,7 @@ const [error, setError] = useState('')
     <Box
       sx={{
         marginTop: 4.5,
+        marginBottom: 5,
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center'
@@ -75,7 +76,7 @@ const [error, setError] = useState('')
         Sign up to hire talent
       </Typography>
       {error && 
-        <Typography variant="subtitle1" color="error.dark">
+        <Typography variant="subtitle2" color="error.dark" sx={{ mt: 1.75 }}>
         {error}
       </Typography>
       }

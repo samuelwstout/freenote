@@ -66,7 +66,7 @@ const Signin = ({setCurrentUser, currentUser}) => {
             Sign in
           </Typography>
           {error && 
-            <Typography variant="subtitle1" color="error.dark">
+            <Typography variant="subtitle1" color="error.dark" sx={{ mt: 1.5 }}>
             {error}
           </Typography>
           }

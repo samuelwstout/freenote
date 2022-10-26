@@ -77,7 +77,7 @@ const handleSubmit = (e) => {
         Sign up to find work
       </Typography>
       {error && 
-        <Typography variant="subtitle1" color="error.dark">
+        <Typography variant="subtitle2" color="error.dark" sx={{ mt: 1.75 }}>
         {error}
       </Typography>
       }
@@ -132,7 +132,7 @@ const handleSubmit = (e) => {
           fullWidth
           name="password_confirmation"
           label="Password Confirmation"
-          type="password_confirmation"
+          type="password"
           id="password_confirmation"
           autoComplete="password-confirmation"
           onChange={(e) => setPasswordConfirmation(e.target.value)}
