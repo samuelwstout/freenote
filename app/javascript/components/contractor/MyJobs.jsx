@@ -22,7 +22,6 @@ const MyJobs = ({currentUser, setCurrentUser, jobs}) => {
   return (
     <div>
         <NavBarContractor setCurrentUser={setCurrentUser} />
-        <h1>My Jobs</h1>
         {filterJobs !== undefined && 
           filterJobs.map(job => {
             return (
@@ -39,6 +38,9 @@ const MyJobs = ({currentUser, setCurrentUser, jobs}) => {
               </div>
             )
           })
+        }
+        {filterJobs.length === 0 && 
+          <h1>No jobs yet</h1>
         }
     </div>
   )
