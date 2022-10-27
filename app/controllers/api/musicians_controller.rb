@@ -17,6 +17,16 @@ class Api::MusiciansController < ApplicationController
         end
     end
 
+    def update
+        musician = Musician.find_by(id: params[:id])
+        if musician
+            musician.update(user_params)
+            render json: musician
+        else
+            render json: { error: "Profile not found" }, status: :not_found
+        end
+    end
+
   private
 
     def user_params
