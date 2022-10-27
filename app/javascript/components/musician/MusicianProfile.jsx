@@ -1,18 +1,27 @@
-import React, {useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import NavBarMusician from '../nav/NavBarMusician'
-import { Box, Container, Typography, Accordion, AccordionDetails, AccordionSummary } from '@mui/material'
+import { Box, Container, Typography, Accordion, AccordionDetails, AccordionSummary, Link, TextField, Button } from '@mui/material'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 
 const MusicianProfile = ({setCurrentUser, currentUser, musicians }) => {
 
   const [expanded, setExpanded] = React.useState(false)
+  const [editFirstName, setEditFirstName] = useState('')
+  const [editLastName, setEditLastName] = useState('')
+  const [editUsername, setEditUsername] = useState('')
+  const [editEmail, setEditEmail] = useState('')
+  const [editLocation, setEditLocation] = useState('')
+  const [editInstrument, setEditInstrument] = useState('')
+  const [editBio, setEditBio] = useState('')
+  const [editMedia, setEditMedia] = useState('')
 
   const handleChange = (panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false)
   }
 
   let musician;
+
   let profile;
 
   if (Object.keys(currentUser).length !== 0) {
@@ -33,7 +42,6 @@ const MusicianProfile = ({setCurrentUser, currentUser, musicians }) => {
     }
   }, [currentUser])
 
-
   return (
     <div>
       <NavBarMusician setCurrentUser={setCurrentUser} />
@@ -52,11 +60,15 @@ const MusicianProfile = ({setCurrentUser, currentUser, musicians }) => {
           </Typography>
           <Typography sx={{ color: 'text.secondary' }}>{musician.first_name}</Typography>
         </AccordionSummary>
-        <AccordionDetails>
-          <Typography>
-            Nulla facilisi. Phasellus sollicitudin nulla et quam mattis feugiat.
-            Aliquam eget maximus est, id dignissim quam.
-          </Typography>
+        <AccordionDetails align='center'>
+        <TextField
+              id="first_name"
+              label="Edit first name"
+              fullWidth
+              value={editFirstName}
+              onChange={(e) => setEditFirstName(e.target.value)}
+        />
+        <Button variant='outlined' sx={{ mt: 2 }}>Submit</Button>
         </AccordionDetails>
       </Accordion>
       <Accordion expanded={expanded === 'panel2'} onChange={handleChange('panel2')}>
@@ -70,12 +82,15 @@ const MusicianProfile = ({setCurrentUser, currentUser, musicians }) => {
             {musician.last_name}
           </Typography>
         </AccordionSummary>
-        <AccordionDetails>
-          <Typography>
-            Donec placerat, lectus sed mattis semper, neque lectus feugiat lectus,
-            varius pulvinar diam eros in elit. Pellentesque convallis laoreet
-            laoreet.
-          </Typography>
+        <AccordionDetails align='center'>
+        <TextField
+              id="last_name"
+              label="Edit last name"
+              fullWidth
+              value={editLastName}
+              onChange={(e) => setEditLastName(e.target.value)}
+        />
+        <Button variant='outlined' sx={{ mt: 2 }}>Submit</Button>
         </AccordionDetails>
       </Accordion>
       <Accordion expanded={expanded === 'panel3'} onChange={handleChange('panel3')}>
@@ -91,11 +106,15 @@ const MusicianProfile = ({setCurrentUser, currentUser, musicians }) => {
             {musician.username}
           </Typography>
         </AccordionSummary>
-        <AccordionDetails>
-          <Typography>
-            Nunc vitae orci ultricies, auctor nunc in, volutpat nisl. Integer sit
-            amet egestas eros, vitae egestas augue. Duis vel est augue.
-          </Typography>
+        <AccordionDetails align='center'>
+        <TextField
+              id="username"
+              label="Edit username"
+              fullWidth
+              value={editUsername}
+              onChange={(e) => setEditUsername(e.target.value)}
+        />
+        <Button variant='outlined' sx={{ mt: 2 }}>Submit</Button>
         </AccordionDetails>
       </Accordion>
           </div>
@@ -110,14 +129,18 @@ const MusicianProfile = ({setCurrentUser, currentUser, musicians }) => {
         >
           <Typography sx={{ width: '33%', flexShrink: 0 }}>Email</Typography>
           <Typography sx={{ color: 'text.secondary' }}>
-            {profile.email}
+            {profile.email.slice(0, 20)}
           </Typography>
         </AccordionSummary>
-        <AccordionDetails>
-          <Typography>
-            Nunc vitae orci ultricies, auctor nunc in, volutpat nisl. Integer sit
-            amet egestas eros, vitae egestas augue. Duis vel est augue.
-          </Typography>
+        <AccordionDetails align="center">
+        <TextField
+              id="email"
+              label="Edit email"
+              fullWidth
+              value={editEmail}
+              onChange={(e) => setEditEmail(e.target.value)}
+        />
+        <Button variant='outlined' sx={{ mt: 2 }}>Submit</Button>
         </AccordionDetails>
       </Accordion>
       <Accordion expanded={expanded === 'panel5'} onChange={handleChange('panel5')}>
@@ -131,11 +154,15 @@ const MusicianProfile = ({setCurrentUser, currentUser, musicians }) => {
             {profile.location}
           </Typography>
         </AccordionSummary>
-        <AccordionDetails>
-          <Typography>
-            Nunc vitae orci ultricies, auctor nunc in, volutpat nisl. Integer sit
-            amet egestas eros, vitae egestas augue. Duis vel est augue.
-          </Typography>
+        <AccordionDetails align='center'>
+        <TextField
+              id="location"
+              label="Edit location"
+              fullWidth
+              value={editLocation}
+              onChange={(e) => setEditLocation(e.target.value)}
+        />
+        <Button variant='outlined' sx={{ mt: 2 }}>Submit</Button>
         </AccordionDetails>
       </Accordion>
       <Accordion expanded={expanded === 'panel6'} onChange={handleChange('panel6')}>
@@ -149,11 +176,15 @@ const MusicianProfile = ({setCurrentUser, currentUser, musicians }) => {
             {profile.instrument}
           </Typography>
         </AccordionSummary>
-        <AccordionDetails>
-          <Typography>
-            Nunc vitae orci ultricies, auctor nunc in, volutpat nisl. Integer sit
-            amet egestas eros, vitae egestas augue. Duis vel est augue.
-          </Typography>
+        <AccordionDetails align="center">
+        <TextField
+              id="instrument"
+              label="Edit instrument"
+              fullWidth
+              value={editInstrument}
+              onChange={(e) => setEditInstrument(e.target.value)}
+        />
+        <Button variant='outlined' sx={{ mt: 2 }}>Submit</Button>
         </AccordionDetails>
       </Accordion>
       <Accordion expanded={expanded === 'panel7'} onChange={handleChange('panel7')}>
@@ -164,17 +195,42 @@ const MusicianProfile = ({setCurrentUser, currentUser, musicians }) => {
         >
           <Typography sx={{ width: '33%', flexShrink: 0 }}>Bio</Typography>
           <Typography sx={{ color: 'text.secondary' }}>
-            {profile.bio}
+            {profile.bio.slice(0, 20)}
           </Typography>
         </AccordionSummary>
-        <AccordionDetails>
-          <Typography>
-            Nunc vitae orci ultricies, auctor nunc in, volutpat nisl. Integer sit
-            amet egestas eros, vitae egestas augue. Duis vel est augue.
-          </Typography>
+        <AccordionDetails align='center'>
+        <TextField
+              id="bio"
+              label="Edit bio"
+              fullWidth
+              value={editBio}
+              onChange={(e) => setEditBio(e.target.value)}
+        />
+        <Button variant='outlined' sx={{ mt: 2 }}>Submit</Button>
         </AccordionDetails>
       </Accordion>
-        {/* profile.media_url */}
+      <Accordion expanded={expanded === 'panel8'} onChange={handleChange('panel8')}>
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel8bh-content"
+          id="panel8bh-header"
+        >
+          <Typography sx={{ width: '33%', flexShrink: 0 }}>Media</Typography>
+          <Link href={profile.media_url} target="_blank" sx={{ color: 'text.secondary'}}>
+            {profile.media_url.slice(0, 22)}
+          </Link>
+        </AccordionSummary>
+        <AccordionDetails align='center'>
+        <TextField
+              id="media"
+              label="Edit media"
+              fullWidth
+              value={editMedia}
+              onChange={(e) => setEditMedia(e.target.value)}
+        />
+        <Button variant='outlined' sx={{ mt: 2 }}>Submit</Button>
+        </AccordionDetails>
+      </Accordion>
           </div>
       }
         </Container>
