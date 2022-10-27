@@ -129,7 +129,7 @@ const MusicianProfile = ({setCurrentUser, currentUser, musicians }) => {
         >
           <Typography sx={{ width: '33%', flexShrink: 0 }}>Email</Typography>
           <Typography sx={{ color: 'text.secondary' }}>
-            {profile.email.slice(0, 20)}
+            {profile.email}
           </Typography>
         </AccordionSummary>
         <AccordionDetails align="center">
@@ -217,7 +217,7 @@ const MusicianProfile = ({setCurrentUser, currentUser, musicians }) => {
         >
           <Typography sx={{ width: '33%', flexShrink: 0 }}>Media</Typography>
           <Link href={profile.media_url} target="_blank" sx={{ color: 'text.secondary'}}>
-            {profile.media_url.slice(0, 22)}
+            {profile.media_url.slice(0, 22)}...
           </Link>
         </AccordionSummary>
         <AccordionDetails align='center'>
