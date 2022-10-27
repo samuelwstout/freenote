@@ -24,7 +24,6 @@ const [currentUser, setCurrentUser] = useState({})
 const [jobs, setJobs] = useState([])
 const [jobApplications, setJobApplications] = useState([])
 const [musicians, setMusicians] = useState([])
-const [musicianProfile, setMusicianProfile] = useState({})
 
 useEffect(() => {
   fetch('/api/me').then((r) => {
@@ -89,10 +88,10 @@ useEffect(() => {
         <Route path="/contractor-profile" element={<ContractorProfile setCurrentUser={setCurrentUser} currentUser={currentUser} />} />
         <Route path="/find-work" element={<FindWork setCurrentUser={setCurrentUser} currentUser={currentUser} jobs={jobs} />} />
         <Route path="/applied-jobs" element={<AppliedJobs setCurrentUser={setCurrentUser} currentUser={currentUser} jobs={jobs} jobApplications={jobApplications} />} />
-        <Route path="/musician-profile" element={<MusicianProfile setCurrentUser={setCurrentUser} currentUser={currentUser} musicians={musicians} musicianProfile={musicianProfile} />} />
+        <Route path="/musician-profile" element={<MusicianProfile setCurrentUser={setCurrentUser} currentUser={currentUser} musicians={musicians} />} />
         <Route path="/view-application/job/:id" element={<ViewApplication jobs={jobs} currentUser={currentUser} jobApplications={jobApplications} setCurrentUser={setCurrentUser} />} />
         <Route path="/job/:id/applications" element={<SeeApplications jobApplications={jobApplications} jobs={jobs} musicians={musicians} setCurrentUser={setCurrentUser} />} />
-        <Route path="/create-musician-profile" element={<CreateMusicianProfile currentUser={currentUser} setMusicianProfile={setMusicianProfile} />} />
+        <Route path="/create-musician-profile" element={<CreateMusicianProfile currentUser={currentUser} />} />
         <Route path="/job/:id/settings" element={<JobSettings jobs={jobs} currentUser={currentUser} setCurrentUser={setCurrentUser} setJobs={setJobs} />} />
       </Routes>
     </Router>

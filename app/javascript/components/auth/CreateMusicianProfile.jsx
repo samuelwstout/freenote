@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import {Avatar, Button, CssBaseline, TextField, Box, Typography, Container} from '@mui/material'
 
-const CreateMusicianProfile = ({currentUser, setMusicianProfile}) => {
+const CreateMusicianProfile = ({currentUser}) => {
 
     const navigate = useNavigate()
 
@@ -40,7 +40,7 @@ const CreateMusicianProfile = ({currentUser, setMusicianProfile}) => {
         .then(res => {
             if (res.ok) {
               res.json().then(data => {
-                setMusicianProfile(data)
+                data
                 navigate('/find-work')
               })
             } else {
