@@ -1,6 +1,7 @@
 import React, { useState, useEffect} from 'react'
 import { useNavigate } from 'react-router-dom'
 import NavBarContractor from '../nav/NavBarContractor'
+import { Box, Container, Grid, TextField, Typography, Button } from '@mui/material'
 
 const CreateJob = ({setCurrentUser, currentUser, setJobs, jobs}) => {
 
@@ -63,15 +64,21 @@ const handleSubmit = (e) => {
   return (
     <div>
       <NavBarContractor setCurrentUser={setCurrentUser} />
-      <h1>Create Job Post</h1>
-        <form onSubmit={handleSubmit}>
-            <input placeholder='Title' value={title} onChange={(e) => setTitle(e.target.value)} />
-            <input placeholder='Description' value={description} onChange={(e) => setDescription(e.target.value)} />
-            <input placeholder='Date(s)' type='date' value={date} onChange={(e) => setDate(e.target.value)} />
-            <input placeholder='Location' value={location} onChange={(e) => setLocation(e.target.value)} />
-            <input placeholder='Budget' value={budget} onChange={(e) => setBudget(e.target.value)} />
-            <input type='submit' />
-        </form>
+      <Box>
+        <Container sx={{ mt: 3 }} maxWidth="md">
+        <Grid item xs={12} sm={6} md={4}>
+      <Typography variant="h4" component="h1" align="center">Create Job Post</Typography>
+        <Box component="form" onSubmit={handleSubmit} noValidate sx={{ m: 3, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 1}}>
+            <TextField fullWidth placeholder='Title' value={title} onChange={(e) => setTitle(e.target.value)} />
+            <TextField fullWidth placeholder='Description' value={description} onChange={(e) => setDescription(e.target.value)} />
+            <TextField fullWidth placeholder='Date(s)' type='date' value={date} onChange={(e) => setDate(e.target.value)} />
+            <TextField fullWidth placeholder='Location' value={location} onChange={(e) => setLocation(e.target.value)} />
+            <TextField fullWidth placeholder='Budget' value={budget} onChange={(e) => setBudget(e.target.value)} />
+            <Button variant='outlined' type='submit' sx={{ mt: 2 }}>Submit</Button>
+        </Box>
+        </Grid>
+        </Container>
+      </Box>
     </div>
   )
 }
