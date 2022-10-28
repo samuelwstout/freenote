@@ -28,6 +28,7 @@ const MusicianProfile = ({setCurrentUser, currentUser, musicians }) => {
   const [editInstrument, setEditInstrument] = useState('')
   const [editBio, setEditBio] = useState('')
   const [editMedia, setEditMedia] = useState('')
+  const [submit, setSubmit] = useState(false)
 
   let musician;
   let profile;
@@ -35,10 +36,6 @@ const MusicianProfile = ({setCurrentUser, currentUser, musicians }) => {
   if (Object.keys(currentUser).length !== 0) {
     musician = musicians.find(item => item.id === currentUser.id)
     profile = musician.musician_profile
-  }
-
-  const handleChange = (panel) => (event, isExpanded) => {
-    setExpanded(isExpanded ? panel : false)
   }
 
   const handleSubmitFirstName = (e) => {
@@ -53,17 +50,27 @@ const MusicianProfile = ({setCurrentUser, currentUser, musicians }) => {
       })
     })
     .then(r => r.json())
-    .then(data => console.log(data))
+    .then(data => {
+      currentUser.first_name = data.first_name
+      setCurrentUser(currentUser)
+      setSubmit(true)
+      setTimeout(() => {
+        setSubmit(false)
+      }, 1)
+    })
     setEditFirstName('')
   }
 
+  const handleChange = (panel) => (event, isExpanded) => {
+    setExpanded(isExpanded ? panel : false)
+  }
 
   return (
     <div>
       <NavBarMusician setCurrentUser={setCurrentUser} />
         <Box>
         <Container sx={{ py: 6 }} maxWidth="md">
-        {musician && 
+        {Object.keys(currentUser).length !== 0 && 
           <div>
              <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
         <AccordionSummary
@@ -74,7 +81,7 @@ const MusicianProfile = ({setCurrentUser, currentUser, musicians }) => {
           <Typography sx={{ width: '33%', flexShrink: 0 }}>
             First name
           </Typography>
-          <Typography sx={{ color: 'text.secondary' }}>{musician.first_name}</Typography>
+          <Typography sx={{ color: 'text.secondary' }}>{currentUser.first_name}</Typography>
         </AccordionSummary>
         <AccordionDetails align='center'>
         <Box component="form" onSubmit={handleSubmitFirstName} noValidate>
@@ -97,7 +104,7 @@ const MusicianProfile = ({setCurrentUser, currentUser, musicians }) => {
         >
           <Typography sx={{ width: '33%', flexShrink: 0 }}>Last name</Typography>
           <Typography sx={{ color: 'text.secondary' }}>
-            {musician.last_name}
+            {currentUser.last_name}
           </Typography>
         </AccordionSummary>
         <AccordionDetails align='center'>
@@ -121,7 +128,7 @@ const MusicianProfile = ({setCurrentUser, currentUser, musicians }) => {
             Username
           </Typography>
           <Typography sx={{ color: 'text.secondary' }}>
-            {musician.username}
+            {currentUser.username}
           </Typography>
         </AccordionSummary>
         <AccordionDetails align='center'>
