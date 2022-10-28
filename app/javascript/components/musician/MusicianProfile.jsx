@@ -61,6 +61,52 @@ const MusicianProfile = ({setCurrentUser, currentUser, musicians }) => {
     setEditFirstName('')
   }
 
+  const handleSubmitLastName = (e) => {
+    e.preventDefault();
+    fetch(`/api/musicians/${currentUser.id}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        last_name: editLastName
+      })
+    })
+    .then(r => r.json())
+    .then(data => {
+      currentUser.last_name = data.last_name
+      setCurrentUser(currentUser)
+      setSubmit(true)
+      setTimeout(() => {
+        setSubmit(false)
+      }, 1)
+    })
+    setEditLastName('')
+  }
+
+  const handleSubmitUsername = (e) => {
+    e.preventDefault();
+    fetch(`/api/musicians/${currentUser.id}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        username: editUsername
+      })
+    })
+    .then(r => r.json())
+    .then(data => {
+      currentUser.username = data.username
+      setCurrentUser(currentUser)
+      setSubmit(true)
+      setTimeout(() => {
+        setSubmit(false)
+      }, 1)
+    })
+    setEditUsername('')
+  }
+
   const handleChange = (panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false)
   }
@@ -68,21 +114,24 @@ const MusicianProfile = ({setCurrentUser, currentUser, musicians }) => {
   return (
     <div>
       <NavBarMusician setCurrentUser={setCurrentUser} />
-        <Box>
+        <Box> 
         <Container sx={{ py: 6 }} maxWidth="md">
-        {Object.keys(currentUser).length !== 0 && 
-          <div>
-             <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel1bh-content"
-          id="panel1bh-header"
-        >
+
+        {Object.keys(currentUser).length !== 0 &&
+
+        <div>
+
+        <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
+          <AccordionSummary
+            expandIcon={<ExpandMoreIcon />}
+            aria-controls="panel1bh-content"
+            id="panel1bh-header"
+          >
           <Typography sx={{ width: '33%', flexShrink: 0 }}>
             First name
           </Typography>
           <Typography sx={{ color: 'text.secondary' }}>{currentUser.first_name}</Typography>
-        </AccordionSummary>
+          </AccordionSummary>
         <AccordionDetails align='center'>
         <Box component="form" onSubmit={handleSubmitFirstName} noValidate>
         <TextField
@@ -96,6 +145,7 @@ const MusicianProfile = ({setCurrentUser, currentUser, musicians }) => {
         </Box>
         </AccordionDetails>
       </Accordion>
+
       <Accordion expanded={expanded === 'panel2'} onChange={handleChange('panel2')}>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
@@ -108,6 +158,7 @@ const MusicianProfile = ({setCurrentUser, currentUser, musicians }) => {
           </Typography>
         </AccordionSummary>
         <AccordionDetails align='center'>
+        <Box component="form" onSubmit={handleSubmitLastName} noValidate>
         <TextField
               id="last_name"
               label="Edit last name"
@@ -115,9 +166,11 @@ const MusicianProfile = ({setCurrentUser, currentUser, musicians }) => {
               value={editLastName}
               onChange={(e) => setEditLastName(e.target.value)}
         />
-        <Button variant='outlined' sx={{ mt: 2 }}>Submit</Button>
+        <Button type="submit" variant='outlined' sx={{ mt: 2 }}>Submit</Button>
+        </Box>
         </AccordionDetails>
       </Accordion>
+
       <Accordion expanded={expanded === 'panel3'} onChange={handleChange('panel3')}>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
@@ -132,6 +185,7 @@ const MusicianProfile = ({setCurrentUser, currentUser, musicians }) => {
           </Typography>
         </AccordionSummary>
         <AccordionDetails align='center'>
+        <Box component="form" onSubmit={handleSubmitUsername} noValidate>
         <TextField
               id="username"
               label="Edit username"
@@ -139,11 +193,14 @@ const MusicianProfile = ({setCurrentUser, currentUser, musicians }) => {
               value={editUsername}
               onChange={(e) => setEditUsername(e.target.value)}
         />
-        <Button variant='outlined' sx={{ mt: 2 }}>Submit</Button>
+        <Button type="submit" variant='outlined' sx={{ mt: 2 }}>Submit</Button>
+        </Box>
         </AccordionDetails>
       </Accordion>
-          </div>
+
+      </div>
       }
+
       {profile &&
       <div>
       <Accordion expanded={expanded === 'panel4'} onChange={handleChange('panel4')}>
