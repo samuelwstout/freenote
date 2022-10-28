@@ -8,6 +8,6 @@ class Api::ApplicationResponsesController < ApplicationController
     private
 
     def application_response_params
-        params.permit(:status, :comment, :job_application_id)
+        params.permit(:status, :job_application_id)
     end
 end

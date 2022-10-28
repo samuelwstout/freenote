@@ -1,12 +1,12 @@
 import React, {useState} from 'react'
 import { useParams } from 'react-router-dom'
 import NavBarContractor from '../nav/NavBarContractor'
+import { Typography } from '@mui/material'
 
 const SeeApplications = ({ jobApplications, jobs, musicians, setCurrentUser }) => {
 
     const [status, setStatus] = useState('Pending')
     const [id, setId] = useState(0)
-    const [comment, setComment] = useState('')
 
     const paramsId = Number(useParams().id)
 
@@ -33,7 +33,6 @@ const SeeApplications = ({ jobApplications, jobs, musicians, setCurrentUser }) =
         },
         body: JSON.stringify({
           status: status,
-          comment: comment,
           job_application_id: id
         })
       })
@@ -48,10 +47,10 @@ const SeeApplications = ({ jobApplications, jobs, musicians, setCurrentUser }) =
     <div>
       <NavBarContractor setCurrentUser={setCurrentUser} />
       {job !== undefined &&
-        <h1>Applications for {job.title}</h1>
+        <Typography variant='h4' component='h1' align='center' sx={{ mt: 3 }}>Applications for {job.title}</Typography>
       }
       {filterApplications !== undefined && 
-        filterApplications.length === 0 ? <h2>No applications yet!</h2> : null
+        filterApplications.length === 0 ? <Typography variant='h4' component='h1' align='center' sx={{ mt: 3 }}>No applications yet!</Typography> : null
       }
       {filterApplications !== undefined &&
         filterApplications.map(item => {
@@ -79,7 +78,6 @@ const SeeApplications = ({ jobApplications, jobs, musicians, setCurrentUser }) =
               {item.application_response &&
                 <div>
                   <h1>Status: {item.application_response.status}</h1>
-                  <h3>Comment: {item.application_response.comment}</h3>
                 </div>
               }
             
@@ -91,8 +89,6 @@ const SeeApplications = ({ jobApplications, jobs, musicians, setCurrentUser }) =
                   <button onClick={() => setStatus('Pending')}>Pending</button>
                   <p>{status}</p>
                   <form onSubmit={handleSubmit}>
-                    <label htmlFor='comment'>Comment: </label>
-                    <input name='comment' onChange={(e) => setComment(e.target.value)} />
                     <h4>Submit:</h4>
                     <button type='submit' onClick={() => setId(item.id)}>Submit</button>
                    </form>
