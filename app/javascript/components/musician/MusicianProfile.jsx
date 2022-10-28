@@ -6,29 +6,6 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 
 const MusicianProfile = ({setCurrentUser, currentUser, musicians }) => {
 
-  const [expanded, setExpanded] = React.useState(false)
-  const [editFirstName, setEditFirstName] = useState('')
-  const [editLastName, setEditLastName] = useState('')
-  const [editUsername, setEditUsername] = useState('')
-  const [editEmail, setEditEmail] = useState('')
-  const [editLocation, setEditLocation] = useState('')
-  const [editInstrument, setEditInstrument] = useState('')
-  const [editBio, setEditBio] = useState('')
-  const [editMedia, setEditMedia] = useState('')
-
-  const handleChange = (panel) => (event, isExpanded) => {
-    setExpanded(isExpanded ? panel : false)
-  }
-
-  let musician;
-
-  let profile;
-
-  if (Object.keys(currentUser).length !== 0) {
-    musician = musicians.find(item => item.id === currentUser.id)
-    profile = musician.musician_profile
-  }
-
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -41,6 +18,45 @@ const MusicianProfile = ({setCurrentUser, currentUser, musicians }) => {
       }
     }
   }, [currentUser])
+
+  const [expanded, setExpanded] = React.useState(false)
+  const [editFirstName, setEditFirstName] = useState('')
+  const [editLastName, setEditLastName] = useState('')
+  const [editUsername, setEditUsername] = useState('')
+  const [editEmail, setEditEmail] = useState('')
+  const [editLocation, setEditLocation] = useState('')
+  const [editInstrument, setEditInstrument] = useState('')
+  const [editBio, setEditBio] = useState('')
+  const [editMedia, setEditMedia] = useState('')
+
+  let musician;
+  let profile;
+
+  if (Object.keys(currentUser).length !== 0) {
+    musician = musicians.find(item => item.id === currentUser.id)
+    profile = musician.musician_profile
+  }
+
+  const handleChange = (panel) => (event, isExpanded) => {
+    setExpanded(isExpanded ? panel : false)
+  }
+
+  const handleSubmitFirstName = (e) => {
+    e.preventDefault();
+    fetch(`/api/musicians/${currentUser.id}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        first_name: editFirstName
+      })
+    })
+    .then(r => r.json())
+    .then(data => console.log(data))
+    setEditFirstName('')
+  }
+
 
   return (
     <div>
@@ -61,6 +77,7 @@ const MusicianProfile = ({setCurrentUser, currentUser, musicians }) => {
           <Typography sx={{ color: 'text.secondary' }}>{musician.first_name}</Typography>
         </AccordionSummary>
         <AccordionDetails align='center'>
+        <Box component="form" onSubmit={handleSubmitFirstName} noValidate>
         <TextField
               id="first_name"
               label="Edit first name"
@@ -68,7 +85,8 @@ const MusicianProfile = ({setCurrentUser, currentUser, musicians }) => {
               value={editFirstName}
               onChange={(e) => setEditFirstName(e.target.value)}
         />
-        <Button variant='outlined' sx={{ mt: 2 }}>Submit</Button>
+        <Button type="submit" variant='outlined' sx={{ mt: 2 }}>Submit</Button>
+        </Box>
         </AccordionDetails>
       </Accordion>
       <Accordion expanded={expanded === 'panel2'} onChange={handleChange('panel2')}>
