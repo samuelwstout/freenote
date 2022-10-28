@@ -4,11 +4,11 @@ Rails.application.routes.draw do
 
   namespace :api do
     resources :contractors, only: [:destroy]
-    resources :musicians, only: [:index, :destroy, :update]
+    resources :musicians, only: [:index, :update, :destroy]
     resources :jobs, only: [:index, :create, :update, :destroy]
     resources :job_applications, only: [:index, :create]
     resources :application_responses, only: [:create]
-    resources :musician_profiles, only: [:create, :update]
+    resources :musician_profiles, only: [:create, :update, :destroy]
   
     get "/me", to: "users#show"
     post "/signup_as_contractor", to: "contractors#create"

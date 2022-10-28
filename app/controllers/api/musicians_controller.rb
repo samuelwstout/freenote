@@ -27,6 +27,16 @@ class Api::MusiciansController < ApplicationController
         end
     end
 
+    def destroy
+        musician = Musician.find_by(id: params[:id])
+        if musician
+            musician.destroy
+            render json: musician
+        else
+            render json: { error: "Profile not found" }, status: :not_found
+        end
+    end
+
   private
 
     def user_params
