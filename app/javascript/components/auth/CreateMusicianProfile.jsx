@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import {Avatar, Button, CssBaseline, TextField, Box, Typography, Container} from '@mui/material'
 
-const CreateMusicianProfile = ({currentUser}) => {
+const CreateMusicianProfile = ({currentUser, setMusicianProfile}) => {
 
     const navigate = useNavigate()
 
@@ -40,7 +40,7 @@ const CreateMusicianProfile = ({currentUser}) => {
         .then(res => {
             if (res.ok) {
               res.json().then(data => {
-                data
+                setMusicianProfile(data)
                 navigate('/find-work')
               })
             } else {
@@ -147,30 +147,3 @@ const CreateMusicianProfile = ({currentUser}) => {
 }
 
 export default CreateMusicianProfile
-
-{/* <div>
-        <form onSubmit={handleSubmit}>
-            <h1>Create Musician Profile</h1>
-            <p>
-                <label htmlFor='email'>Email </label>
-                <input type="text" name="email" value={email} onChange={(e) => setEmail(e.target.value)} />
-            </p>
-            <p>
-                <label htmlFor='location'>Location </label>
-                <input type="text" name="location" value={location} onChange={(e) => setLocation(e.target.value)} />
-            </p>
-            <p>
-                <label htmlFor='instrument'>Instrument </label>
-                <input type="text" name="instrument" value={instrument} onChange={(e) => setInstrument(e.target.value)} />
-            </p>
-            <p>
-                <label htmlFor='bio'>Bio </label>
-                <input type="text" name="bio" value={bio} onChange={(e) => setBio(e.target.value)} />
-            </p>
-            <p>
-                <label htmlFor='media_url'>Media Url </label>
-                <input type="text" name="media_url" value={mediaUrl} onChange={(e) => setMediaUrl(e.target.value)} />
-            </p>
-            <input type='submit' />
-        </form>
-    </div>  */}
