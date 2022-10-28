@@ -57,7 +57,7 @@ const handleClick = () => {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json'
-        },
+        }
     })
     .then(r => r.json())
     .then(data => {

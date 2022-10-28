@@ -214,6 +214,21 @@ const MusicianProfile = ({setCurrentUser, currentUser, musicianProfile, setMusic
     setEditEmail('')
   }
 
+  const handleDelete = (e) => {
+    e.preventDefault();
+    fetch(`/api/musicians/${currentUser.id}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(r => r.json())
+    .then(data => {
+      data
+      window.location.reload()
+    })
+  }
+
   const handleChange = (panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false)
   }
@@ -436,8 +451,27 @@ const MusicianProfile = ({setCurrentUser, currentUser, musicianProfile, setMusic
         </Box>
         </AccordionDetails>
       </Accordion>
-          </div>
+      </div>
       }
+
+      <Accordion expanded={expanded === 'panel9'} onChange={handleChange('panel9')} sx={{ mt: 6 }}>
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel9bh-content"
+          id="panel9bh-header"
+        >
+          <Typography sx={{ width: '33%', flexShrink: 0, color: 'red' }}>Danger</Typography>
+          <Typography sx={{ color: 'red' }}>
+            Delete your account?
+          </Typography>
+        </AccordionSummary>
+        <AccordionDetails align='center'>
+        <Box component="form" onSubmit={handleDelete} noValidate>
+        <Button type='submit' variant='outlined' sx={{ mt: 2, color: 'red' }}>Delete your account</Button>
+        </Box>
+        </AccordionDetails>
+      </Accordion>
+     
         </Container>
         </Box>
     </div>
