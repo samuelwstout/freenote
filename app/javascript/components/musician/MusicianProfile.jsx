@@ -4,7 +4,7 @@ import NavBarMusician from '../nav/NavBarMusician'
 import { Box, Container, Typography, Accordion, AccordionDetails, AccordionSummary, Link, TextField, Button } from '@mui/material'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 
-const MusicianProfile = ({setCurrentUser, currentUser, musicianProfile }) => {
+const MusicianProfile = ({setCurrentUser, currentUser, musicianProfile, setMusicianProfile }) => {
   
   const navigate = useNavigate();
 
@@ -97,6 +97,121 @@ const MusicianProfile = ({setCurrentUser, currentUser, musicianProfile }) => {
       }, 1)
     })
     setEditUsername('')
+  }
+
+  const handleSubmitLocation = (e) => {
+    e.preventDefault();
+    fetch(`/api/musician_profiles/${musicianProfile.id}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        location: editLocation
+      })
+    })
+    .then(r => r.json())
+    .then(data => {
+      musicianProfile.location = data.location
+      setMusicianProfile(musicianProfile)
+      setSubmit(true)
+      setTimeout(() => {
+        setSubmit(false)
+      }, 1)
+    })
+    setEditLocation('')
+  }
+
+  const handleSubmitInstrument = (e) => {
+    e.preventDefault();
+    fetch(`/api/musician_profiles/${musicianProfile.id}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        instrument: editInstrument
+      })
+    })
+    .then(r => r.json())
+    .then(data => {
+      musicianProfile.instrument = data.instrument
+      setMusicianProfile(musicianProfile)
+      setSubmit(true)
+      setTimeout(() => {
+        setSubmit(false)
+      }, 1)
+    })
+    setEditInstrument('')
+  }
+
+  const handleSubmitBio = (e) => {
+    e.preventDefault();
+    fetch(`/api/musician_profiles/${musicianProfile.id}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        bio: editBio
+      })
+    })
+    .then(r => r.json())
+    .then(data => {
+      musicianProfile.bio = data.bio
+      setMusicianProfile(musicianProfile)
+      setSubmit(true)
+      setTimeout(() => {
+        setSubmit(false)
+      }, 1)
+    })
+    setEditBio('')
+  }
+
+  const handleSubmitMedia = (e) => {
+    e.preventDefault();
+    fetch(`/api/musician_profiles/${musicianProfile.id}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        media_url: editMedia
+      })
+    })
+    .then(r => r.json())
+    .then(data => {
+      musicianProfile.media_url = data.media_url
+      setMusicianProfile(musicianProfile)
+      setSubmit(true)
+      setTimeout(() => {
+        setSubmit(false)
+      }, 1)
+    })
+    setEditMedia('')
+  }
+
+  const handleSubmitEmail = (e) => {
+    e.preventDefault();
+    fetch(`/api/musician_profiles/${musicianProfile.id}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        email: editEmail
+      })
+    })
+    .then(r => r.json())
+    .then(data => {
+      musicianProfile.email = data.email
+      setMusicianProfile(musicianProfile)
+      setSubmit(true)
+      setTimeout(() => {
+        setSubmit(false)
+      }, 1)
+    })
+    setEditEmail('')
   }
 
   const handleChange = (panel) => (event, isExpanded) => {
@@ -207,6 +322,7 @@ const MusicianProfile = ({setCurrentUser, currentUser, musicianProfile }) => {
           </Typography>
         </AccordionSummary>
         <AccordionDetails align="center">
+        <Box component="form" onSubmit={handleSubmitEmail} noValidate>
         <TextField
               id="email"
               label="Edit email"
@@ -214,8 +330,10 @@ const MusicianProfile = ({setCurrentUser, currentUser, musicianProfile }) => {
               value={editEmail}
               onChange={(e) => setEditEmail(e.target.value)}
         />
-        <Button variant='outlined' sx={{ mt: 2 }}>Submit</Button>
+        <Button type='submit' variant='outlined' sx={{ mt: 2 }}>Submit</Button>
+        </Box>
         </AccordionDetails>
+
       </Accordion>
       <Accordion expanded={expanded === 'panel5'} onChange={handleChange('panel5')}>
         <AccordionSummary
@@ -229,6 +347,7 @@ const MusicianProfile = ({setCurrentUser, currentUser, musicianProfile }) => {
           </Typography>
         </AccordionSummary>
         <AccordionDetails align='center'>
+        <Box component="form" onSubmit={handleSubmitLocation} noValidate>
         <TextField
               id="location"
               label="Edit location"
@@ -236,8 +355,10 @@ const MusicianProfile = ({setCurrentUser, currentUser, musicianProfile }) => {
               value={editLocation}
               onChange={(e) => setEditLocation(e.target.value)}
         />
-        <Button variant='outlined' sx={{ mt: 2 }}>Submit</Button>
+        <Button type='submit' variant='outlined' sx={{ mt: 2 }}>Submit</Button>
+        </Box>
         </AccordionDetails>
+
       </Accordion>
       <Accordion expanded={expanded === 'panel6'} onChange={handleChange('panel6')}>
         <AccordionSummary
@@ -251,6 +372,7 @@ const MusicianProfile = ({setCurrentUser, currentUser, musicianProfile }) => {
           </Typography>
         </AccordionSummary>
         <AccordionDetails align="center">
+        <Box component="form" onSubmit={handleSubmitInstrument} noValidate>
         <TextField
               id="instrument"
               label="Edit instrument"
@@ -258,8 +380,10 @@ const MusicianProfile = ({setCurrentUser, currentUser, musicianProfile }) => {
               value={editInstrument}
               onChange={(e) => setEditInstrument(e.target.value)}
         />
-        <Button variant='outlined' sx={{ mt: 2 }}>Submit</Button>
+        <Button type='submit' variant='outlined' sx={{ mt: 2 }}>Submit</Button>
+        </Box>
         </AccordionDetails>
+
       </Accordion>
       <Accordion expanded={expanded === 'panel7'} onChange={handleChange('panel7')}>
         <AccordionSummary
@@ -273,6 +397,7 @@ const MusicianProfile = ({setCurrentUser, currentUser, musicianProfile }) => {
           </Typography>
         </AccordionSummary>
         <AccordionDetails align='center'>
+        <Box component="form" onSubmit={handleSubmitBio} noValidate>
         <TextField
               id="bio"
               label="Edit bio"
@@ -280,9 +405,11 @@ const MusicianProfile = ({setCurrentUser, currentUser, musicianProfile }) => {
               value={editBio}
               onChange={(e) => setEditBio(e.target.value)}
         />
-        <Button variant='outlined' sx={{ mt: 2 }}>Submit</Button>
+        <Button type='submit' variant='outlined' sx={{ mt: 2 }}>Submit</Button>
+        </Box>
         </AccordionDetails>
       </Accordion>
+
       <Accordion expanded={expanded === 'panel8'} onChange={handleChange('panel8')}>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
@@ -293,10 +420,11 @@ const MusicianProfile = ({setCurrentUser, currentUser, musicianProfile }) => {
           <Link href={musicianProfile.media_url} target="_blank" sx={{ color: 'text.secondary'}}>
             {musicianProfile.media_url &&
             musicianProfile.media_url.slice(0, 20)
-            }
+            }...
           </Link>
         </AccordionSummary>
         <AccordionDetails align='center'>
+        <Box component="form" onSubmit={handleSubmitMedia} noValidate>
         <TextField
               id="media"
               label="Edit media"
@@ -304,7 +432,8 @@ const MusicianProfile = ({setCurrentUser, currentUser, musicianProfile }) => {
               value={editMedia}
               onChange={(e) => setEditMedia(e.target.value)}
         />
-        <Button variant='outlined' sx={{ mt: 2 }}>Submit</Button>
+        <Button type='submit' variant='outlined' sx={{ mt: 2 }}>Submit</Button>
+        </Box>
         </AccordionDetails>
       </Accordion>
           </div>
