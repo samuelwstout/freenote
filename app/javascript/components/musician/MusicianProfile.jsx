@@ -4,8 +4,8 @@ import NavBarMusician from '../nav/NavBarMusician'
 import { Box, Container, Typography, Accordion, AccordionDetails, AccordionSummary, Link, TextField, Button } from '@mui/material'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 
-const MusicianProfile = ({setCurrentUser, currentUser, musicians }) => {
-
+const MusicianProfile = ({setCurrentUser, currentUser, musicianProfile }) => {
+  
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -19,7 +19,7 @@ const MusicianProfile = ({setCurrentUser, currentUser, musicians }) => {
     }
   }, [currentUser])
 
-  const [expanded, setExpanded] = React.useState(false)
+  const [expanded, setExpanded] = useState(false)
   const [editFirstName, setEditFirstName] = useState('')
   const [editLastName, setEditLastName] = useState('')
   const [editUsername, setEditUsername] = useState('')
@@ -29,14 +29,6 @@ const MusicianProfile = ({setCurrentUser, currentUser, musicians }) => {
   const [editBio, setEditBio] = useState('')
   const [editMedia, setEditMedia] = useState('')
   const [submit, setSubmit] = useState(false)
-
-  let musician;
-  let profile;
-
-  if (Object.keys(currentUser).length !== 0) {
-    musician = musicians.find(item => item.id === currentUser.id)
-    profile = musician.musician_profile
-  }
 
   const handleSubmitFirstName = (e) => {
     e.preventDefault();
@@ -201,7 +193,7 @@ const MusicianProfile = ({setCurrentUser, currentUser, musicians }) => {
       </div>
       }
 
-      {profile &&
+      {musicianProfile &&
       <div>
       <Accordion expanded={expanded === 'panel4'} onChange={handleChange('panel4')}>
         <AccordionSummary
@@ -211,7 +203,7 @@ const MusicianProfile = ({setCurrentUser, currentUser, musicians }) => {
         >
           <Typography sx={{ width: '33%', flexShrink: 0 }}>Email</Typography>
           <Typography sx={{ color: 'text.secondary' }}>
-            {profile.email}
+            {musicianProfile.email}
           </Typography>
         </AccordionSummary>
         <AccordionDetails align="center">
@@ -233,7 +225,7 @@ const MusicianProfile = ({setCurrentUser, currentUser, musicians }) => {
         >
           <Typography sx={{ width: '33%', flexShrink: 0 }}>Location</Typography>
           <Typography sx={{ color: 'text.secondary' }}>
-            {profile.location}
+            {musicianProfile.location}
           </Typography>
         </AccordionSummary>
         <AccordionDetails align='center'>
@@ -255,7 +247,7 @@ const MusicianProfile = ({setCurrentUser, currentUser, musicians }) => {
         >
           <Typography sx={{ width: '33%', flexShrink: 0 }}>Instrument</Typography>
           <Typography sx={{ color: 'text.secondary' }}>
-            {profile.instrument}
+            {musicianProfile.instrument}
           </Typography>
         </AccordionSummary>
         <AccordionDetails align="center">
@@ -277,7 +269,7 @@ const MusicianProfile = ({setCurrentUser, currentUser, musicians }) => {
         >
           <Typography sx={{ width: '33%', flexShrink: 0 }}>Bio</Typography>
           <Typography sx={{ color: 'text.secondary' }}>
-            {profile.bio.slice(0, 20)}
+            {musicianProfile.bio}
           </Typography>
         </AccordionSummary>
         <AccordionDetails align='center'>
@@ -298,8 +290,10 @@ const MusicianProfile = ({setCurrentUser, currentUser, musicians }) => {
           id="panel8bh-header"
         >
           <Typography sx={{ width: '33%', flexShrink: 0 }}>Media</Typography>
-          <Link href={profile.media_url} target="_blank" sx={{ color: 'text.secondary'}}>
-            {profile.media_url.slice(0, 22)}...
+          <Link href={musicianProfile.media_url} target="_blank" sx={{ color: 'text.secondary'}}>
+            {musicianProfile.media_url &&
+            musicianProfile.media_url.slice(0, 20)
+            }
           </Link>
         </AccordionSummary>
         <AccordionDetails align='center'>
