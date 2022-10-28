@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     resources :job_applications, only: [:index, :create]
     resources :application_responses, only: [:create]
     resources :musician_profiles, only: [:create, :update]
-  
+    
     get "/me", to: "users#show"
     post "/signup_as_contractor", to: "contractors#create"
     post "/signup_as_musician", to: "musicians#create"
