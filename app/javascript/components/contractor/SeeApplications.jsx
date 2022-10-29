@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import { useParams } from 'react-router-dom'
 import NavBarContractor from '../nav/NavBarContractor'
-import { Typography } from '@mui/material'
+import { Typography, Grid, Card, Box, Container, CardContent, Link, Button, ButtonGroup } from '@mui/material'
 
 const SeeApplications = ({ jobApplications, jobs, musicians, setCurrentUser }) => {
 
@@ -46,8 +46,10 @@ const SeeApplications = ({ jobApplications, jobs, musicians, setCurrentUser }) =
   return (
     <div>
       <NavBarContractor setCurrentUser={setCurrentUser} />
+      <Box sx={{ pb: 4 }}>
+      <Container sx={{ py: 3 }} maxWidth="md">
       {job !== undefined &&
-        <Typography variant='h4' component='h1' align='center' sx={{ mt: 3 }}>Applications for {job.title}</Typography>
+        <Typography variant='h4' component='h1' align='center' sx={{ mt: 2, mb: 3 }}>Applications for {job.title}</Typography>
       }
       {filterApplications !== undefined && 
         filterApplications.length === 0 ? <Typography variant='h4' component='h1' align='center' sx={{ mt: 3 }}>No applications yet!</Typography> : null
@@ -56,48 +58,59 @@ const SeeApplications = ({ jobApplications, jobs, musicians, setCurrentUser }) =
         filterApplications.map(item => {
           const musician = musicians.find(data => data.id === item.musician_id)
             return (
-              <div key={item.id}>
+              <Grid item key={item.id} xs={12} sm={6} md={4}>
                 {musician !== undefined &&
-                <div>
-                   <h2>Application #{item.id}</h2>
-                   <h4>{musician.first_name} {musician.last_name}</h4>
-                   <h4>{musician.username}</h4>
+                <Card
+                sx={{ height: '100%', display: 'flex', flexDirection: 'column'}}
+                variant="outlined"
+                >
+                <CardContent sx={{ flexGrow: 1 }}>
+                   <Typography gutterBottom variant="h5" component="h2">Application #{item.id}</Typography>
+                   <Typography sx={{ mt: 1 }}>Name: {musician.first_name} {musician.last_name}</Typography>
+                   <Typography sx={{ mt: 1 }}>Username: {musician.username}</Typography>
                    {musician.musician_profile !== undefined &&
                    <div>
-                    <h4>{musician.musician_profile.email}</h4>
-                    <h4>{musician.musician_profile.location}</h4>
-                    <h4>{musician.musician_profile.instrument}</h4>
-                    <h4>{musician.musician_profile.bio}</h4>
-                    <h4>{musician.musician_profile.media_url}</h4>
+                    <Typography sx={{ mt: 1 }}>Email: </Typography>
+                    <Link href={`mailto: ${musician.musician_profile.email}`} sx={{ mt: 1 }}>{musician.musician_profile.email}</Link>
+                    <Typography sx={{ mt: 1 }}>Location: {musician.musician_profile.location}</Typography>
+                    <Typography sx={{ mt: 1 }}>Instrument: {musician.musician_profile.instrument}</Typography>
+                    <Typography sx={{ mt: 1 }}>Bio: </Typography>
+                    <Typography sx={{ whiteSpace: 'pre-wrap', mt: 1 }}>{musician.musician_profile.bio}</Typography>
+                    <Typography sx={{ mt: 1 }}>Media: </Typography>
+                    <Link href={musician.musician_profile.media_url} sx={{ mt: 1 }}>{musician.musician_profile.media_url}</Link>
                    </div>
                    }
-                   <h4>Cover letter:</h4>
-                   <h4>{item.cover_letter}</h4>
-               </div>
+                   <Typography sx={{ mt: 1, mb: 2 }}>Cover letter:</Typography>
+                   <Typography variant='outlined' sx={{ whiteSpace: 'pre-wrap' }}>{item.cover_letter}</Typography>
+                </CardContent>
+               </Card>
                 }
               {item.application_response &&
-                <div>
-                  <h1>Status: {item.application_response.status}</h1>
-                </div>
+              <Typography gutterBottom variant="h5" component="h2" align='center' sx={{ mt: 2 }}>Status: {item.application_response.status}</Typography>
               }
             
               {!item.application_response &&
                 <div>
-                <h3>Respond to this application:</h3>
-                  <button onClick={() => setStatus('Accept')}>Accept</button>
-                  <button onClick={() => setStatus('Deny')}>Deny</button>
-                  <button onClick={() => setStatus('Pending')}>Pending</button>
-                  <p>{status}</p>
-                  <form onSubmit={handleSubmit}>
-                    <h4>Submit:</h4>
-                    <button type='submit' onClick={() => setId(item.id)}>Submit</button>
-                   </form>
+                <Typography align='center' variant="h5" component="h2" sx={{ mt: 2 }}>Respond to this application:</Typography>
+                  <ButtonGroup sx={{ display: 'flex', justifyContent: 'center', mt: 2 }}>
+                    <Button variant='outlined' onClick={() => setStatus('Accept')}>Accept</Button>
+                    <Button variant='outlined' onClick={() => setStatus('Deny')}>Deny</Button>
+                    <Button variant='outlined' onClick={() => setStatus('Pending')}>Pending</Button>
+                  </ButtonGroup>
+                  <Typography align='center' sx={{ mt: 2}} variant='h6'>{status}</Typography>
+                  <Box component='form' onSubmit={handleSubmit}>
+                    <Typography align='center' sx={{ mt: 1 }}>
+                      <Button type='submit' variant='outlined' onClick={() => setId(item.id)}>Submit</Button>
+                    </Typography>
+                   </Box>
                 </div>
               }
-              </div>
+              </Grid>
             )
         })
         }
+        </Container>
+        </Box>
     </div>
   )
 }
