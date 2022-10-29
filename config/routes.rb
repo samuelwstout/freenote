@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root 'homepage#index'
 
   namespace :api do
-    resources :contractors, only: [:destroy]
+    resources :contractors, only: [:update, :destroy]
     resources :musicians, only: [:index, :update, :destroy]
     resources :jobs, only: [:index, :create, :update, :destroy]
     resources :job_applications, only: [:index, :create]
