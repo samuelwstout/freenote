@@ -12,6 +12,26 @@ class Api::ContractorsController < ApplicationController
         end
     end
 
+    def update
+        contractor = Contractor.find_by(id: params[:id])
+        if contractor
+            contractor.update(user_params)
+            render json: contractor
+        else
+            render json: { error: "Profile not found" }, status: :not_found
+        end
+    end
+
+    def destroy
+        contractor = Contractor.find_by(id: params[:id])
+        if contractor
+            contractor.destroy
+            render json: contractor
+        else
+            render json: { error: "Profile not found" }, status: :not_found
+        end
+    end
+
   private
 
     def user_params
