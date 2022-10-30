@@ -3,8 +3,10 @@ class Api::MusiciansController < ApplicationController
     skip_before_action :confirm_authentication
 
     def index
-        musicians = Musician.all
-        render json: musicians, include: :musician_profile
+        if current_user
+            musicians = Musician.all
+            render json: musicians, include: :musician_profile
+        end
     end
 
     def create

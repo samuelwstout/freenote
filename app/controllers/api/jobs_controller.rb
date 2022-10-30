@@ -1,32 +1,46 @@
 class Api::JobsController < ApplicationController
     
     def index
-        jobs = Job.all
-        render json: jobs
+        if current_user
+            jobs = Job.all
+            render json: jobs
+        end
     end
 
     def create
-        job = Job.create(job_params)
-        render json: job, status: :created
+        if current_user.type == "Contractor"
+            job = Job.create(job_params)
+            render json: job, status: :created
+        else
+            render json: { error: "Unauthorized"}, status: :unauthorized
+        end   
     end
 
     def update
-        job = Job.find_by(id: params[:id])
-        if job
-            job.update(job_params)
-            render json: job
+        if current_user.type == "Contractor"
+            job = Job.find_by(id: params[:id])
+            if job
+                job.update(job_params)
+                render json: job
+            else
+                render json: { error: "Job not found" }, status: :not_found
+            end
         else
-            render json: { error: "Job not found" }, status: :not_found
+            render json: { error: "Unauthorized"}, status: :unauthorized
         end
     end
 
     def destroy
-        job = Job.find_by(id: params[:id])
-        if job
-            job.destroy
-            render json: job
+        if current_user.type == "Contractor"
+            job = Job.find_by(id: params[:id])
+            if job
+                job.destroy
+                render json: job
+            else
+                render json: { error: "Job not found" }, status: :not_found
+            end
         else
-            render json: { error: "Job not found" }, status: :not_found
+            render json: { error: "Unauthorized"}, status: :unauthorized
         end
     end
 

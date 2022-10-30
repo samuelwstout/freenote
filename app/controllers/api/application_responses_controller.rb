@@ -1,8 +1,10 @@
 class Api::ApplicationResponsesController < ApplicationController
 
     def create
-        application_response = ApplicationResponse.create(application_response_params)
-        render json: application_response, status: :created
+        if current_user.type == "Contractor"
+            application_response = ApplicationResponse.create(application_response_params)
+            render json: application_response, status: :created
+        end
     end
 
     private
