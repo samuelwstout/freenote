@@ -18,22 +18,30 @@ class Api::MusiciansController < ApplicationController
     end
 
     def update
-        musician = Musician.find_by(id: params[:id])
-        if musician
-            musician.update(user_params)
-            render json: musician
+        if current_user.type == "Musician"
+           musician = Musician.find_by(id: params[:id])
+           if musician
+                musician.update(user_params)
+                render json: musician
+           else
+                render json: { error: "Profile not found" }, status: :not_found
+           end
         else
-            render json: { error: "Profile not found" }, status: :not_found
+            render json: { error: "Unauthorized"}, status: :unauthorized
         end
     end
 
     def destroy
-        musician = Musician.find_by(id: params[:id])
-        if musician
-            musician.destroy
-            render json: musician
+        if current_user.type == "Musician"
+            musician = Musician.find_by(id: params[:id])
+            if musician
+                musician.destroy
+                render json: musician
+            else
+                render json: { error: "Profile not found" }, status: :not_found
+            end
         else
-            render json: { error: "Profile not found" }, status: :not_found
+            render json: { error: "Unauthorized"}, status: :unauthorized
         end
     end
 
