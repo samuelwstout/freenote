@@ -42,7 +42,7 @@ const SeeApplications = ({ jobApplications, jobs, musicians, setCurrentUser }) =
         location.reload()
       })
     }
-
+  
   return (
     <div>
       <NavBarContractor setCurrentUser={setCurrentUser} />
@@ -51,8 +51,11 @@ const SeeApplications = ({ jobApplications, jobs, musicians, setCurrentUser }) =
       {job !== undefined &&
         <Typography variant='h4' component='h1' align='center' sx={{ mt: 2, mb: 3 }}>Applications for {job.title}</Typography>
       }
+      {jobApplications.length === 0 &&
+        <Typography variant='h5' component='h1' align='center'>No applications</Typography>
+      }
       {filterApplications !== undefined && 
-        filterApplications.length === 0 ? <Typography variant='h4' component='h1' align='center' sx={{ mt: 3 }}>No applications yet!</Typography> : null
+        filterApplications.length === 0 ? <Typography variant='h5' component='h1' align='center'>No applications</Typography> : null
       }
       {filterApplications !== undefined &&
         filterApplications.map(item => {

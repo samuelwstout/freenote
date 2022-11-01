@@ -25,12 +25,14 @@ const AppliedJobs = ({ setCurrentUser, currentUser, jobs, jobApplications }) => 
     }
   }, [currentUser])
  
-  const jobAppsFromCurrentUser = jobApplications.filter(jobApp => jobApp.musician_id === currentUser.id)
+  let appliedJobs = jobApplications.filter(jobApp => jobApp.musician_id === currentUser.id)
 
   const includesID = (id) => {
-    const onFilter = jobAppsFromCurrentUser.filter((jobApp) => jobApp.job_id == id)
+    const onFilter = appliedJobs.filter((jobApp) => jobApp.job_id == id)
     return onFilter.length > 0 ? true : false;
   };
+
+  console.log(appliedJobs)
 
   return (
     <div>
@@ -41,6 +43,9 @@ const AppliedJobs = ({ setCurrentUser, currentUser, jobs, jobApplications }) => 
           }}
         >
         <Container sx={{ py: 6 }} maxWidth="md">
+             {appliedJobs.length === 0 && 
+              <Typography variant='h5' component='h1' align='center'>No applied jobs</Typography>
+             }
              {jobs.map((job) => {
               if (includesID(job.id)) {
                 return (

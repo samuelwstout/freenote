@@ -68,7 +68,10 @@ const FindWork = ({currentUser, setCurrentUser, jobs}) => {
         <Container sx={{ py: 6 }} maxWidth="md">
         {jobs.length !== 0 &&
           mapJobs
-        } 
+        }
+        {mapJobs.length === 0 && 
+        <Typography variant='h5' component='h1' align='center'>No jobs yet</Typography>
+        }
         </Container>
         </Box> 
     </div>
