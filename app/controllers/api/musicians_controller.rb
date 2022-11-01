@@ -5,7 +5,9 @@ class Api::MusiciansController < ApplicationController
     def index
         if current_user
             musicians = Musician.all
-            render json: musicians
+            render json: musicians, include: :musician_profile
+        else
+            render json: { error: 'unauthorized' }, status: :unauthorized
         end
     end
 
