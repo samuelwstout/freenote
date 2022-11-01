@@ -43,7 +43,7 @@ class Api::MusiciansController < ApplicationController
                 render json: { error: "Profile not found" }, status: :not_found
             end
         else
-            render json: { error: "Unauthorized"}, status: :unauthorized
+            render json: { error: "Unauthorized" }, status: :unauthorized
         end
     end
 
