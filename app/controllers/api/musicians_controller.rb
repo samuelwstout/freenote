@@ -5,7 +5,7 @@ class Api::MusiciansController < ApplicationController
     def index
         if current_user
             musicians = Musician.all
-            render json: musicians, include: :musician_profile
+            render json: musicians
         end
     end
 
@@ -13,7 +13,7 @@ class Api::MusiciansController < ApplicationController
         musician = Musician.create(user_params)
         if musician.valid?
             session[:user_id] = musician.id
-            render json: musician, include: :job_applications, status: :ok
+            render json: musician, status: :ok
         else
             render json: { error: 'All fields must be filled and passwords must match.' }, status: :unprocessable_entity
         end
