@@ -73,7 +73,7 @@ const handleSubmit = (e) => {
             <TextField fullWidth placeholder='Description' value={description} onChange={(e) => setDescription(e.target.value)} />
             <TextField fullWidth placeholder='Date(s)' type='date' value={date} onChange={(e) => setDate(e.target.value)} />
             <TextField fullWidth placeholder='Location' value={location} onChange={(e) => setLocation(e.target.value)} />
-            <TextField fullWidth placeholder='Budget' value={budget} onChange={(e) => setBudget(e.target.value)} />
+            <TextField fullWidth placeholder='Budget ($)' value={budget} onChange={(e) => setBudget(e.target.value)} />
             <Button variant='outlined' type='submit' sx={{ mt: 2 }}>Submit</Button>
         </Box>
         </Grid>
