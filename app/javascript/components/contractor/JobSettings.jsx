@@ -147,13 +147,14 @@ const handleDelete = (e) => {
     })
     .then(r => r.json())
     .then(data => {
+        setSubmit(true)
         const jobArray = jobs.map(t => t.id)
         const index = jobArray.indexOf(data.id)
         jobArray.splice(index, 1)
         const finalArray = jobs.filter(s => s.id !== data.id)
         const newJobs = finalArray.map(t => t)
         setJobs(newJobs)
-        setDeleteMessage(`Job #${paramsId} Deleted!`)
+        setDeleteMessage(`Job #${paramsId} Deleted`)
         setTimeout(() => {
             navigate('/my-jobs')
         }, 2000)
@@ -170,7 +171,7 @@ const handleChange = (panel) => (event, isExpanded) => {
         <Box>
         <Container sx={{ py: 6 }} maxWidth="md">
         {deleteMessage &&
-            <Typography sx={{ mt: 2 }}>{deleteMessage}</Typography>
+            <Typography align='center' variant='h5' component='h1'>{deleteMessage}</Typography>
         }
         {job &&
         <div>
@@ -305,7 +306,9 @@ const handleChange = (panel) => (event, isExpanded) => {
         </Accordion>
         </div>
         }
+
         {/* Delete */}
+        {submit === false &&
         <Accordion expanded={expanded === 'panel6'} onChange={handleChange('panel6')} sx={{ mt: 6 }}>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
@@ -323,6 +326,8 @@ const handleChange = (panel) => (event, isExpanded) => {
         </Box>
         </AccordionDetails>
       </Accordion>
+        }
+
         </Container>
         </Box>
     </div>

@@ -58,7 +58,7 @@ const MyJobs = ({currentUser, setCurrentUser, jobs}) => {
           })
         }
         {filterJobs.length === 0 && 
-          <h1>No jobs yet</h1>
+          <Typography align='center' variant='h5' component='h1'>No jobs</Typography >
         }
         </Container>
         </Box>
