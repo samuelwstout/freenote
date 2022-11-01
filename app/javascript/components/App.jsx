@@ -93,7 +93,7 @@ useEffect(() => {
         <Route path="/create-job" element={<CreateJob setCurrentUser={setCurrentUser} currentUser={currentUser} setJobs={setJobs} jobs={jobs} />} />
         <Route path="/job/:id/settings" element={<JobSettings jobs={jobs} currentUser={currentUser} setCurrentUser={setCurrentUser} setJobs={setJobs} />} />
         <Route path="/my-jobs" element={<MyJobs setCurrentUser={setCurrentUser} currentUser={currentUser} jobs={jobs} />} />
-        <Route path="/job/:id/applications" element={<SeeApplications jobApplications={jobApplications} jobs={jobs} musicians={musicians} setCurrentUser={setCurrentUser} />} />
+        <Route path="/job/:id/applications" element={<SeeApplications jobApplications={jobApplications} setJobApplications={setJobApplications} jobs={jobs} musicians={musicians} setCurrentUser={setCurrentUser} />} />
         {/* landing */}
         <Route path="/" element={<LandingPage currentUser={currentUser} />} />
         {/* musician */}

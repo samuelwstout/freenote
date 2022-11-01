@@ -3,10 +3,11 @@ import { useParams } from 'react-router-dom'
 import NavBarContractor from '../nav/NavBarContractor'
 import { Typography, Grid, Card, Box, Container, CardContent, Link, Button, ButtonGroup } from '@mui/material'
 
-const SeeApplications = ({ jobApplications, jobs, musicians, setCurrentUser }) => {
+const SeeApplications = ({ jobApplications, setJobApplications, jobs, musicians, setCurrentUser }) => {
 
     const [status, setStatus] = useState('Pending')
     const [id, setId] = useState(0)
+    const [submit, setSubmit] = useState(false)
 
     const paramsId = Number(useParams().id)
 
@@ -23,7 +24,7 @@ const SeeApplications = ({ jobApplications, jobs, musicians, setCurrentUser }) =
     if (jobs.length !== 0 ) {
       job = jobs.find(item => item.id === paramsId)
     }
-
+    
     const handleSubmit = (e) => {
       e.preventDefault();
       fetch('/api/application_responses', {
@@ -37,9 +38,14 @@ const SeeApplications = ({ jobApplications, jobs, musicians, setCurrentUser }) =
         })
       })
       .then(r => r.json())
-      .then(data => {
-        data
-        location.reload()
+      .then(appRes => {
+        let iterate = filterApplications.find(item => item.id === appRes.job_application_id)
+        iterate.application_response = appRes
+        setJobApplications(jobApplications)
+        setSubmit(true)
+        setTimeout(() => {
+          setSubmit(false)
+        }, 1)
       })
     }
   
@@ -58,17 +64,17 @@ const SeeApplications = ({ jobApplications, jobs, musicians, setCurrentUser }) =
         filterApplications.length === 0 ? <Typography variant='h5' component='h1' align='center'>No applications</Typography> : null
       }
       {filterApplications !== undefined &&
-        filterApplications.map(item => {
-          const musician = musicians.find(data => data.id === item.musician_id)
+        filterApplications.map(app => {
+          const musician = musicians.find(data => data.id === app.musician_id)
             return (
-              <Grid item key={item.id} xs={12} sm={6} md={4}>
+              <Grid item key={app.id} xs={12} sm={6} md={4}>
                 {musician !== undefined &&
                 <Card
                 sx={{ height: '100%', display: 'flex', flexDirection: 'column'}}
                 variant="outlined"
                 >
                 <CardContent sx={{ flexGrow: 1 }}>
-                   <Typography gutterBottom variant="h5" component="h2">Application #{item.id}</Typography>
+                   <Typography gutterBottom variant="h5" component="h2">Application #{app.id}</Typography>
                    <Typography sx={{ mt: 1 }}>Name: {musician.first_name} {musician.last_name}</Typography>
                    <Typography sx={{ mt: 1 }}>Username: {musician.username}</Typography>
                    {musician.musician_profile !== undefined &&
@@ -84,15 +90,15 @@ const SeeApplications = ({ jobApplications, jobs, musicians, setCurrentUser }) =
                    </div>
                    }
                    <Typography sx={{ mt: 1, mb: 2 }}>Cover letter:</Typography>
-                   <Typography variant='outlined' sx={{ whiteSpace: 'pre-wrap' }}>{item.cover_letter}</Typography>
+                   <Typography variant='outlined' sx={{ whiteSpace: 'pre-wrap' }}>{app.cover_letter}</Typography>
                 </CardContent>
                </Card>
                 }
-              {item.application_response &&
-              <Typography gutterBottom variant="h5" component="h2" align='center' sx={{ mt: 2 }}>Status: {item.application_response.status}</Typography>
+              {app.application_response &&
+              <Typography gutterBottom variant="h5" component="h2" align='center' sx={{ mt: 2 }}>Status: {app.application_response.status}</Typography>
               }
             
-              {!item.application_response &&
+              {!app.application_response &&
                 <div>
                 <Typography align='center' variant="h5" component="h2" sx={{ mt: 2 }}>Respond to this application:</Typography>
                   <ButtonGroup sx={{ display: 'flex', justifyContent: 'center', mt: 2 }}>
@@ -103,7 +109,7 @@ const SeeApplications = ({ jobApplications, jobs, musicians, setCurrentUser }) =
                   <Typography align='center' sx={{ mt: 2}} variant='h6'>{status}</Typography>
                   <Box component='form' onSubmit={handleSubmit}>
                     <Typography align='center' sx={{ mt: 1 }}>
-                      <Button type='submit' variant='outlined' onClick={() => setId(item.id)}>Submit</Button>
+                      <Button type='submit' variant='outlined' onClick={() => setId(app.id)}>Submit</Button>
                     </Typography>
                    </Box>
                 </div>

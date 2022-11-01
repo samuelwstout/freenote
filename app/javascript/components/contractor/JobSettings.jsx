@@ -4,7 +4,7 @@ import NavBarContractor from '../nav/NavBarContractor'
 import { Box, Container, Typography, Accordion, AccordionDetails, AccordionSummary, Link, TextField, Button } from '@mui/material'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 
-const JobSettings = ({jobs, currentUser, setCurrentUser, setJobs}) => {
+const JobSettings = ({jobs, setCurrentUser, setJobs}) => {
 
 const navigate = useNavigate()
 
