@@ -23,7 +23,6 @@ const MusicianProfile = ({setCurrentUser, currentUser, musicianProfile, setMusic
   const [editFirstName, setEditFirstName] = useState('')
   const [editLastName, setEditLastName] = useState('')
   const [editUsername, setEditUsername] = useState('')
-  const [editEmail, setEditEmail] = useState('')
   const [editLocation, setEditLocation] = useState('')
   const [editInstrument, setEditInstrument] = useState('')
   const [editBio, setEditBio] = useState('')
@@ -191,28 +190,6 @@ const MusicianProfile = ({setCurrentUser, currentUser, musicianProfile, setMusic
     setEditMedia('')
   }
 
-  const handleSubmitEmail = (e) => {
-    e.preventDefault();
-    fetch(`/api/musician_profiles/${musicianProfile.id}`, {
-      method: 'PATCH',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        email: editEmail
-      })
-    })
-    .then(r => r.json())
-    .then(data => {
-      musicianProfile.email = data.email
-      setMusicianProfile(musicianProfile)
-      setSubmit(true)
-      setTimeout(() => {
-        setSubmit(false)
-      }, 1)
-    })
-    setEditEmail('')
-  }
 
   const handleDelete = (e) => {
     e.preventDefault();
@@ -331,31 +308,6 @@ const MusicianProfile = ({setCurrentUser, currentUser, musicianProfile, setMusic
           aria-controls="panel4bh-content"
           id="panel4bh-header"
         >
-          <Typography sx={{ width: '33%', flexShrink: 0 }}>Email</Typography>
-          <Typography sx={{ color: 'text.secondary' }}>
-            {musicianProfile.email}
-          </Typography>
-        </AccordionSummary>
-        <AccordionDetails align="center">
-        <Box component="form" onSubmit={handleSubmitEmail} noValidate>
-        <TextField
-              id="email"
-              label="Edit email"
-              fullWidth
-              value={editEmail}
-              onChange={(e) => setEditEmail(e.target.value)}
-        />
-        <Button type='submit' variant='outlined' sx={{ mt: 2 }}>Submit</Button>
-        </Box>
-        </AccordionDetails>
-
-      </Accordion>
-      <Accordion expanded={expanded === 'panel5'} onChange={handleChange('panel5')}>
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel5bh-content"
-          id="panel5bh-header"
-        >
           <Typography sx={{ width: '33%', flexShrink: 0 }}>Location</Typography>
           <Typography sx={{ color: 'text.secondary' }}>
             {musicianProfile.location}
@@ -375,11 +327,11 @@ const MusicianProfile = ({setCurrentUser, currentUser, musicianProfile, setMusic
         </AccordionDetails>
 
       </Accordion>
-      <Accordion expanded={expanded === 'panel6'} onChange={handleChange('panel6')}>
+      <Accordion expanded={expanded === 'panel5'} onChange={handleChange('panel5')}>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel6bh-content"
-          id="panel6bh-header"
+          aria-controls="panel5bh-content"
+          id="panel5bh-header"
         >
           <Typography sx={{ width: '33%', flexShrink: 0 }}>Instrument</Typography>
           <Typography sx={{ color: 'text.secondary' }}>
@@ -400,11 +352,11 @@ const MusicianProfile = ({setCurrentUser, currentUser, musicianProfile, setMusic
         </AccordionDetails>
 
       </Accordion>
-      <Accordion expanded={expanded === 'panel7'} onChange={handleChange('panel7')}>
+      <Accordion expanded={expanded === 'panel6'} onChange={handleChange('panel6')}>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel7bh-content"
-          id="panel7bh-header"
+          aria-controls="panel6bh-content"
+          id="panel6bh-header"
         >
           <Typography sx={{ width: '33%', flexShrink: 0 }}>Bio</Typography>
           <Typography sx={{ color: 'text.secondary' }}>
@@ -425,11 +377,11 @@ const MusicianProfile = ({setCurrentUser, currentUser, musicianProfile, setMusic
         </AccordionDetails>
       </Accordion>
 
-      <Accordion expanded={expanded === 'panel8'} onChange={handleChange('panel8')}>
+      <Accordion expanded={expanded === 'panel7'} onChange={handleChange('panel7')}>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel8bh-content"
-          id="panel8bh-header"
+          aria-controls="panel7bh-content"
+          id="panel7bh-header"
         >
           <Typography sx={{ width: '33%', flexShrink: 0 }}>Media</Typography>
           <Link href={musicianProfile.media_url} target="_blank" sx={{ color: 'text.secondary'}}>
@@ -454,11 +406,11 @@ const MusicianProfile = ({setCurrentUser, currentUser, musicianProfile, setMusic
       </div>
       }
 
-      <Accordion expanded={expanded === 'panel9'} onChange={handleChange('panel9')} sx={{ mt: 6 }}>
+      <Accordion expanded={expanded === 'panel8'} onChange={handleChange('panel8')} sx={{ mt: 6 }}>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel9bh-content"
-          id="panel9bh-header"
+          aria-controls="panel8bh-content"
+          id="panel8bh-header"
         >
           <Typography sx={{ width: '33%', flexShrink: 0, color: 'red' }}>Danger</Typography>
           <Typography sx={{ color: 'red' }}>

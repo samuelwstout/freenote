@@ -79,8 +79,6 @@ const SeeApplications = ({ jobApplications, setJobApplications, jobs, musicians,
                    <Typography sx={{ mt: 1 }}>Username: {musician.username}</Typography>
                    {musician.musician_profile !== undefined &&
                    <div>
-                    <Typography sx={{ mt: 1 }}>Email: </Typography>
-                    <Link href={`mailto: ${musician.musician_profile.email}`} sx={{ mt: 1 }}>{musician.musician_profile.email}</Link>
                     <Typography sx={{ mt: 1 }}>Location: {musician.musician_profile.location}</Typography>
                     <Typography sx={{ mt: 1 }}>Instrument: {musician.musician_profile.instrument}</Typography>
                     <Typography sx={{ mt: 1 }}>Bio: </Typography>

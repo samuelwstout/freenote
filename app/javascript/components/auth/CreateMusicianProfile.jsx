@@ -18,7 +18,6 @@ const CreateMusicianProfile = ({currentUser, setMusicianProfile}) => {
       const [instrument, setInstrument] = useState('')
       const [bio, setBio] = useState('')
       const [mediaUrl, setMediaUrl] = useState('')
-      const [email, setEmail] = useState('')
       const [error, setError] = useState('')
 
       const handleSubmit = (e) => {
@@ -29,7 +28,6 @@ const CreateMusicianProfile = ({currentUser, setMusicianProfile}) => {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                email,
                 location,
                 instrument,
                 bio,
@@ -53,7 +51,6 @@ const CreateMusicianProfile = ({currentUser, setMusicianProfile}) => {
         setInstrument('')
         setBio('')
         setMediaUrl('')
-        setEmail('')
       }
 
   return (
@@ -79,17 +76,6 @@ const CreateMusicianProfile = ({currentUser, setMusicianProfile}) => {
       </Typography>
       }
       <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
-      <TextField
-          margin="normal"
-          required
-          fullWidth
-          id="email"
-          label="Email"
-          name="email"
-          autoComplete="email"
-          autoFocus
-          onChange={(e) => setEmail(e.target.value)}
-        />
       <TextField
           margin="normal"
           required
