@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_04_035250) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_04_035536) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "timescaledb"
@@ -64,6 +64,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_04_035250) do
     t.string "type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "email"
   end
 
   add_foreign_key "application_responses", "job_applications"
