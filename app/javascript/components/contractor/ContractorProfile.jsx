@@ -23,6 +23,7 @@ const ContractorProfile = ({currentUser, setCurrentUser}) => {
   const [editFirstName, setEditFirstName] = useState('')
   const [editLastName, setEditLastName] = useState('')
   const [editUsername, setEditUsername] = useState('')
+  const [editEmail, setEditEmail] = useState('')
   const [submit, setSubmit] = useState(false)
 
   const handleSubmitFirstName = (e) => {
@@ -92,6 +93,29 @@ const ContractorProfile = ({currentUser, setCurrentUser}) => {
       }, 1)
     })
     setEditUsername('')
+  }
+
+  const handleSubmitEmail = (e) => {
+    e.preventDefault();
+    fetch(`/api/contractors/${currentUser.id}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        email: editEmail
+      })
+    })
+    .then(r => r.json())
+    .then(data => {
+      currentUser.email = data.email
+      setCurrentUser(currentUser)
+      setSubmit(true)
+      setTimeout(() => {
+        setSubmit(false)
+      }, 1)
+    })
+    setEditEmail('')
   }
 
   const handleDelete = (e) => {
@@ -196,13 +220,39 @@ const ContractorProfile = ({currentUser, setCurrentUser}) => {
         </Box>
         </AccordionDetails>
       </Accordion>
-
-      {/* Delete */}
-      <Accordion expanded={expanded === 'panel9'} onChange={handleChange('panel9')} sx={{ mt: 6 }}>
+      {/* Edit email */}
+      <Accordion expanded={expanded === 'panel4'} onChange={handleChange('panel4')}>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel9bh-content"
-          id="panel9bh-header"
+          aria-controls="panel4bh-content"
+          id="panel4bh-header"
+        >
+          <Typography sx={{ width: '33%', flexShrink: 0 }}>
+            Email
+          </Typography>
+          <Typography sx={{ color: 'text.secondary' }}>
+            {currentUser.email}
+          </Typography>
+        </AccordionSummary>
+        <AccordionDetails align='center'>
+        <Box component="form" onSubmit={handleSubmitEmail} noValidate>
+        <TextField
+              id="email"
+              label="Email"
+              fullWidth
+              value={editEmail}
+              onChange={(e) => setEditEmail(e.target.value)}
+        />
+        <Button type="submit" variant='outlined' sx={{ mt: 2 }}>Submit</Button>
+        </Box>
+        </AccordionDetails>
+      </Accordion>
+      {/* Delete */}
+      <Accordion expanded={expanded === 'panel5'} onChange={handleChange('panel5')} sx={{ mt: 6 }}>
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel5bh-content"
+          id="panel5bh-header"
         >
           <Typography sx={{ width: '33%', flexShrink: 0, color: 'red' }}>Danger</Typography>
           <Typography sx={{ color: 'red' }}>
