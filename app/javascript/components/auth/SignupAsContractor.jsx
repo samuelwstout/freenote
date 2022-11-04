@@ -20,6 +20,7 @@ const SignupAsContractor = ({ setCurrentUser, currentUser }) => {
 const [firstName, setFirstName] = useState('')
 const [lastName, setLastName] = useState('')
 const [username, setUsername] = useState('')
+const [email, setEmail] = useState('')
 const [password, setPassword] = useState('')
 const [passwordConfirmation, setPasswordConfirmation] = useState('')
 const [error, setError] = useState('')
@@ -35,6 +36,7 @@ const [error, setError] = useState('')
           first_name: firstName,
           last_name: lastName,
           username,
+          email,
           password,
           password_confirmation: passwordConfirmation
         })
@@ -54,6 +56,7 @@ const [error, setError] = useState('')
     setFirstName('')
     setLastName('')
     setUsername('')
+    setEmail('')
     setPassword('')
     setPasswordConfirmation('')
   }
@@ -118,6 +121,17 @@ const [error, setError] = useState('')
           margin="normal"
           required
           fullWidth
+          id="email"
+          label="Email"
+          name="email"
+          autoComplete="email"
+          autoFocus
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <TextField
+          margin="normal"
+          required
+          fullWidth
           name="password"
           label="Password"
           type="password"
@@ -156,31 +170,5 @@ const [error, setError] = useState('')
   </Container>
   )
 }
-
-{/* <h1>Sign up to hire talent</h1>
-<form onSubmit={handleSubmit}>
- <p>
-   <label htmlFor='firstname'>First Name </label>
-   <input type="text" name="first_name" value={firstName} onChange={(e) => setFirstName(e.target.value)} />
- </p>
- <p>
-   <label htmlFor='lastname'>Last Name </label>
-   <input type="text" name="last_name" value={lastName} onChange={(e) => setLastName(e.target.value)} />
- </p>
- <p>
-   <label htmlFor='username'>Username </label>
-   <input type="text" name="username" value={username} onChange={(e) => setUsername(e.target.value)} />
- </p>
- <p>
-   <label htmlFor='password'>Password </label>
-   <input type="password" name="password" value={password} onChange={(e) => setPassword(e.target.value)} />
- </p>
- <p>
-   <label htmlFor='password_confirmation'>Password Confirmation </label>
-   <input type="password" name="password_confirmation" value={passwordConfirmation} onChange={(e) => setPasswordConfirmation(e.target.value)} />
- </p>
- <input type='submit'></input>
- </form>
-<h4>Already have an account? <button><Link to="/signin">Sign in</Link></button></h4> */}
 
 export default SignupAsContractor
