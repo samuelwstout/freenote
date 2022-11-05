@@ -1,6 +1,6 @@
 # Freenote
 a job board for freelance musicians and contractors.
-[![freenote.up.railway.app](https://railway.app/button.svg)](https://railway.app/new/template/sibk1f)
+[Go to the site here](https://freenote.up.railway.app)
 
 ## How to use
 
@@ -10,7 +10,7 @@ a job board for freelance musicians and contractors.
 - Migrate the database `railway run rake db:migrate`
 - Run Rails `railway run bin/rails server`
 
-## 📝 Notes
+## Notes
 
 This app was generated with the `rails new` command. Read more about Rails on
 their [official website](https://rubyonrails.org/)
