@@ -30,7 +30,11 @@ gem "jbuilder"
 # Vite for Rails
 gem 'vite_rails'
 
+# debugger
 gem 'byebug'
+
+# to use .env files
+gem 'dotenv-rails'
 
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
