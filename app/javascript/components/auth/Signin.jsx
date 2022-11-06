@@ -108,6 +108,13 @@ const Signin = ({setCurrentUser, currentUser}) => {
                 </Link>
               </Grid>
             </Grid>
+            <Grid container justifyContent="center">
+              <Grid item>
+                <Link onClick={() => navigate('/forgot-password')} variant="body2">
+                  {"Forgot password?"}
+                </Link>
+              </Grid>
+            </Grid>
           </Box>
         </Box>
       </Container>
