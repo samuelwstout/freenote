@@ -1,5 +1,7 @@
 class Api::PasswordsController < ApplicationController
-    
+
+  skip_before_action :confirm_authentication
+  
     def forgot
         user = User.find_by(email: params[:_json])
         if user
