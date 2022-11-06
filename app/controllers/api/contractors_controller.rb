@@ -1,6 +1,6 @@
 class Api::ContractorsController < ApplicationController
-
-    skip_before_action :confirm_authentication
+    
+    skip_before_action :confirm_authentication, only: [:create]
 
     def create
         contractor = Contractor.create(user_params)
@@ -8,7 +8,7 @@ class Api::ContractorsController < ApplicationController
             session[:user_id] = contractor.id
             render json: contractor, status: :ok
         else
-            render json: { error: 'All fields must be filled and passwords must match.' }, status: :unprocessable_entity
+            render json: { error: 'Error' }, status: :unprocessable_entity
         end
     end
 

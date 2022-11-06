@@ -15,6 +15,9 @@ Rails.application.routes.draw do
     post "/signup_as_musician", to: "musicians#create"
     post "/signin", to: "sessions#create"
     delete "/logout", to: "sessions#destroy"
+    post '/forgot_password', to: "passwords#forgot"
+    post '/reset_password', to: "passwords#reset"
+
   end
 
   get '*path', to: 'homepage#index'
