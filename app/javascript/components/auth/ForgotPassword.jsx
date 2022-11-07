@@ -6,11 +6,11 @@ const ForgotPassword = () => {
     const navigate = useNavigate()
 
     const [email, setEmail] = useState('')
+    const [message, setMessage] = useState('')
 
     const handleSubmit = (e) => {
         e.preventDefault()
         fetch('/api/forgot_password', {
-            credentials: 'include',
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -19,10 +19,10 @@ const ForgotPassword = () => {
         })
         .then(r => r.json())
         .then(data => {
-            console.log(data)
+            setMessage(data.alert)
         })
         .catch(console.log)
-        navigate('/')
+        setEmail('')
     }
 
   return (
@@ -31,7 +31,13 @@ const ForgotPassword = () => {
             <form onSubmit={handleSubmit}>
             <input required id="forgotpasswordemail" onChange={(e) => setEmail(e.target.value)} name="email" placeholder="email" type="email" value={email} />
             <button>Submit</button>
-         </form>
+            </form>
+        {message &&
+        <div>
+            <p>{message}</p>
+            <button onClick={() => navigate('/')}>Go back</button>
+        </div>
+        }
     </div>
   )
 }
