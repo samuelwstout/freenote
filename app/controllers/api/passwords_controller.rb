@@ -22,7 +22,7 @@ class Api::PasswordsController < ApplicationController
         if user.present? && user.password_token_valid?
           if user.reset_password(params[:password])
             render json: {
-              alert: "Your password has been successfuly reset!"
+              alert: "Your password has been successfully reset!"
             }
             session[:user_id] = user.id
           else
