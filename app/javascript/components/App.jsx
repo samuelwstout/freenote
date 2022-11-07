@@ -17,6 +17,7 @@ import SeeApplications from './contractor/SeeApplications'
 import CreateMusicianProfile from './auth/CreateMusicianProfile'
 import JobSettings from './contractor/JobSettings'
 import ForgotPassword from './auth/ForgotPassword'
+import ResetPassword from './auth/ResetPassword'
 
 const App = () => {
   
@@ -90,6 +91,7 @@ useEffect(() => {
         <Route path="/signup-as-contractor" element={<SignupAsContractor setCurrentUser={setCurrentUser} currentUser={currentUser} />} />
         <Route path="/signup-as-musician" element={<SignupAsMusician setCurrentUser={setCurrentUser} currentUser={currentUser} setMusicians={setMusicians} musicians={musicians} />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/reset-password" element={<ResetPassword />} />
         {/* contractor */}
         <Route path="/contractor-profile" element={<ContractorProfile setCurrentUser={setCurrentUser} currentUser={currentUser} />} />
         <Route path="/create-job" element={<CreateJob setCurrentUser={setCurrentUser} currentUser={currentUser} setJobs={setJobs} jobs={jobs} />} />
