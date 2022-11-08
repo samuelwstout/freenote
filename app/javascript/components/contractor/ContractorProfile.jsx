@@ -5,7 +5,7 @@ import { Box, Container, Typography, Accordion, AccordionDetails, AccordionSumma
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 
 const ContractorProfile = ({currentUser, setCurrentUser}) => {
-
+  
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -142,7 +142,6 @@ const ContractorProfile = ({currentUser, setCurrentUser}) => {
       <NavBarContractor setCurrentUser={setCurrentUser} />
       <Box>
         <Container sx={{ py: 6 }} maxWidth="md">
-
         {/* Edit first name */}
         <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
         <AccordionSummary
@@ -220,6 +219,7 @@ const ContractorProfile = ({currentUser, setCurrentUser}) => {
         </Box>
         </AccordionDetails>
       </Accordion>
+
       {/* Edit email */}
       <Accordion expanded={expanded === 'panel4'} onChange={handleChange('panel4')}>
         <AccordionSummary
@@ -247,8 +247,14 @@ const ContractorProfile = ({currentUser, setCurrentUser}) => {
         </Box>
         </AccordionDetails>
       </Accordion>
+     
+     {/* Reset password */}
+     <Typography align='center' sx={{ mt: 3 }}>
+      <Button variant='outlined' onClick={() => navigate('/forgot-password')}>Reset Password</Button>
+     </Typography>
+
       {/* Delete */}
-      <Accordion expanded={expanded === 'panel5'} onChange={handleChange('panel5')} sx={{ mt: 6 }}>
+      <Accordion expanded={expanded === 'panel5'} onChange={handleChange('panel5')} sx={{ mt: 3 }}>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel5bh-content"
