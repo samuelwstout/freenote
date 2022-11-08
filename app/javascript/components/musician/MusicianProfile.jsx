@@ -458,11 +458,11 @@ const MusicianProfile = ({setCurrentUser, currentUser, musicianProfile, setMusic
       }
 
        {/* Reset password */}
-     <Typography align='center' sx={{ mt: 3 }}>
+     <Typography align='center' sx={{ mt: 5 }}>
       <Button variant='outlined' onClick={() => navigate('/forgot-password')}>Reset Password</Button>
      </Typography>
 
-      <Accordion expanded={expanded === 'panel9'} onChange={handleChange('panel9')} sx={{ mt: 6 }}>
+      <Accordion expanded={expanded === 'panel9'} onChange={handleChange('panel9')} sx={{ mt: 5 }}>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel9bh-content"

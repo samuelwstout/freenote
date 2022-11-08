@@ -249,12 +249,12 @@ const ContractorProfile = ({currentUser, setCurrentUser}) => {
       </Accordion>
      
      {/* Reset password */}
-     <Typography align='center' sx={{ mt: 3 }}>
+     <Typography align='center' sx={{ mt: 5 }}>
       <Button variant='outlined' onClick={() => navigate('/forgot-password')}>Reset Password</Button>
      </Typography>
 
       {/* Delete */}
-      <Accordion expanded={expanded === 'panel5'} onChange={handleChange('panel5')} sx={{ mt: 3 }}>
+      <Accordion expanded={expanded === 'panel5'} onChange={handleChange('panel5')} sx={{ mt: 5 }}>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel5bh-content"
