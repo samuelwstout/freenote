@@ -9,6 +9,11 @@ Rails.application.routes.draw do
     resources :job_applications, only: [:index, :create]
     resources :application_responses, only: [:create]
     resources :musician_profiles, only: [:create, :update]
+    resources :users do
+      member do
+        get :confirm_email
+      end
+    end
     
     get "/me", to: "users#show"
     post "/signup_as_contractor", to: "contractors#create"
