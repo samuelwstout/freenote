@@ -53,6 +53,7 @@ const [error, setError] = useState('')
             })
           }
         })
+
     setFirstName('')
     setLastName('')
     setUsername('')
