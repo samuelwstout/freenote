@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+    before_create :confirmation_token
+    
     has_secure_password
     validates :password, length: { minimum: 5, wrong_length: "Password must be at least 5 characters." }, if: :password
     validates :username, presence: true, uniqueness: true
@@ -30,6 +32,12 @@ class User < ApplicationRecord
 
     def generate_base64_token
         test = SecureRandom.urlsafe_base64
+    end
+
+    def confirmation_token
+        if self.confirm_token.blank?
+            self.confirm_token = SecureRandom.urlsafe_base64.to_s
+        end
     end
 
 end
