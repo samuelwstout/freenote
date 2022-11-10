@@ -9,7 +9,7 @@ class Api::ContractorsController < ApplicationController
             render json: contractor, status: :ok
             contractor.send_email_confirmation
         else
-            render json: { error: message }, status: :unprocessable_entity
+            render json: { error: contractor.errors.full_messages }, status: :unprocessable_entity
         end
     end
 
