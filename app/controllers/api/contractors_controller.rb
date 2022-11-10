@@ -7,7 +7,6 @@ class Api::ContractorsController < ApplicationController
         if contractor.valid?
             session[:user_id] = contractor.id
             render json: contractor, status: :ok
-            contractor.send_email_confirmation
         else
             render json: { error: contractor.errors.full_messages }, status: :unprocessable_entity
         end
