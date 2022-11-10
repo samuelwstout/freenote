@@ -5,7 +5,7 @@ class UserMailer < ApplicationMailer
     mail to: user.email, subject: "Password reset - Freenote"
   end
 
-  def registration_confirmation(user)
+  def email_confirmation(user)
     @user = user
     mail to: user.email, subject: "Email confirmation - Freenote"
   end
