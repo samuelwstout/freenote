@@ -5,7 +5,8 @@
   </head>
   <body>
     <h3>Hi <%= @user.first_name %>,</h3>
-    <p>Thanks for registering! To confirm your registration click the URL below.</p>
-    <p><%= confirm_email_user_url(@user.confirm_token) %></p>
+    <p>Thanks for registering! To confirm your registration:</p>
+    <p>Please use this code to reset your password: <%= @user.password_reset_token %></p>
+    <p>To reset your password please enter your code in the form here: insert link here.</p>
   </body>
 </html>

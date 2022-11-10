@@ -1,5 +1,7 @@
 Hi <%= @user.first_name %>,
 
-Thanks for registering! To confirm your registration click the URL below.
+Thanks for registering! To confirm your registration:
 
-<%= confirm_email_user_url(@user.confirm_token) %>
+Please use this code to reset your password: <%= @user.password_reset_token %>
+
+To reset your password please enter your code in the form here: insert link here.
