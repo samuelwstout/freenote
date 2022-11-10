@@ -5,8 +5,8 @@ class Api::ContractorsController < ApplicationController
     def create
         contractor = Contractor.create(user_params)
         if contractor.valid?
-            session[:user_id] = contractor.id
-            render json: contractor, status: :ok
+            UserMailer.registration_confirmation(contractor).deliver
+            flash[:success] = "Please confirm your email address to continue"
         else
             render json: { error: 'Error' }, status: :unprocessable_entity
         end
@@ -46,3 +46,6 @@ class Api::ContractorsController < ApplicationController
         params.permit(:first_name, :last_name, :username, :email, :password, :password_confirmation)
     end
 end
+
+# session[:user_id] = contractor.id
+# render json: contractor, status: :ok
