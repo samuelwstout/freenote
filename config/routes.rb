@@ -9,11 +9,6 @@ Rails.application.routes.draw do
     resources :job_applications, only: [:index, :create]
     resources :application_responses, only: [:create]
     resources :musician_profiles, only: [:create, :update]
-    resources :users do
-      member do
-        get :confirm_email
-      end
-    end
     
     get "/me", to: "users#show"
     post "/signup_as_contractor", to: "contractors#create"
@@ -22,6 +17,8 @@ Rails.application.routes.draw do
     delete "/logout", to: "sessions#destroy"
     post '/forgot_password', to: "passwords#forgot"
     post '/reset_password', to: "passwords#reset"
+    post '/request_email_confirmation', to: "confirmations#request"
+    post '/submit_email_confirmation', to: "confirmations#submit"
 
   end
 
