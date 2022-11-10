@@ -3,12 +3,13 @@ class Api::ContractorsController < ApplicationController
     skip_before_action :confirm_authentication, only: [:create]
 
     def create
-        contractor = Contractor.create(user_params)
-        if contractor.valid?
-            UserMailer.registration_confirmation(contractor).deliver
+        @user = Contractor.create(user_params)
+        if @user.valid?
+            UserMailer.registration_confirmation(@user).deliver
             flash[:success] = "Please confirm your email address to continue"
+            render json: @user, status: :ok
         else
-            render json: { error: 'Error' }, status: :unprocessable_entity
+            render json: { error: message }, status: :unprocessable_entity
         end
     end
 

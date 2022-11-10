@@ -43,9 +43,9 @@ const [error, setError] = useState('')
       })
         .then(res => {
           if (res.ok) {
-            res.json().then(user => {
-                setCurrentUser(user)
-                navigate('/create-job')
+            res.json().then(data => {
+                console.log(data)
+                // navigate('/')
             })
           } else {
             res.json().then(errors => {
