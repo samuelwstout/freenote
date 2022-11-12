@@ -139,17 +139,6 @@ const ContractorProfile = ({currentUser, setCurrentUser}) => {
     setExpanded(isExpanded ? panel : false)
   }
 
-  const confirmEmailButtonClick = () => {
-    fetch('/api/request_email_confirmation', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    })
-    .then(r => r.json())
-    .then(data => console.log(data))
-  }
-
   return (
     <div>
       <NavBarContractor setCurrentUser={setCurrentUser} />
@@ -263,7 +252,7 @@ const ContractorProfile = ({currentUser, setCurrentUser}) => {
 
       {/* Confirm Email */}
       <Typography align='center' sx={{ mt: 5 }}>
-        <Button variant='outlined' onClick={confirmEmailButtonClick}>Confirm Email</Button>
+         <Button variant='outlined' onClick={() => navigate('/request-email-confirmation')}>Confirm Email</Button>
       </Typography>
      
      {/* Reset password */}
