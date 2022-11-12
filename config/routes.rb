@@ -17,7 +17,7 @@ Rails.application.routes.draw do
     delete "/logout", to: "sessions#destroy"
     post '/forgot_password', to: "passwords#forgot"
     post '/reset_password', to: "passwords#reset"
-    post '/request_email_confirmation', to: "confirmations#request"
+    post '/call_email_confirmation', to: "confirmations#call"
     post '/submit_email_confirmation', to: "confirmations#submit"
 
   end
