@@ -4,6 +4,7 @@ const ConfirmEmail = () => {
 
     const [email, setEmail] = useState('')
     const [token, setToken] = useState('')
+    const [message, setMessage] = useState('')
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -17,8 +18,17 @@ const ConfirmEmail = () => {
                 email
             })
         })
-        .then(r => r.json())
-        .then(console.log)
+        .then((r) => {
+            if (r.ok) {
+                r.json().then((data) => {
+                    setMessage(data.message)
+                })
+            } else {
+                setMessage('Incorrect credentials')
+            }
+        })
+    setEmail('')
+    setToken('')
     }
 
   return (
@@ -31,6 +41,9 @@ const ConfirmEmail = () => {
             <input name='token' onChange={(e) => setToken(e.target.value)} value={token} />
             <button type='submit'>Submit</button>
         </form>
+        {message && 
+            <h2>{message}</h2>
+        }
     </div>
   )
 }
