@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 const CallEmailConfirmation = () => {
 
     const [email, setEmail] = useState('')
+    const [message, setMessage] = useState('')
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -14,7 +15,9 @@ const CallEmailConfirmation = () => {
           body: JSON.stringify(email)
         })
         .then(r => r.json())
-        .then(console.log)
+        .then(data => {
+          setMessage(data.alert)
+        })
         setEmail('')
     }
 
@@ -24,6 +27,9 @@ const CallEmailConfirmation = () => {
             <label htmlFor='email'>Email: </label>
             <input name='email' value={email} onChange={(e) => setEmail(e.target.value)} />
             <button type='submit'>Submit</button>
+            {message && 
+              <h2>{message}</h2>
+            }
         </form>
     </div>
   )
