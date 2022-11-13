@@ -1,6 +1,9 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const ConfirmEmail = () => {
+
+    const navigate = useNavigate()
 
     const [email, setEmail] = useState('')
     const [token, setToken] = useState('')
@@ -44,6 +47,7 @@ const ConfirmEmail = () => {
         {message && 
             <h2>{message}</h2>
         }
+        <button onClick={() => navigate('/')}>Go back</button>
     </div>
   )
 }
