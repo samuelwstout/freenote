@@ -23,7 +23,7 @@ const [username, setUsername] = useState('')
 const [email, setEmail] = useState('')
 const [password, setPassword] = useState('')
 const [passwordConfirmation, setPasswordConfirmation] = useState('')
-const [error, setError] = useState('')
+const [errorMessages, setErrorMessages] = useState([])
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -49,7 +49,13 @@ const [error, setError] = useState('')
             })
           } else {
             res.json().then(errors => {
-              console.log(errors)
+              setErrorMessages(errors.error.map((message, index) => {
+                return (
+                  <Typography key={index} variant="subtitle2" color="error.dark" sx={{ mt: 1.75 }}>
+                    {message}
+                  </Typography>
+                )
+              }))
             })
           }
         })
@@ -79,11 +85,11 @@ const [error, setError] = useState('')
       <Typography component="h1" variant="h5">
         Sign up to hire talent
       </Typography>
-      {error && 
-        <Typography variant="subtitle2" color="error.dark" sx={{ mt: 1.75 }}>
-        {error}
-      </Typography>
+
+      {errorMessages && 
+        errorMessages
       }
+  
       <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
       <TextField
           margin="normal"
