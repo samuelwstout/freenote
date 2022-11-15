@@ -39,10 +39,6 @@ const handleSubmit = (e) => {
           const newJobApps = [...jobApplications, data]
           setJobApplications(newJobApps)
         })
-      } else {
-        r.json().then(error => {
-          console.log(error)
-        })
       }
     })
   setCoverLetter('')

@@ -26,7 +26,6 @@ useEffect(() => {
 
 const handleSubmit = (e) => {
   e.preventDefault()
-  
   fetch('/api/jobs', {
     method: 'POST',
     headers: {
@@ -47,13 +46,8 @@ const handleSubmit = (e) => {
         const newJobs = [...jobs, data]
         setJobs(newJobs)
       })
-    } else {
-      r.json().then(error => {
-        console.log(error)
-      })
     }
   })
-
   setTitle('')
   setDescription('')
   setDate('')

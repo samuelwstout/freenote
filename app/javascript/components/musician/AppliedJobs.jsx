@@ -30,9 +30,7 @@ const AppliedJobs = ({ setCurrentUser, currentUser, jobs, jobApplications }) => 
   const includesID = (id) => {
     const onFilter = appliedJobs.filter((jobApp) => jobApp.job_id == id)
     return onFilter.length > 0 ? true : false;
-  };
-
-  console.log(appliedJobs)
+  }
 
   return (
     <div>
