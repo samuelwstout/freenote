@@ -35,8 +35,6 @@ useEffect(() => {
       r.json().then((data) => {
         setCurrentUser(data)
       })
-    } else {
-      console.log('No active session')
     }
   })
 }, [])
@@ -53,8 +51,6 @@ useEffect(() => {
           }
         }
       })
-    } else {
-      console.log('No musicians')
     }
   })
 }, [currentUser, setMusicians])
@@ -65,8 +61,6 @@ useEffect(() => {
       r.json().then((data) => {
         setJobs(data)
       })
-    } else {
-      console.log('jobs unprocessed')
     }
   })
 }, [currentUser, setJobs])
@@ -77,8 +71,6 @@ useEffect(() => {
         r.json().then((data) => {
           setJobApplications(data)
         })
-      } else {
-        console.log('job applications unprocessed')
       }
     })
 }, [currentUser, setJobApplications])

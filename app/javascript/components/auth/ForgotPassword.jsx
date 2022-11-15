@@ -21,7 +21,6 @@ const ForgotPassword = () => {
         .then(data => {
             setMessage(data.alert)
         })
-        .catch(console.log)
         setEmail('')
     }
 
