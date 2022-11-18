@@ -23,6 +23,14 @@ _a job board app to help musicians find gigs and contractors find talent._
 ```
 railway link 9eeff253-1791-4887-bba4-e67f66efe8e1
 ```
+#### Run backend
+```
+railway run rails s
+```
+#### Run frontend (in separate terminal window)
+```
+railway run npm run dev
+```
 
 ## MIT License
 
