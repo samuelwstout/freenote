@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import NavBarMusician from '../nav/NavBarMusician'
-import { Box, Container, Typography, Accordion, AccordionDetails, AccordionSummary, Link, TextField, Button } from '@mui/material'
+import { Box, Container, Typography, Accordion, AccordionDetails, AccordionSummary, Link, TextField, Button, ButtonGroup } from '@mui/material'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 
 const MusicianProfile = ({setCurrentUser, currentUser, musicianProfile, setMusicianProfile }) => {
@@ -457,10 +457,12 @@ const MusicianProfile = ({setCurrentUser, currentUser, musicianProfile, setMusic
       </div>
       }
 
-       {/* Reset password */}
-     <Typography align='center' sx={{ mt: 5 }}>
-      <Button variant='outlined' onClick={() => navigate('/forgot-password')}>Reset Password</Button>
-     </Typography>
+      <Typography align='center' sx={{ mt: 5.25 }}>
+        <ButtonGroup variant='outlined'>
+          <Button onClick={() => navigate('/request-email-confirmation')}>Confirm Email</Button>
+          <Button onClick={() => navigate('/forgot-password')}>Reset Password</Button>
+        </ButtonGroup>
+      </Typography>
 
       <Accordion expanded={expanded === 'panel9'} onChange={handleChange('panel9')} sx={{ mt: 5 }}>
         <AccordionSummary

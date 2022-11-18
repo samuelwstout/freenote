@@ -1,14 +1,12 @@
-import React, {useState, useEffect} from 'react';
-import { useNavigate } from 'react-router-dom';
-import NavBarContractor from '../nav/NavBarContractor';
-import { Box, Container, Typography, Accordion, AccordionDetails, AccordionSummary, Link, TextField, Button } from '@mui/material'
+import React, {useState, useEffect} from 'react'
+import { useNavigate } from 'react-router-dom'
+import NavBarContractor from '../nav/NavBarContractor'
+import { Box, Container, Typography, Accordion, AccordionDetails, AccordionSummary, Link, TextField, Button, ButtonGroup } from '@mui/material'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 
 const ContractorProfile = ({currentUser, setCurrentUser}) => {
 
-  
-  
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
   useEffect(() => {
     if (currentUser) {
@@ -29,7 +27,7 @@ const ContractorProfile = ({currentUser, setCurrentUser}) => {
   const [submit, setSubmit] = useState(false)
 
   const handleSubmitFirstName = (e) => {
-    e.preventDefault();
+    e.preventDefault()
     fetch(`/api/contractors/${currentUser.id}`, {
       method: 'PATCH',
       headers: {
@@ -52,7 +50,7 @@ const ContractorProfile = ({currentUser, setCurrentUser}) => {
   }
 
   const handleSubmitLastName = (e) => {
-    e.preventDefault();
+    e.preventDefault()
     fetch(`/api/contractors/${currentUser.id}`, {
       method: 'PATCH',
       headers: {
@@ -75,7 +73,7 @@ const ContractorProfile = ({currentUser, setCurrentUser}) => {
   }
 
   const handleSubmitUsername = (e) => {
-    e.preventDefault();
+    e.preventDefault()
     fetch(`/api/contractors/${currentUser.id}`, {
       method: 'PATCH',
       headers: {
@@ -98,7 +96,7 @@ const ContractorProfile = ({currentUser, setCurrentUser}) => {
   }
 
   const handleSubmitEmail = (e) => {
-    e.preventDefault();
+    e.preventDefault()
     fetch(`/api/contractors/${currentUser.id}`, {
       method: 'PATCH',
       headers: {
@@ -121,7 +119,7 @@ const ContractorProfile = ({currentUser, setCurrentUser}) => {
   }
 
   const handleDelete = (e) => {
-    e.preventDefault();
+    e.preventDefault()
     fetch(`/api/contractors/${currentUser.id}`, {
       method: 'DELETE',
       headers: {
@@ -250,15 +248,12 @@ const ContractorProfile = ({currentUser, setCurrentUser}) => {
         </AccordionDetails>
       </Accordion>
 
-      {/* Confirm Email */}
-      <Typography align='center' sx={{ mt: 5 }}>
-         <Button variant='outlined' onClick={() => navigate('/request-email-confirmation')}>Confirm Email</Button>
+      <Typography align='center' sx={{ mt: 5.25 }}>
+        <ButtonGroup variant='outlined'>
+          <Button onClick={() => navigate('/request-email-confirmation')}>Confirm Email</Button>
+          <Button onClick={() => navigate('/forgot-password')}>Reset Password</Button>
+        </ButtonGroup>
       </Typography>
-     
-     {/* Reset password */}
-     <Typography align='center' sx={{ mt: 5 }}>
-      <Button variant='outlined' onClick={() => navigate('/forgot-password')}>Reset Password</Button>
-     </Typography>
 
       {/* Delete */}
       <Accordion expanded={expanded === 'panel5'} onChange={handleChange('panel5')} sx={{ mt: 5 }}>
