@@ -138,7 +138,7 @@ const ContractorProfile = ({currentUser, setCurrentUser}) => {
   }
 
   return (
-    <div>
+    <>
       <NavBarContractor setCurrentUser={setCurrentUser} />
       <Box>
         <Container sx={{ py: 6 }} maxWidth="md">
@@ -273,10 +273,9 @@ const ContractorProfile = ({currentUser, setCurrentUser}) => {
         </Box>
         </AccordionDetails>
       </Accordion>
-
         </Container>
       </Box>
-    </div>
+    </>
   )
 }
 

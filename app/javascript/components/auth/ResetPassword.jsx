@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import { useNavigate } from 'react-router-dom'
+import {Avatar, Button, CssBaseline, TextField, Box, Typography, Container} from '@mui/material'
 
 const ResetPassword = () => {
 
@@ -11,9 +12,10 @@ const ResetPassword = () => {
     const [passwordConfirmation, setPasswordConfirmation] = useState('')
     const [pwNoMatch, setPwNoMatch] = useState('')
     const [success, setSuccess] = useState('')
+    const [message, setMessage] = useState([])
 
     const handleSubmit = (e) => {
-        e.preventDefault();
+        e.preventDefault()
         if (password !== passwordConfirmation) {
             setPwNoMatch("Passwords don't match")
         } else {
@@ -30,7 +32,13 @@ const ResetPassword = () => {
             })
             .then(r => r.json())
             .then(data => {
-                setSuccess(data.alert)
+                if (data.error) {
+                setMessage(data.error.map((m, index) => {
+                    return <Typography key={index} align='center' component='h1' variant='body1' color='red' sx={{ mb: 4 }}>{m}</Typography>
+                    }))
+                } else {
+                    setSuccess(data.alert)
+                }
             })
         }
     setToken('')
@@ -40,31 +48,91 @@ const ResetPassword = () => {
     }
 
   return (
-    <div>
-        <p>Reset Password:</p>
-        <form onSubmit={handleSubmit}>
-            <label for="token">Token:</label>
-            <input required id="token" onChange={(e) => setToken(e.target.value)} name="token" placeholder="token" type="token" value={token} />
-            <p>The code that was emailed to you. This is case-sensitive.</p>
-            <label for="email">Email:</label>
-            <input required id="email" onChange={(e) => setEmail(e.target.value)} name="email" placeholder="email" type="email" value={email} />
-            {pwNoMatch &&
-            <h1>{pwNoMatch}</h1>
-            }
-            <label for="password">New password:</label>
-            <input required id="password" onChange={(e) => setPassword(e.target.value)} name="password" placeholder="password" type="password" value={password} />
-            <p>Set your new password here.</p>
-            <label for="password_confirmation">Confirm new password:</label>
-            <input required id="password_confirmation" onChange={(e) => setPasswordConfirmation(e.target.value)} name="password_confirmation" placeholder="password confirmation" type="password" value={passwordConfirmation}/>
-            <button type="secondary">Reset Password</button>
-        </form>
-        {success &&
-        <div>
-            <h1>{success}</h1>
-            <button onClick={() => navigate('/')}>Go to app</button>
-        </div>
+    <>
+    <Typography align='left' sx={{ mt: 2, ml: 2 }}>
+        <Button variant='outlined' type='submit' onClick={() => navigate('/')}>Go to app</Button>
+    </Typography>
+    <Container component="main" maxWidth="xs">
+        <CssBaseline />
+        <Box
+          sx={{
+            marginTop: 4,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center'
+          }}
+        >
+        {message && 
+        message
         }
-    </div>
+        {success && 
+        <Typography align='center' component='h1' variant='body1' color='green' sx={{ mt: 2 }}>{success}</Typography>
+        }
+        <Avatar sx={{ m: 1, bgcolor: 'primary.main' }}></Avatar>
+        <Typography component="h1" variant="h5">
+        Reset Password
+        </Typography>
+        <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              id="token"
+              label="Token"
+              name="token"
+              autoComplete="token"
+              autoFocus
+              onChange={(e) => setToken(e.target.value)}
+              value={token}
+            />
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              id="email"
+              label="Email"
+              name="email"
+              autoComplete="email"
+              autoFocus
+              onChange={(e) => setEmail(e.target.value)}
+              value={email}
+            />
+            {pwNoMatch &&
+            <Typography component='h2' variant='body2' align='center'>{pwNoMatch}</Typography>
+            }
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              id="password"
+              label="Password"
+              name="password"
+              autoComplete="password"
+              type='password'
+              autoFocus
+              onChange={(e) => setPassword(e.target.value)}
+              value={password}
+            />
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              id="password_confirmation"
+              label="Password Confirmation"
+              name="password_confirmation"
+              autoComplete="password confirmation"
+              type='password'
+              autoFocus
+              onChange={(e) => setPasswordConfirmation(e.target.value)}
+              value={passwordConfirmation}
+            />
+            <Typography align='center' sx={{ mt: 2 }}>
+                <Button variant='outlined' type='submit'>Reset Password</Button>
+            </Typography>
+          </Box>
+        </Box>
+    </Container>
+    </>
   )
 }
 
