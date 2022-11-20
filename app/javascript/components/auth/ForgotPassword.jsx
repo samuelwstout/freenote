@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import {Avatar, Button, CssBaseline, TextField, Box, Typography, Container} from '@mui/material'
 
 const ForgotPassword = () => {
 
@@ -25,19 +26,44 @@ const ForgotPassword = () => {
     }
 
   return (
-    <div>
-        <p>Request password reset:</p>
-            <form onSubmit={handleSubmit}>
-            <input required id="forgotpasswordemail" onChange={(e) => setEmail(e.target.value)} name="email" placeholder="email" type="email" value={email} />
-            <button>Submit</button>
-            </form>
+    <>
+    <Typography align='left' sx={{ mt: 2, ml: 2}}>
+        <Button variant='outlined' type='submit' onClick={() => navigate('/')}>Go back</Button>
+    </Typography>
+    <Container component="main" maxWidth="xs">
+        <CssBaseline />
+        <Box
+          sx={{
+            marginTop: 2,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center'
+          }}
+        >
         {message &&
-        <div>
-            <p>{message}</p>
-            <button onClick={() => navigate('/')}>Go back</button>
-        </div>
+        <Typography align='center' component='h1' variant='h6' color='green'>{message}</Typography>
         }
-    </div>
+        </Box>
+        <Typography align='center' component='h1' variant='h5'>Request password reset:</Typography>
+            <Box component='form' onSubmit={handleSubmit} noValidate>
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              id="email"
+              label="Email"
+              name="email"
+              autoComplete="email"
+              autoFocus
+              onChange={(e) => setEmail(e.target.value)}
+              value={email}
+            />
+            <Typography align='center'>
+            <Button type='submit' variant='outlined'>Submit</Button>
+            </Typography>
+            </Box>
+    </Container>
+    </>
   )
 }
 
