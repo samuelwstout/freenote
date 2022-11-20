@@ -18,7 +18,7 @@ import CreateMusicianProfile from './auth/CreateMusicianProfile'
 import JobSettings from './contractor/JobSettings'
 import ForgotPassword from './auth/ForgotPassword'
 import ResetPassword from './auth/ResetPassword'
-import ConfirmEmail from './auth/ConfirmEmail'
+import ConfirmEmailToken from './auth/ConfirmEmailToken'
 import CallEmailConfirmation from './auth/CallEmailConfirmation'
 
 const App = () => {
@@ -86,7 +86,7 @@ useEffect(() => {
         <Route path="/signup-as-musician" element={<SignupAsMusician setCurrentUser={setCurrentUser} currentUser={currentUser} setMusicians={setMusicians} musicians={musicians} />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/reset-password" element={<ResetPassword />} />
-        <Route path="/confirm-email" element={<ConfirmEmail />} />
+        <Route path="/confirm-email" element={<ConfirmEmailToken />} />
         <Route path="/request-email-confirmation" element={<CallEmailConfirmation />} />
         {/* contractor */}
         <Route path="/contractor-profile" element={<ContractorProfile setCurrentUser={setCurrentUser} currentUser={currentUser} />} />
