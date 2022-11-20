@@ -5,13 +5,13 @@ class Api::ConfirmationsController < ApplicationController
         user = User.find_by(email: params[:_json])
         if user
             render json: {
-                alert: "If this user exists, we have sent you a password reset email."
+                alert: "Sent"
             }
             user.send_email_confirmation
         else
             #this sends regardless of whether there's an email in database for security reasons
             render json: {
-                alert: "If this user exists, we have sent you a password reset email."
+                alert: "Sent"
             }
         end
     end

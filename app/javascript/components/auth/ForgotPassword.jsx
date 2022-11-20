@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import {Avatar, Button, CssBaseline, TextField, Box, Typography, Container} from '@mui/material'
+import {Button, CssBaseline, TextField, Box, Typography, Container} from '@mui/material'
 
 const ForgotPassword = () => {
 
@@ -43,8 +43,7 @@ const ForgotPassword = () => {
         {message &&
         <Typography align='center' component='h1' variant='h6' color='green'>{message}</Typography>
         }
-        </Box>
-        <Typography align='center' component='h1' variant='h5'>Request password reset:</Typography>
+        <Typography align='center' component='h1' variant='h5'>Request password reset</Typography>
             <Box component='form' onSubmit={handleSubmit} noValidate>
             <TextField
               margin="normal"
@@ -62,6 +61,7 @@ const ForgotPassword = () => {
             <Button type='submit' variant='outlined'>Submit</Button>
             </Typography>
             </Box>
+          </Box>
     </Container>
     </>
   )
