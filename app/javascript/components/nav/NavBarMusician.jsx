@@ -1,48 +1,38 @@
-import * as React from 'react';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import Menu from '@mui/material/Menu';
-import MenuIcon from '@mui/icons-material/Menu';
-import Container from '@mui/material/Container';
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import Tooltip from '@mui/material/Tooltip';
-import MenuItem from '@mui/material/MenuItem';
-import { useNavigate } from 'react-router-dom';
-import { CssBaseline } from '@mui/material';
+import * as React from 'react'
+import { useNavigate } from 'react-router-dom'
+import { AppBar, Box, Toolbar, IconButton, Menu, Container, Avatar, Button, Tooltip, MenuItem, CssBaseline } from '@mui/material'
+import MenuIcon from '@mui/icons-material/Menu'
+
 
 const NavBarMusician = ({setCurrentUser}) => {
 
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
-  const [anchorElNav, setAnchorElNav] = React.useState(null);
-  const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const [anchorElNav, setAnchorElNav] = useState(null)
+  const [anchorElUser, setAnchorElUser] = useState(null)
 
   const handleOpenNavMenu = (event) => {
-    setAnchorElNav(event.currentTarget);
-  };
+    setAnchorElNav(event.currentTarget)
+  }
   const handleOpenUserMenu = (event) => {
-    setAnchorElUser(event.currentTarget);
-  };
+    setAnchorElUser(event.currentTarget)
+  }
 
   const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
-  };
+    setAnchorElNav(null)
+  }
 
   const handleCloseUserMenu = () => {
-    setAnchorElUser(null);
-  };
+    setAnchorElUser(null)
+  }
 
   const findWorkClick = () => {
-    setAnchorElNav(null);
+    setAnchorElNav(null)
     navigate('/find-work')
   }
 
   const appliedJobsClick = () => {
-    setAnchorElNav(null);
+    setAnchorElNav(null)
     navigate('/applied-jobs')
   }
 
@@ -180,6 +170,6 @@ const NavBarMusician = ({setCurrentUser}) => {
         </Toolbar>
       </Container>
     </AppBar>
-  );
+  )
 }
-export default NavBarMusician;
+export default NavBarMusician
