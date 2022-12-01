@@ -2,7 +2,7 @@ class Api::ConfirmationsController < ApplicationController
     skip_before_action :confirm_authentication
 
     def call
-        user = User.find_by(email: params[:_json])
+        user = User.find_by(email: params[:email])
         if user
             render json: {
                 alert: "Sent"
