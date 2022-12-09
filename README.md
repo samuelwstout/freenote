@@ -1,5 +1,6 @@
 # Freenote
 #### [https://freenote.up.railway.app](https://freenote.up.railway.app)
+#### [VIDEO DEMO HERE](https://youtu.be/t3KDwVimvDw)
 _a job board app to help musicians find gigs and contractors find talent._
 
 ## Overview
