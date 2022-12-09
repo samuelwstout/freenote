@@ -25,7 +25,7 @@ class Api::ConfirmationsController < ApplicationController
             session[:user_id] = user.id
             user.email_activate
         else
-            render json: { error: user.errors.full_messages }, status: :unprocessable_entity
+            render json: { error: "Unprocessable entity" }, status: :unprocessable_entity
         end    
     end
 
