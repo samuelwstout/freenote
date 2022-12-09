@@ -167,7 +167,7 @@ const handleSubmit = (e) => {
         </Button>
         <Grid container justifyContent="center">
           <Grid item>
-            <Link onClick={() => navigate('/signin')} variant="body2">
+            <Link onClick={() => navigate('/signin')} variant="body2" sx={{ cursor: 'pointer' }}>
               {"Already have an account? Sign in"}
             </Link>
           </Grid>

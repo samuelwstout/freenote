@@ -103,14 +103,14 @@ const Signin = ({setCurrentUser, currentUser}) => {
             </Button>
             <Grid container justifyContent="center">
               <Grid item>
-                <Link onClick={() => navigate('/signup')} variant="body2">
+                <Link onClick={() => navigate('/signup')} variant="body2" sx={{ cursor: 'pointer' }}>
                   {"Don't have an account? Sign Up"}
                 </Link>
               </Grid>
             </Grid>
             <Grid container justifyContent="center">
               <Grid item>
-                <Link onClick={() => navigate('/forgot-password')} variant="body2">
+                <Link onClick={() => navigate('/forgot-password')} variant="body2" sx={{ cursor: 'pointer' }}>
                   {"Forgot password?"}
                 </Link>
               </Grid>
