@@ -5,7 +5,7 @@ import { Box, Container, Typography, Accordion, AccordionDetails, AccordionSumma
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 
 const ContractorProfile = ({currentUser, setCurrentUser}) => {
-
+  
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -250,7 +250,7 @@ const ContractorProfile = ({currentUser, setCurrentUser}) => {
 
       <Typography align='center' sx={{ mt: 5.25 }}>
         <ButtonGroup variant='outlined'>
-          <Button onClick={() => navigate('/request-email-confirmation')}>Confirm Email</Button>
+          <Button disabled={currentUser.email_confirmed === true} onClick={() => navigate('/request-email-confirmation')}>Confirm Email</Button>
           <Button onClick={() => navigate('/forgot-password')}>Reset Password</Button>
         </ButtonGroup>
       </Typography>
