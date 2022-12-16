@@ -18,7 +18,7 @@ const LandingPage = ({currentUser}) => {
     }, [currentUser])
 
     return (
-      <Container component="main" maxWidth="xs">
+      <Container component="main" maxWidth="xl">
         <CssBaseline />
         <Box
           sx={{
@@ -40,9 +40,3 @@ const LandingPage = ({currentUser}) => {
     )
 }
 export default LandingPage
-
-{/* <div>
-        <h1>Freenote</h1>
-        <button onClick={() => navigate('/signin')}>Sign in</button>
-        <button onClick={() => navigate('/signup')}>Sign up</button>
-      </div> */}
