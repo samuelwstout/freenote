@@ -24,7 +24,7 @@ useEffect(() => {
   } 
 }, [currentUser])
 
-const handleSubmit = (e) => {
+const handleSubmit = (e: React.SyntheticEvent) => {
   e.preventDefault()
   fetch('/api/jobs', {
     method: 'POST',

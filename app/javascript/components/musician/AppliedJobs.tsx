@@ -25,10 +25,10 @@ const AppliedJobs = ({ setCurrentUser, currentUser, jobs, jobApplications }) => 
     }
   }, [currentUser])
  
-  let appliedJobs = jobApplications.filter(jobApp => jobApp.musician_id === currentUser.id)
+  let appliedJobs = jobApplications.filter((jobApp: {musician_id: number}) => jobApp.musician_id === currentUser.id)
 
-  const includesID = (id) => {
-    const onFilter = appliedJobs.filter((jobApp) => jobApp.job_id == id)
+  const includesID = (id: number) => {
+    const onFilter = appliedJobs.filter((jobApp: {job_id: number}) => jobApp.job_id == id)
     return onFilter.length > 0 ? true : false;
   }
 
@@ -44,7 +44,7 @@ const AppliedJobs = ({ setCurrentUser, currentUser, jobs, jobApplications }) => 
              {appliedJobs.length === 0 && 
               <Typography variant='h5' component='h1' align='center'>No applied jobs</Typography>
              }
-             {jobs.map((job) => {
+             {jobs.map((job: {id: number, title: string, description: string, date: string, location: string, budget: number}) => {
               if (includesID(job.id)) {
                 return (
                   <Grid item key={job.id} xs={12} sm={6} md={4}>

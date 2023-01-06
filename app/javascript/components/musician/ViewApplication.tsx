@@ -10,23 +10,21 @@ const ViewApplication = ({jobs, currentUser, jobApplications, setCurrentUser}) =
 
     const jobId = Number(params.id)
 
-    const jobAppsFromCurrentUser = jobApplications.filter(jobApp => jobApp.musician_id === currentUser.id)
+    const jobAppsFromCurrentUser = jobApplications.filter((jobApp: {musician_id: number}) => jobApp.musician_id === currentUser.id)
 
-    let application;
+    let application: any;
     
     if (jobAppsFromCurrentUser.length !== 0) {
-        application = jobAppsFromCurrentUser.find(item => {
+        application = jobAppsFromCurrentUser.find((item: {job_id: number}) => {
             return item.job_id === jobId
         })
     }
 
-    let job;
+    let job: any;
     
     if (jobs.length !== 0) {
-        job = jobs.find(item => item.id === jobId)
+        job = jobs.find((item: {id: number}) => item.id === jobId)
     }
-
-
 
   return (
     <div>
@@ -110,28 +108,3 @@ const ViewApplication = ({jobs, currentUser, jobApplications, setCurrentUser}) =
 }
 
 export default ViewApplication
-
-// {filterApplications !== undefined &&
-//     filterApplications.map(item => {
-//         return (
-//             <div key={item.id}>
-//                 <div>
-//                     <h2>Application #{item.id}</h2>
-//                     <h4>Cover letter:</h4>
-//                     <h4>{item.cover_letter}</h4>
-//                 </div>
-//                 {item.application_response &&
-//                 <div>
-//                     <h1>Status: {item.application_response.status}</h1>
-//                     <h3>Comment: {item.application_response.comment}</h3>
-//                 </div>
-//                 }
-//                 {!item.application_response &&
-//                 <div>
-//                     <h1>Status: Pending</h1>
-//                 </div>
-//                 }
-//             </div>
-//               )
-//           })
-//     }

@@ -18,7 +18,7 @@ const MyJobs = ({currentUser, setCurrentUser, jobs}) => {
     }
   }, [currentUser])
 
- const filterJobs = jobs.filter(job => job.contractor_id === currentUser.id)
+ const filterJobs = jobs.filter((job: { contractor_id: number }) => job.contractor_id === currentUser.id)
 
   return (
     <div>
@@ -26,7 +26,7 @@ const MyJobs = ({currentUser, setCurrentUser, jobs}) => {
         <Box sx={{ pb: 4 }}>
         <Container sx={{ py: 3 }} maxWidth="md">
         {filterJobs !== undefined && 
-          filterJobs.map(job => {
+          filterJobs.map((job: { id: number, title: string, description: string, date: string, location: string, budget: number }) => {
             return (
               <Grid item key={job.id} xs={12} sm={6} md={4}>
                 <Card

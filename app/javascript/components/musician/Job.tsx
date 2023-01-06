@@ -16,10 +16,10 @@ const [disabled, setDisabled] = useState(false)
 
 const params = useParams()
 const jobId = Number(params.id)
-const filterjob = jobs.filter(job => job.id === jobId)
+const filterjob = jobs.filter((job: {id: number}) => job.id === jobId)
 const job = filterjob[0]
 
-const handleSubmit = (e) => {
+const handleSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault()
     fetch('/api/job_applications', {
       method: 'POST',
@@ -44,9 +44,9 @@ const handleSubmit = (e) => {
   setCoverLetter('')
 }
 
-const jobAppsFromCurrentUser = jobApplications.filter(jobApp => jobApp.musician_id === currentUser.id)
+const jobAppsFromCurrentUser = jobApplications.filter((jobApp: {musician_id: number}) => jobApp.musician_id === currentUser.id)
 
-let checkApps; 
+let checkApps: undefined; 
 
 if (jobAppsFromCurrentUser.length !== 0) {
   const filter = jobAppsFromCurrentUser.filter(item => item.job_id === jobId)
