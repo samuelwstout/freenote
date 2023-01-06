@@ -10,7 +10,7 @@ const ConfirmEmailToken = () => {
     const [token, setToken] = useState('')
     const [message, setMessage] = useState('')
 
-    const handleSubmit = (e) => {
+    const handleSubmit = (e: React.SyntheticEvent) => {
         e.preventDefault();
         fetch('/api/submit_email_confirmation', {
             method: 'POST',
