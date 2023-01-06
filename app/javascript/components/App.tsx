@@ -22,12 +22,51 @@ import ConfirmEmailToken from './auth/ConfirmEmailToken'
 import CallEmailConfirmation from './auth/CallEmailConfirmation'
 
 const App = () => {
-  
-const [currentUser, setCurrentUser] = useState({})
-const [jobs, setJobs] = useState([])
-const [jobApplications, setJobApplications] = useState([])
-const [musicians, setMusicians] = useState([])
-const [musicianProfile, setMusicianProfile] = useState({})
+
+const [currentUser, setCurrentUser] = useState({
+  username: '',
+  password_digest: '',
+  first_name: '',
+  last_name: '',
+  type: '',
+  email: '',
+  password_reset_token: '',
+  email_confirmed: false,
+  confirm_token: '',
+  id: 0,
+})
+const [jobs, setJobs] = useState({
+  title: '', 
+  description: '', 
+  date: '', 
+  location: '', 
+  budget: 0, 
+  contractor_id: 0
+})
+const [jobApplications, setJobApplications] = useState({
+  cover_letter: '',
+  musician_id: 0,
+  job_id: 0,
+})
+const [musicians, setMusicians] = useState({
+  username: '',
+  password_digest: '',
+  first_name: '',
+  last_name: '',
+  type: '',
+  email: '',
+  password_reset_token: '',
+  email_confirmed: false,
+  confirm_token: '',
+  id: 0,
+})
+const [musicianProfile, setMusicianProfile] = useState({
+  location: '',
+  instrument: '',
+  bio: '',
+  media_url: '',
+  musician_id: 0
+})
 
 useEffect(() => {
   fetch('/api/me').then((r) => {
@@ -83,7 +122,7 @@ useEffect(() => {
         <Route path="/signin" element={<Signin setCurrentUser={setCurrentUser} currentUser={currentUser} />} />
         <Route path="/signup" element={<Signup currentUser={currentUser} />} />
         <Route path="/signup-as-contractor" element={<SignupAsContractor setCurrentUser={setCurrentUser} currentUser={currentUser} />} />
-        <Route path="/signup-as-musician" element={<SignupAsMusician setCurrentUser={setCurrentUser} currentUser={currentUser} setMusicians={setMusicians} musicians={musicians} />} />
+        <Route path="/signup-as-musician" element={<SignupAsMusician setCurrentUser={setCurrentUser} currentUser={currentUser} />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/reset-password" element={<ResetPassword />} />
         <Route path="/confirm-email" element={<ConfirmEmailToken />} />
@@ -91,7 +130,7 @@ useEffect(() => {
         {/* contractor */}
         <Route path="/contractor-profile" element={<ContractorProfile setCurrentUser={setCurrentUser} currentUser={currentUser} />} />
         <Route path="/create-job" element={<CreateJob setCurrentUser={setCurrentUser} currentUser={currentUser} setJobs={setJobs} jobs={jobs} />} />
-        <Route path="/job/:id/settings" element={<JobSettings jobs={jobs} currentUser={currentUser} setCurrentUser={setCurrentUser} setJobs={setJobs} />} />
+        <Route path="/job/:id/settings" element={<JobSettings jobs={jobs} setCurrentUser={setCurrentUser} setJobs={setJobs} />} />
         <Route path="/my-jobs" element={<MyJobs setCurrentUser={setCurrentUser} currentUser={currentUser} jobs={jobs} />} />
         <Route path="/job/:id/applications" element={<SeeApplications jobApplications={jobApplications} setJobApplications={setJobApplications} jobs={jobs} musicians={musicians} setCurrentUser={setCurrentUser} />} />
         {/* landing */}
