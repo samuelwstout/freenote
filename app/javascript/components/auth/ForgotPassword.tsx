@@ -9,7 +9,7 @@ const ForgotPassword = () => {
     const [email, setEmail] = useState('')
     const [message, setMessage] = useState('')
 
-    const handleSubmit = (e) => {
+    const handleSubmit = (e: React.SyntheticEvent) => {
         e.preventDefault()
         fetch('/api/forgot_password', {
             method: 'POST',

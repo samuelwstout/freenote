@@ -2,11 +2,11 @@ import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import {Avatar, Button, CssBaseline, TextField, Link, Grid, Box, Typography, Container} from '@mui/material'
 
-const SignupAsContractor = ({ setCurrentUser, currentUser }) => {
+const SignupAsMusician = ({setCurrentUser, currentUser}) => {
 
- const navigate = useNavigate()
+const navigate = useNavigate()
 
- useEffect(() => {
+useEffect(() => {
   if (currentUser) {
     if (currentUser.type === 'Musician') {
       navigate('/find-work')
@@ -25,51 +25,51 @@ const [password, setPassword] = useState('')
 const [passwordConfirmation, setPasswordConfirmation] = useState('')
 const [errorMessages, setErrorMessages] = useState([])
 
-  const handleSubmit = (e) => {
+const handleSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault()
-    fetch('/api/signup_as_contractor', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          first_name: firstName,
-          last_name: lastName,
-          username,
-          email,
-          password,
-          password_confirmation: passwordConfirmation
-        })
-      })
-        .then(res => {
-          if (res.ok) {
-            res.json().then(user => {
-                setCurrentUser(user)
-                navigate('/create-job')
-            })
-          } else {
-            res.json().then(errors => {
-              setErrorMessages(errors.error.map((message, index) => {
-                return (
-                  <Typography key={index} variant="subtitle2" color="error.dark" sx={{ mt: 1.75 }}>
-                    {message}
-                  </Typography>
-                )
-              }))
-            })
-          }
-        })
 
-    setFirstName('')
-    setLastName('')
-    setUsername('')
-    setEmail('')
-    setPassword('')
-    setPasswordConfirmation('')
-  }
+    fetch('/api/signup_as_musician', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        first_name: firstName,
+        last_name: lastName,
+        username,
+        email,
+        password,
+        password_confirmation: passwordConfirmation
+      })
+    })
+      .then(res => {
+        if (res.ok) {
+          res.json().then(user => {
+            setCurrentUser(user)
+            navigate('/create-musician-profile')
+          })
+        } else {
+          res.json().then(errors => {
+            setErrorMessages(errors.error.map((message: string, index: number) => {
+              return (
+                <Typography key={index} variant="subtitle2" color="error.dark" sx={{ mt: 1.75 }}>
+                  {message}
+                </Typography>
+              )
+            }))
+          })
+        }
+      })
+      setFirstName('')
+      setLastName('')
+      setUsername('')
+      setEmail('')
+      setPassword('')
+      setPasswordConfirmation('')
+    }
 
   return (
-    <Container component="main" maxWidth="xs">
+  <Container component="main" maxWidth="xs">
     <CssBaseline />
     <Box
       sx={{
@@ -83,13 +83,13 @@ const [errorMessages, setErrorMessages] = useState([])
       <Avatar sx={{ m: 1, bgcolor: 'primary.main' }}>
       </Avatar>
       <Typography component="h1" variant="h5">
-        Sign up to hire talent
+        Sign up to find work
       </Typography>
 
       {errorMessages && 
         errorMessages
       }
-  
+      
       <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
       <TextField
           margin="normal"
@@ -178,4 +178,4 @@ const [errorMessages, setErrorMessages] = useState([])
   )
 }
 
-export default SignupAsContractor
+export default SignupAsMusician

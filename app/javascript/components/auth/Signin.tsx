@@ -21,8 +21,8 @@ const Signin = ({ setCurrentUser, currentUser }) => {
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
 
-  const handleSubmit = (event) => {
-    event.preventDefault()
+  const handleSubmit = (e: React.SyntheticEvent) => {
+    e.preventDefault()
     fetch('/api/signin', {
       method: 'POST',
       headers: {

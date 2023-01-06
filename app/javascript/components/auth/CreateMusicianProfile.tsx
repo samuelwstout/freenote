@@ -20,7 +20,7 @@ const CreateMusicianProfile = ({currentUser, setMusicianProfile}) => {
       const [mediaUrl, setMediaUrl] = useState('')
       const [error, setError] = useState('')
 
-      const handleSubmit = (e) => {
+      const handleSubmit = (e: React.SyntheticEvent) => {
         e.preventDefault();
         fetch('/api/musician_profiles', {
             method: 'POST',

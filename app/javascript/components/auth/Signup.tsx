@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import {Button, ButtonGroup, CssBaseline, Box, Typography, Container} from '@mui/material';
 
 const Signup = ({currentUser}) => {

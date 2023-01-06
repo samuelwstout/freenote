@@ -14,7 +14,7 @@ const ResetPassword = () => {
     const [success, setSuccess] = useState('')
     const [message, setMessage] = useState([])
 
-    const handleSubmit = (e) => {
+    const handleSubmit = (e: React.SyntheticEvent) => {
         e.preventDefault()
         if (password !== passwordConfirmation) {
             setPwNoMatch("Passwords don't match")
@@ -33,7 +33,7 @@ const ResetPassword = () => {
             .then(r => r.json())
             .then(data => {
                 if (data.error) {
-                setMessage(data.error.map((m, index) => {
+                setMessage(data.error.map((m: string, index: number) => {
                     return <Typography key={index} align='center' component='h1' variant='body1' color='red' sx={{ mb: 4 }}>{m}</Typography>
                     }))
                 } else {
