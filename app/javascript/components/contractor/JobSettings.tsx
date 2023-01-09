@@ -35,9 +35,9 @@ const handleSubmitTitle = (e: React.SyntheticEvent) => {
     })
     .then(r => r.json())
     .then(data => {
-        const old = jobs.find((x: {id: number}) => x.id === data.id)
-        const array = jobs.map((j: typeof array) => j)
-        array.splice(array.findIndex((s: string) => s === old), 1)
+        const old = jobs.find(x => x.id === data.id)
+        const array = jobs.map(j => j)
+        array.splice(array.findIndex(s => s === old), 1)
         array.push(data)
         const updateJobs = array.map(j => j)
         setJobs(updateJobs)
@@ -58,7 +58,7 @@ const handleSubmitDescription = (e: React.SyntheticEvent) => {
     })
     .then(r => r.json())
     .then(data => {
-        const old = jobs.find((x: {id: number}) => x.id === data.id)
+        const old = jobs.find(x => x.id === data.id)
         const array = jobs.map(j => j)
         array.splice(array.findIndex(s => s === old), 1)
         array.push(data)
