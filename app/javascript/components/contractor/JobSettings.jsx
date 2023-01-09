@@ -7,14 +7,14 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 const JobSettings = ({jobs, setCurrentUser, setJobs}) => {
 
 const navigate = useNavigate()
-  
+
 const [editTitle, setEditTitle] = useState('')
 const [editDescription, setEditDescription] = useState('')
 const [editDate, setEditDate] = useState('')
 const [editLocation, setEditLocation] = useState('')
 const [editBudget, setEditBudget] = useState('')
 const [deleteMessage, setDeleteMessage] = useState('')
-const [expanded, setExpanded] = useState('panel1')
+const [expanded, setExpanded] = useState(false)
 const [submit, setSubmit] = useState(false)
 
 const paramsId = Number(useParams().id)
