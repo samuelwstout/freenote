@@ -19,7 +19,7 @@ const MusicianProfile = ({setCurrentUser, currentUser, musicianProfile, setMusic
     }
   }, [currentUser])
 
-  const [expanded, setExpanded] = useState(false)
+  const [expanded, setExpanded] = useState('panel1')
   const [editFirstName, setEditFirstName] = useState('')
   const [editLastName, setEditLastName] = useState('')
   const [editUsername, setEditUsername] = useState('')
