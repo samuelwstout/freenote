@@ -14,15 +14,15 @@ const [editDate, setEditDate] = useState('')
 const [editLocation, setEditLocation] = useState('')
 const [editBudget, setEditBudget] = useState('')
 const [deleteMessage, setDeleteMessage] = useState('')
-const [expanded, setExpanded] = useState('panel1')
+const [expanded, setExpanded] = React.useState<string | false>('panel1')
 const [submit, setSubmit] = useState(false)
 
 const paramsId = Number(useParams().id)
 
-let job = jobs.filter(item => item.id === paramsId)
+let job = jobs.filter((item: {id: number}) => item.id === paramsId)
 job = job[0]
 
-const handleSubmitTitle = (e) => {
+const handleSubmitTitle = (e: React.SyntheticEvent) => {
     e.preventDefault();
     fetch(`/api/jobs/${paramsId}`, {
         method: 'PATCH',
@@ -35,9 +35,9 @@ const handleSubmitTitle = (e) => {
     })
     .then(r => r.json())
     .then(data => {
-        const old = jobs.find(x => x.id === data.id)
-        const array = jobs.map(j => j)
-        array.splice(array.findIndex(s => s === old), 1)
+        const old = jobs.find((x: {id: number}) => x.id === data.id)
+        const array = jobs.map((j: typeof array) => j)
+        array.splice(array.findIndex((s: string) => s === old), 1)
         array.push(data)
         const updateJobs = array.map(j => j)
         setJobs(updateJobs)
@@ -45,7 +45,7 @@ const handleSubmitTitle = (e) => {
     setEditTitle('')
 }
 
-const handleSubmitDescription = (e) => {
+const handleSubmitDescription = (e: React.SyntheticEvent) => {
     e.preventDefault();
     fetch(`/api/jobs/${paramsId}`, {
         method: 'PATCH',
@@ -58,7 +58,7 @@ const handleSubmitDescription = (e) => {
     })
     .then(r => r.json())
     .then(data => {
-        const old = jobs.find(x => x.id === data.id)
+        const old = jobs.find((x: {id: number}) => x.id === data.id)
         const array = jobs.map(j => j)
         array.splice(array.findIndex(s => s === old), 1)
         array.push(data)
@@ -161,8 +161,8 @@ const handleDelete = (e) => {
     })
 }
 
-const handleChange = (panel) => (event, isExpanded) => {
-    setExpanded(isExpanded ? panel : false)
+const handleChange = (panel: string) => (e: React.SyntheticEvent, newExpanded: boolean) => {
+    setExpanded(newExpanded ? panel : false)
   }
 
   return (
@@ -187,7 +187,7 @@ const handleChange = (panel) => (event, isExpanded) => {
           </Typography>
           <Typography sx={{ color: 'text.secondary' }}>{job.title}</Typography>
         </AccordionSummary>
-        <AccordionDetails align='center'>
+        <AccordionDetails>
         <Box component="form" onSubmit={handleSubmitTitle} noValidate>
         <TextField
               id="title"
@@ -213,7 +213,7 @@ const handleChange = (panel) => (event, isExpanded) => {
           </Typography>
           <Typography sx={{ color: 'text.secondary' }}>{job.description}</Typography>
         </AccordionSummary>
-        <AccordionDetails align='center'>
+        <AccordionDetails>
         <Box component="form" onSubmit={handleSubmitDescription} noValidate>
         <TextField
               id="title"
@@ -239,7 +239,7 @@ const handleChange = (panel) => (event, isExpanded) => {
           </Typography>
           <Typography sx={{ color: 'text.secondary' }}>{job.date}</Typography>
         </AccordionSummary>
-        <AccordionDetails align='center'>
+        <AccordionDetails>
         <Box component="form" onSubmit={handleSubmitDate} noValidate>
         <TextField
               id="title"
@@ -265,7 +265,7 @@ const handleChange = (panel) => (event, isExpanded) => {
           </Typography>
           <Typography sx={{ color: 'text.secondary' }}>{job.location}</Typography>
         </AccordionSummary>
-        <AccordionDetails align='center'>
+        <AccordionDetails>
         <Box component="form" onSubmit={handleSubmitLocation} noValidate>
         <TextField
               id="title"
@@ -291,7 +291,7 @@ const handleChange = (panel) => (event, isExpanded) => {
           </Typography>
           <Typography sx={{ color: 'text.secondary' }}>${job.budget}</Typography>
         </AccordionSummary>
-        <AccordionDetails align='center'>
+        <AccordionDetails>
         <Box component="form" onSubmit={handleSubmitBudget} noValidate>
         <TextField
               id="title"
@@ -320,7 +320,7 @@ const handleChange = (panel) => (event, isExpanded) => {
             Delete this job?
           </Typography>
         </AccordionSummary>
-        <AccordionDetails align='center'>
+        <AccordionDetails>
         <Box component="form" onSubmit={handleDelete} noValidate>
         <Button type='submit' variant='outlined' sx={{ mt: 2, color: 'red' }}>Delete</Button>
         </Box>

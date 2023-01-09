@@ -19,7 +19,7 @@ const MusicianProfile = ({setCurrentUser, currentUser, musicianProfile, setMusic
     }
   }, [currentUser])
 
-  const [expanded, setExpanded] = useState('panel1')
+  const [expanded, setExpanded] = React.useState<string | false>('panel1');
   const [editFirstName, setEditFirstName] = useState('')
   const [editLastName, setEditLastName] = useState('')
   const [editUsername, setEditUsername] = useState('')
@@ -30,7 +30,7 @@ const MusicianProfile = ({setCurrentUser, currentUser, musicianProfile, setMusic
   const [editMedia, setEditMedia] = useState('')
   const [submit, setSubmit] = useState(false)
 
-  const handleSubmitFirstName = (e) => {
+  const handleSubmitFirstName = (e: React.SyntheticEvent) => {
     e.preventDefault();
     fetch(`/api/musicians/${currentUser.id}`, {
       method: 'PATCH',
@@ -53,7 +53,7 @@ const MusicianProfile = ({setCurrentUser, currentUser, musicianProfile, setMusic
     setEditFirstName('')
   }
 
-  const handleSubmitLastName = (e) => {
+  const handleSubmitLastName = (e: React.SyntheticEvent) => {
     e.preventDefault();
     fetch(`/api/musicians/${currentUser.id}`, {
       method: 'PATCH',
@@ -76,7 +76,7 @@ const MusicianProfile = ({setCurrentUser, currentUser, musicianProfile, setMusic
     setEditLastName('')
   }
 
-  const handleSubmitUsername = (e) => {
+  const handleSubmitUsername = (e: React.SyntheticEvent) => {
     e.preventDefault();
     fetch(`/api/musicians/${currentUser.id}`, {
       method: 'PATCH',
@@ -99,7 +99,7 @@ const MusicianProfile = ({setCurrentUser, currentUser, musicianProfile, setMusic
     setEditUsername('')
   }
 
-  const handleSubmitEmail = (e) => {
+  const handleSubmitEmail = (e: React.SyntheticEvent) => {
     e.preventDefault();
     fetch(`/api/musicians/${currentUser.id}`, {
       method: 'PATCH',
@@ -122,7 +122,7 @@ const MusicianProfile = ({setCurrentUser, currentUser, musicianProfile, setMusic
     setEditEmail('')
   }
 
-  const handleSubmitLocation = (e) => {
+  const handleSubmitLocation = (e: React.SyntheticEvent) => {
     e.preventDefault();
     fetch(`/api/musician_profiles/${musicianProfile.id}`, {
       method: 'PATCH',
@@ -145,7 +145,7 @@ const MusicianProfile = ({setCurrentUser, currentUser, musicianProfile, setMusic
     setEditLocation('')
   }
 
-  const handleSubmitInstrument = (e) => {
+  const handleSubmitInstrument = (e: React.SyntheticEvent) => {
     e.preventDefault();
     fetch(`/api/musician_profiles/${musicianProfile.id}`, {
       method: 'PATCH',
@@ -168,7 +168,7 @@ const MusicianProfile = ({setCurrentUser, currentUser, musicianProfile, setMusic
     setEditInstrument('')
   }
 
-  const handleSubmitBio = (e) => {
+  const handleSubmitBio = (e: React.SyntheticEvent) => {
     e.preventDefault();
     fetch(`/api/musician_profiles/${musicianProfile.id}`, {
       method: 'PATCH',
@@ -191,7 +191,7 @@ const MusicianProfile = ({setCurrentUser, currentUser, musicianProfile, setMusic
     setEditBio('')
   }
 
-  const handleSubmitMedia = (e) => {
+  const handleSubmitMedia = (e: React.SyntheticEvent) => {
     e.preventDefault();
     fetch(`/api/musician_profiles/${musicianProfile.id}`, {
       method: 'PATCH',
@@ -215,7 +215,7 @@ const MusicianProfile = ({setCurrentUser, currentUser, musicianProfile, setMusic
   }
 
 
-  const handleDelete = (e) => {
+  const handleDelete = (e: React.SyntheticEvent) => {
     e.preventDefault();
     fetch(`/api/musicians/${currentUser.id}`, {
       method: 'DELETE',
@@ -230,8 +230,8 @@ const MusicianProfile = ({setCurrentUser, currentUser, musicianProfile, setMusic
     })
   }
 
-  const handleChange = (panel) => (event, isExpanded) => {
-    setExpanded(isExpanded ? panel : false)
+  const handleChange = (panel: string) => (e: React.SyntheticEvent, newExpanded: boolean) => {
+    setExpanded(newExpanded ? panel : false)
   }
 
   return (
@@ -255,7 +255,7 @@ const MusicianProfile = ({setCurrentUser, currentUser, musicianProfile, setMusic
           </Typography>
           <Typography sx={{ color: 'text.secondary' }}>{currentUser.first_name}</Typography>
           </AccordionSummary>
-        <AccordionDetails align='center'>
+        <AccordionDetails>
         <Box component="form" onSubmit={handleSubmitFirstName} noValidate>
         <TextField
               id="first_name"
@@ -280,7 +280,7 @@ const MusicianProfile = ({setCurrentUser, currentUser, musicianProfile, setMusic
             {currentUser.last_name}
           </Typography>
         </AccordionSummary>
-        <AccordionDetails align='center'>
+        <AccordionDetails>
         <Box component="form" onSubmit={handleSubmitLastName} noValidate>
         <TextField
               id="last_name"
@@ -307,7 +307,7 @@ const MusicianProfile = ({setCurrentUser, currentUser, musicianProfile, setMusic
             {currentUser.username}
           </Typography>
         </AccordionSummary>
-        <AccordionDetails align='center'>
+        <AccordionDetails>
         <Box component="form" onSubmit={handleSubmitUsername} noValidate>
         <TextField
               id="username"
@@ -334,7 +334,7 @@ const MusicianProfile = ({setCurrentUser, currentUser, musicianProfile, setMusic
             {currentUser.email}
           </Typography>
         </AccordionSummary>
-        <AccordionDetails align='center'>
+        <AccordionDetails>
         <Box component="form" onSubmit={handleSubmitEmail} noValidate>
         <TextField
               id="email"
@@ -364,7 +364,7 @@ const MusicianProfile = ({setCurrentUser, currentUser, musicianProfile, setMusic
             {musicianProfile.location}
           </Typography>
         </AccordionSummary>
-        <AccordionDetails align='center'>
+        <AccordionDetails>
         <Box component="form" onSubmit={handleSubmitLocation} noValidate>
         <TextField
               id="location"
@@ -389,7 +389,7 @@ const MusicianProfile = ({setCurrentUser, currentUser, musicianProfile, setMusic
             {musicianProfile.instrument}
           </Typography>
         </AccordionSummary>
-        <AccordionDetails align="center">
+        <AccordionDetails>
         <Box component="form" onSubmit={handleSubmitInstrument} noValidate>
         <TextField
               id="instrument"
@@ -414,7 +414,7 @@ const MusicianProfile = ({setCurrentUser, currentUser, musicianProfile, setMusic
             {musicianProfile.bio}
           </Typography>
         </AccordionSummary>
-        <AccordionDetails align='center'>
+        <AccordionDetails>
         <Box component="form" onSubmit={handleSubmitBio} noValidate>
         <TextField
               id="bio"
@@ -441,7 +441,7 @@ const MusicianProfile = ({setCurrentUser, currentUser, musicianProfile, setMusic
             }...
           </Link>
         </AccordionSummary>
-        <AccordionDetails align='center'>
+        <AccordionDetails>
         <Box component="form" onSubmit={handleSubmitMedia} noValidate>
         <TextField
               id="media"
@@ -457,7 +457,7 @@ const MusicianProfile = ({setCurrentUser, currentUser, musicianProfile, setMusic
       </div>
       }
 
-      <Typography align='center' sx={{ mt: 5.25 }}>
+      <Typography sx={{ mt: 5.25 }}>
         <ButtonGroup variant='outlined'>
           <Button onClick={() => navigate('/request-email-confirmation')}>Confirm Email</Button>
           <Button onClick={() => navigate('/forgot-password')}>Reset Password</Button>
@@ -475,7 +475,7 @@ const MusicianProfile = ({setCurrentUser, currentUser, musicianProfile, setMusic
             Delete your account?
           </Typography>
         </AccordionSummary>
-        <AccordionDetails align='center'>
+        <AccordionDetails>
         <Box component="form" onSubmit={handleDelete} noValidate>
         <Button type='submit' variant='outlined' sx={{ mt: 2, color: 'red' }}>Delete your account</Button>
         </Box>
